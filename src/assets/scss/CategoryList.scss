@@ -1,0 +1,43 @@
+/* colors */
+$border-color: #d8d8d8;
+
+.CategoryList {
+  text-align: center;
+  width: 30%;
+
+}
+
+.Category {
+display: flex;
+flex-direction: row;
+align-items: center;
+border: solid thin;
+padding: 0.5rem 0.5rem;
+} // duplicated with task from TaskList.scss
+
+.Category-title {
+  margin: 0 0.5rem;
+}
+
+.checkMark {
+  width: 20px;
+  height: 20px;
+}
+
+.checkMark_hidden {
+  visibility: hidden;
+}
+
+.Edit_icon {
+  border: solid thin;
+}
+
+.Basket_icon {
+  margin-left: auto;
+}
+
+.Plus_icon {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 20px;
+}

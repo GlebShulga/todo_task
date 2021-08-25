@@ -1,18 +1,18 @@
 [
-  { "categoryId": "1", "categoryTitle": "category1", "parentCategoryId": null },
+  { "categoryId": "1", "categoryTitle": "category 1", "parentCategoryId": null },
   {
     "categoryId": "2",
-    "categoryTitle": "category1_1",
+    "categoryTitle": "category 1_1",
     "parentCategoryId": "1"
   },
   {
     "categoryId": "3",
-    "categoryTitle": "category1_1_1",
+    "categoryTitle": "category 1_1_1",
     "parentCategoryId": "2"
   },
   {
     "categoryId": "4",
-    "categoryTitle": "category1_1_2",
+    "categoryTitle": "category 1_1_2",
     "parentCategoryId": "2"
   },
   {
@@ -23,16 +23,16 @@
     "_createdAt": 1629857550927,
     "_deletedAt": 1629857778107
   },
-  { "categoryId": "5", "categoryTitle": "category2", "parentCategoryId": null },
+  { "categoryId": "5", "categoryTitle": "category 2", "parentCategoryId": null },
   {
     "categoryId": "6",
-    "categoryTitle": "category2_1",
+    "categoryTitle": "category 2_1",
     "parentCategoryId": "5"
   },
   {
     "categoryId": "7",
-    "categoryTitle": "category2_1_1",
+    "categoryTitle": "category 2_1_1",
     "parentCategoryId": "6"
   },
-  { "categoryId": "8", "categoryTitle": "category2_2", "parentCategoryId": "5" }
+  { "categoryId": "8", "categoryTitle": "category 2_2", "parentCategoryId": "5" }
 ]

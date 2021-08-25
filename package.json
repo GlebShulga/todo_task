@@ -7,8 +7,10 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.21.1",
     "express": "^4.17.1",
     "nanoid": "^3.1.25",
+    "nodemon": "^2.0.12",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
@@ -16,12 +18,15 @@
     "sass": "^1.38.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:server": "node server/server.js",
+    "dev": "npm run start:server & npm run start:client",
+    "start:client": "react-scripts start",
+    "start:server": "nodemon server/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:3001",
+  "secure": false,
   "eslintConfig": {
     "extends": "react-app"
   },
