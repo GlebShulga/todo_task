@@ -1,7 +1,12 @@
 .App {
   display: flex;
+  flex-direction: column;
+}
+
+.App-lists {
+  display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .App-logo {

@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import editIcon from "./assets/images/editIcon.svg";
-import "./assets/scss/TaskList.scss";
+import editIcon from "../assets/images/editIcon.svg";
+import "../assets/scss/TaskList.scss";
 
-const TaskList = ({ choosenCategoryId }) => {
+const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
   const [taskList, setTaskList] = useState([]);
 
   useEffect(() => {
     axios("/api/v1/task")
       .then((res) => {
         const data = res.data;
-        console.log(data, "data");
         setTaskList(data);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  // const statuses = ["new", "in progress", "done"];
-
-  // const [activeStatus, setActiveStatus] = useState("all");
+  }, [isNewTaskCreated]);
 
   return (
     <div className="TaskList">
       {taskList.map((task) => {
-        return (
-          choosenCategoryId === task.categoryId ?
-          <div className="Task">
+        return choosenCategory.categoryId === task.categoryId ? (
+          <div className="Task" key={task.taskId}>
             <input
               type="checkbox"
               id="read_only"
@@ -33,15 +27,14 @@ const TaskList = ({ choosenCategoryId }) => {
               className=""
               // checked={data.read_only ?? false}
               // value={data.read_only ?? false}
-              onChange={""}
+              // onChange={""}
             />
             <div key={task.taskId} className="Task-title">
               {task.title}
             </div>
             <img src={editIcon} className="Task-Edit_icon" alt="edit icon" />
           </div>
-         : null
-        );
+        ) : null;
       })}
     </div>
   );

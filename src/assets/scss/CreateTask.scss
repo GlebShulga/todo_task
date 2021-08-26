@@ -1,0 +1,40 @@
+.CreateTask {
+  justify-items: center;
+  padding: 1rem 1rem;
+}
+
+.CreateTask-form {
+  display: flex;
+  overflow: hidden;
+}
+
+.CreateTask-form_input {
+  padding: 0.5rem 1rem;
+  border: lightgrey;
+  background-color: lightgrey;
+  outline: none;
+
+  &:focus {
+    background-color: darkgrey;
+  }
+}
+
+.CreateTask-form_button {
+  padding: 0.5rem 1rem;
+  background-color: limegreen;
+  color: white;
+  font-weight: 700;
+  &:hover {
+    background-color: lightgreen;
+  }
+}
+
+.CreateTask-form_button_error {
+  opacity: 0.5;
+}
+
+.Error {
+  color: red;
+  padding-top: 1rem;
+  text-align: center;
+}

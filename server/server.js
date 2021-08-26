@@ -18,7 +18,8 @@ const categoryTemplate = {
   categoryTitle: "",
   _isDeleted: false,
   _createdAt: 0,
-  _deletedAt: 0
+  _deletedAt: 0,
+  lvl: 0
 };
 
 const toWriteTask = (fileData) => {
@@ -57,9 +58,10 @@ const removeSpecialFields = (dataList) => {
 };
 
 function flattenCategories(current, all) {
+  const SortedByDate = current.sort((a, b) => a._createdAt - b._createdAt);
   const allItems = all || current;
   if (typeof current === "undefined") return [];
-  return current.reduce((result, item) => {
+  return SortedByDate.reduce((result, item) => {
     const children = allItems.filter(
       (it) => it.parentCategoryId === item.categoryId
     );
@@ -85,13 +87,14 @@ const middleware = [
 middleware.forEach((it) => app.use(it));
 
 app.post('/api/v1/category', async (req, res) => {
-  const { categoryTitle, parentCategoryId } = req.body;
+  const { categoryTitle, parentCategoryId, lvl } = req.body;
   const newCategory = {
     ...categoryTemplate,
     categoryId: nanoid(),
     parentCategoryId,
     categoryTitle,
-    _createdAt: +new Date(),
+    lvl,
+    _createdAt: +new Date()
   };
   const categoryList = await toReadCategory()
     .then((existingCategoryList) => {
@@ -119,13 +122,12 @@ app.get("/api/v1/category", async (req, res) => {
   res.json(data);
 });
 
-app.patch("/api/v1/category/:id", async (req, res) => {
-  const { id } = req.params;
-  let { categoryTitle } = req.body;
+app.patch("/api/v1/category", async (req, res) => {
+  let { categoryId, categoryTitle } = req.body;
   const data = await toReadCategory()
     .then((categoryList) => {
       return categoryList?.map((category) => {
-        if (category.categoryId !== id) {
+        if (category.categoryId !== categoryId) {
           return category;
         }
         if (categoryTitle === undefined) {
@@ -145,12 +147,12 @@ app.patch("/api/v1/category/:id", async (req, res) => {
   res.json(FilterDeletedCategories(data));
 });
 
-app.delete("/api/v1/category/:id", async (req, res) => {
-  const { id } = req.params;
+app.delete("/api/v1/category", async (req, res) => {
+  const { categoryId } = req.body;
   const data = await toReadCategory()
     .then((categoryList) =>
       categoryList.map((category) => {
-        return category.categoryId !== id
+        return category.categoryId !== categoryId
           ? category
           : { ...category, _isDeleted: true, _deletedAt: +new Date() };
       })

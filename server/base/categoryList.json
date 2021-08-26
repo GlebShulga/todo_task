@@ -1,38 +1,94 @@
 [
-  { "categoryId": "1", "categoryTitle": "category 1", "parentCategoryId": null },
+  {
+    "categoryId": "1",
+    "categoryTitle": "category 1",
+    "parentCategoryId": null,
+    "lvl": 0,
+    "_createdAt": 1629964332420
+  },
   {
     "categoryId": "2",
     "categoryTitle": "category 1_1",
-    "parentCategoryId": "1"
+    "parentCategoryId": "1",
+    "lvl": 1,
+    "_createdAt": 1629964332428
   },
   {
     "categoryId": "3",
     "categoryTitle": "category 1_1_1",
-    "parentCategoryId": "2"
+    "parentCategoryId": "2",
+    "lvl": 2,
+    "_createdAt": 1629964332528
   },
   {
     "categoryId": "4",
     "categoryTitle": "category 1_1_2",
-    "parentCategoryId": "2"
+    "parentCategoryId": "2",
+    "lvl": 2,
+    "_createdAt": 1629964332628
   },
   {
-    "categoryId": "UuFCwNj2IYi4UEWC15uwP",
-    "parentCategoryId": "2",
-    "categoryTitle": "Most important tasks",
-    "_isDeleted": true,
-    "_createdAt": 1629857550927,
-    "_deletedAt": 1629857778107
+    "categoryId": "5",
+    "categoryTitle": "category 2",
+    "parentCategoryId": null,
+    "lvl": 0,
+    "_createdAt": 1629964332728
   },
-  { "categoryId": "5", "categoryTitle": "category 2", "parentCategoryId": null },
   {
     "categoryId": "6",
     "categoryTitle": "category 2_1",
-    "parentCategoryId": "5"
+    "parentCategoryId": "5",
+    "_createdAt": 1629964332826,
+    "lvl": 1
   },
   {
     "categoryId": "7",
     "categoryTitle": "category 2_1_1",
-    "parentCategoryId": "6"
+    "parentCategoryId": "6",
+    "_createdAt": 1629964332808,
+    "lvl": 2
   },
-  { "categoryId": "8", "categoryTitle": "category 2_2", "parentCategoryId": "5" }
+  {
+    "categoryId": "8",
+    "categoryTitle": "category 2_2",
+    "parentCategoryId": "5",
+    "_createdAt": 1629964332818,
+    "lvl": 1
+  },
+  {
+    "categoryId": "Kbchx0i_c73rCkMJI8KCf",
+    "parentCategoryId": "8",
+    "categoryTitle": "category 2_2_1",
+    "_isDeleted": false,
+    "_createdAt": 1629943298760,
+    "_deletedAt": 0,
+    "lvl": 2
+  },
+  {
+    "categoryId": "PoMWPerFYXlI9_uCQH_Em",
+    "parentCategoryId": "Kbchx0i_c73rCkMJI8KCf",
+    "categoryTitle": "category 2_2_1_1",
+    "_isDeleted": false,
+    "_createdAt": 1629944188034,
+    "_deletedAt": 0,
+    "lvl": 3
+  },
+  {
+    "categoryId": "iQZpSMLpL0crGLqoS9M1d",
+    "parentCategoryId": null,
+    "categoryTitle": "category 3",
+    "_isDeleted": false,
+    "_createdAt": 1629942952617,
+    "_deletedAt": 0,
+    "lvl": 0
+  },
+  {
+    "categoryId": "4vZO0vskb_hsZuV6aUM9r",
+    "parentCategoryId": null,
+    "categoryTitle": "category 4",
+    "_isDeleted": false,
+    "_createdAt": 1629964332828,
+    "_deletedAt": 0,
+    "lvl": 0
+  }
 ]

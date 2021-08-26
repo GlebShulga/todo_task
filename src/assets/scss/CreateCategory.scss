@@ -1,0 +1,52 @@
+.CreateCategory {
+  // display: grid;
+  justify-items: left;
+  padding: 1rem 1rem;
+}
+
+.CreateCategory-form {
+  display: flex;
+  overflow: hidden;
+}
+
+.CreateCategory-form_input {
+  padding: 0.5rem 1rem;
+  border: lightgrey;
+  background-color: lightgrey;
+  outline: none;
+
+  &:focus {
+    background-color: darkgrey;
+  }
+}
+
+.CreateCategory-form_button_add {
+  padding: 0.5rem 1rem;
+  background-color: limegreen;
+  color: white;
+  font-weight: 700;
+  &:hover {
+    background-color: lightgreen;
+  }
+  }
+
+.CreateCategory-form_button_close {
+  padding: 0.5rem 1rem;
+  margin: 0 0.1rem;
+  background-color: grey;
+  color: white;
+  font-weight: 700;
+  &:hover {
+    background-color: lightslategray;
+  }
+}
+
+.CreateCategory-form_button_error {
+  opacity: 0.5;
+}
+
+.Error {
+  color: red;
+  padding-top: 1rem;
+  text-align: center;
+}
