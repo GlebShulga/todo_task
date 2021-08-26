@@ -44,6 +44,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 ### Front
 
 - React
-- Redux/Redux-Thunk
+- ~~Redux/Redux-Thunk~~
 - Axios
-- Tailwind
+- SCSS
