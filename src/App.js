@@ -4,6 +4,7 @@ import CategoryList from "./components/CategoryList";
 import TaskList from "./components/TaskList";
 import CreateCategory from "./components/CreateCategory";
 import CreateTask from "./components/CreateTask";
+import ProgressBar from "./components/ProgressBar";
 import "./assets/scss/App.scss";
 
 function App() {
@@ -28,8 +29,11 @@ function App() {
     (category) => category.categoryTitle
   );
 
+  const completed = 70
+
   return (
     <div className="App">
+      <ProgressBar completed={completed} />
       <div className="App-lists">
         <CreateCategory
           categoryTitleList={categoryTitleList}
