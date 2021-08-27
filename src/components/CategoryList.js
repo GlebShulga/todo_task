@@ -1,24 +1,20 @@
 import React, { useState } from "react";
 import axios from "axios";
-import editIcon from "../assets/images/editIcon.svg";
-import saveIcon from "../assets/images/saveIcon.svg";
-import checkMark from "../assets/images/checkMark.svg";
 import basketIcon from "../assets/images/basketIcon.svg";
+import plusIcon from "../assets/images/plusIcon.svg";
+import checkMark from "../assets/images/checkMark.svg";
 import CreateCategory from "./CreateCategory";
+import Category from "./Category";
 import "../assets/scss/CategoryList.scss";
 
 const CategoryList = ({
   choosenCategory,
   setChoosenCategory,
-  setIsCategoryListUpdated,
-  isCategoryListUpdated,
   categoryList,
   categoryTitleList,
   fetchCategoryList,
 }) => {
   const [toggle, setToggle] = useState(false);
-  const [isEditingMode, setEditing] = useState(false);
-  const [newTitle, setNewTitle] = useState(choosenCategory.categoryTitle);
 
   const choosenCategoryId = choosenCategory.categoryId;
 
@@ -43,28 +39,20 @@ const CategoryList = ({
     });
   };
 
-  const onTitleChange = (e) => {
-    setNewTitle(e.target.value);
-  };
-
-  const edit = isEditingMode ? (
-    <img src={saveIcon} className="" alt="save icon" />
-  ) : (
-    <img src={editIcon} className="" alt="edit icon" />
-  );
-
   return (
     <div className="CategoryList">
       {categoryList.map((category) => {
         const categoryId = category.categoryId;
-        const visibleCategory =
-          category.parentCategoryId === null ||
-          category.parentCategoryId === choosenCategoryId ||
-          category.categoryId === choosenCategoryId;
-
+        // const visibleCategory =
+        //   category.parentCategoryId === null ||
+        //   category.parentCategoryId === choosenCategoryId ||
+        //   category.categoryId === choosenCategoryId;
         return (
           <div
-            className={visibleCategory ? "Category" : "Category_hidden"}
+            // className={
+            //   visibleCategory ? "CategoryTable" : "CategoryTable_hidden"
+            // }
+            className="CategoryTable"
             key={category.categoryId}
           >
             <img
@@ -76,54 +64,32 @@ const CategoryList = ({
               }
               alt="check mark icon"
             />
-            {!isEditingMode && (
+            <Category
+              category={category}
+              patchCategory={patchCategory}
+              setChoosenCategory={setChoosenCategory}
+              fetchCategoryList={fetchCategoryList}
+            />
+            <div className="Icon">
               <button
-                className="Category-title"
-                style={{ marginLeft: `${category.lvl}rem` }}
-                onClick={() => {
-                  setChoosenCategory(category);
+                onClick={async () => {
+                  await deleteCategory(categoryId);
+                  await fetchCategoryList();
                 }}
               >
-                {category.categoryTitle}
+                <img src={basketIcon} className="" alt="delete icon" />
               </button>
-            )}
-            {isEditingMode && (
-              <input
-                className="Edit_input"
-                type="text"
-                value={newTitle}
-                onChange={onTitleChange}
-              />
-            )}
-            <button
-              onClick={() => {
-                if (isEditingMode) {
-                  patchCategory(categoryId, newTitle);
-                }
-                setEditing(!isEditingMode);
-              }}
-            >
-              {edit}
-            </button>
-            <button
-              onClick={async () => {
-                await deleteCategory(categoryId);
-                await fetchCategoryList();
-                // setIsCategoryListUpdated(!isCategoryListUpdated);
-              }}
-            >
-              <img src={basketIcon} className="Basket_icon" alt="delete icon" />
-            </button>
-            <button
-              type="button"
-              className="Plus_icon"
-              onClick={() => {
-                setChoosenCategory(category);
-                setToggle(!toggle);
-              }}
-            >
-              +
-            </button>
+              <button
+                type="button"
+                className="Plus_icon"
+                onClick={() => {
+                  setChoosenCategory(category);
+                  setToggle(!toggle);
+                }}
+              >
+                <img src={plusIcon} className="" alt="add icon" />
+              </button>
+            </div>
           </div>
         );
       })}
@@ -134,8 +100,6 @@ const CategoryList = ({
             setToggle={setToggle}
             categoryTitleList={categoryTitleList}
             choosenCategory={choosenCategory}
-            setIsCategoryListUpdated={setIsCategoryListUpdated}
-            isCategoryListUpdated={isCategoryListUpdated}
             fetchCategoryList={fetchCategoryList}
           />
         </div>

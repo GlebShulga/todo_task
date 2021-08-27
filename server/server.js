@@ -58,7 +58,7 @@ const removeSpecialFields = (dataList) => {
 };
 
 function flattenCategories(current, all) {
-  const SortedByDate = current.sort((a, b) => a._createdAt - b._createdAt);
+  const SortedByDate = current.sort((a, b) => b._createdAt - a._createdAt);
   const allItems = all || current;
   if (typeof current === "undefined") return [];
   return SortedByDate.reduce((result, item) => {

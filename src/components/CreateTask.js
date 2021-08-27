@@ -27,7 +27,7 @@ const CreateTask = ({ choosenCategory, setIsNewTaskCreated }) => {
 
   const onClickAddTask = async () => {
     if (categoryId) {
-      if (title.length <= 15 && title.length >= 3) {
+      if (title.length <= 20 && title.length >= 3) {
         await postTask()
         setIsNewTaskCreated(true);
       } else {
@@ -68,7 +68,7 @@ const CreateTask = ({ choosenCategory, setIsNewTaskCreated }) => {
         <div className="Error">
           <div> The task length must not be shorter than 3 characters</div>
           <div>and</div>
-          <div>must not exceed 15 characters.</div>
+          <div>must not exceed 20 characters.</div>
         </div>
       )}
       {noCategoryError && (

@@ -1,0 +1,17 @@
+.Category {
+  display: flex;
+  flex-direction: row;
+}
+
+.Category-title {
+  margin: 0 0.5rem;
+    &:hover {
+    background-color: #e7e7e77a;
+  }
+}
+
+.Edit_input {
+  border: solid thin;
+  color: black;
+  padding-left: 0.2rem;
+}

@@ -4,8 +4,6 @@ import "../assets/scss/CreateCategory.scss";
 
 const CreateCategory = ({
   choosenCategory,
-  setIsCategoryListUpdated,
-  isCategoryListUpdated,
   categoryTitleList,
   toggle,
   setToggle,
@@ -42,7 +40,6 @@ const CreateCategory = ({
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         await postCategory();
         await fetchCategoryList();
-        // setIsCategoryListUpdated(!isCategoryListUpdated);
         if (toggle) {
           setToggle(false);
         }

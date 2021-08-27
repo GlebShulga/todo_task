@@ -1,31 +1,30 @@
 [
   {
-    "categoryId": "1",
-    "categoryTitle": "category 1",
+    "categoryId": "RuQ3m0zrlNX9uY68zWCN1",
     "parentCategoryId": null,
-    "lvl": 0,
-    "_createdAt": 1629964332420
+    "categoryTitle": "category 4",
+    "_isDeleted": false,
+    "_createdAt": 1630026272027,
+    "_deletedAt": 0,
+    "lvl": 0
   },
   {
-    "categoryId": "2",
-    "categoryTitle": "category 1_1",
-    "parentCategoryId": "1",
-    "lvl": 1,
-    "_createdAt": 1629964332428
+    "categoryId": "wzvzJGZ_u7JggnKSlamOg",
+    "parentCategoryId": "RuQ3m0zrlNX9uY68zWCN1",
+    "categoryTitle": "test 4_1",
+    "_isDeleted": false,
+    "_createdAt": 1630026279811,
+    "_deletedAt": 0,
+    "lvl": 1
   },
   {
-    "categoryId": "3",
-    "categoryTitle": "category 1_1_1",
-    "parentCategoryId": "2",
-    "lvl": 2,
-    "_createdAt": 1629964332528
-  },
-  {
-    "categoryId": "4",
-    "categoryTitle": "category 1_1_2",
-    "parentCategoryId": "2",
-    "lvl": 2,
-    "_createdAt": 1629964332628
+    "categoryId": "Wy1dXPxgnYdPJONBEFg5D",
+    "parentCategoryId": "wzvzJGZ_u7JggnKSlamOg",
+    "categoryTitle": "category 4_1_1",
+    "_isDeleted": true,
+    "_createdAt": 1630026292318,
+    "_deletedAt": 1630026300230,
+    "lvl": 2
   },
   {
     "categoryId": "5",
@@ -74,20 +73,39 @@
     "lvl": 3
   },
   {
+    "categoryId": "1",
+    "categoryTitle": "category 1",
+    "parentCategoryId": null,
+    "lvl": 0,
+    "_createdAt": 1629964332420
+  },
+  {
+    "categoryId": "2",
+    "categoryTitle": "category 1_1",
+    "parentCategoryId": "1",
+    "lvl": 1,
+    "_createdAt": 1629964332428
+  },
+  {
+    "categoryId": "4",
+    "categoryTitle": "category 1_1_2",
+    "parentCategoryId": "2",
+    "lvl": 2,
+    "_createdAt": 1629964332628
+  },
+  {
+    "categoryId": "3",
+    "categoryTitle": "category 1_1_1",
+    "parentCategoryId": "2",
+    "lvl": 2,
+    "_createdAt": 1629964332528
+  },
+  {
     "categoryId": "iQZpSMLpL0crGLqoS9M1d",
     "parentCategoryId": null,
     "categoryTitle": "category 3",
     "_isDeleted": false,
     "_createdAt": 1629942952617,
-    "_deletedAt": 0,
-    "lvl": 0
-  },
-  {
-    "categoryId": "4vZO0vskb_hsZuV6aUM9r",
-    "parentCategoryId": null,
-    "categoryTitle": "category 4",
-    "_isDeleted": false,
-    "_createdAt": 1629964332828,
     "_deletedAt": 0,
     "lvl": 0
   }

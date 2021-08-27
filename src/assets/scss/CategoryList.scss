@@ -7,7 +7,7 @@ $border-color: #d8d8d8;
   padding-left: 0.5rem;
 }
 
-.Category {
+.CategoryTable {
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -15,14 +15,7 @@ border: solid thin;
 padding: 0.5rem 0.5rem;
 } // duplicated with task from TaskList.scss
 
-.Category-title {
-  margin: 0 0.5rem;
-    &:hover {
-    background-color: #e7e7e77a;
-  }
-}
-
-.Category_hidden {
+.CategoryTable_hidden {
   display: none;
   overflow: hidden;
 }
@@ -40,20 +33,12 @@ padding: 0.5rem 0.5rem;
   visibility: hidden;
 }
 
-.Edit_input {
-  border: solid thin;
-  color: black;
-  padding-left: 0.2rem;
-}
-
-.Basket_icon {
+.Icon {
   margin-left: auto;
 }
 
 .Plus_icon {
-  margin-left: auto;
-  font-weight: 600;
-  font-size: 20px;
+  margin-left: 0.3rem;
 }
 
 .CreateCategoryModal {

@@ -8,12 +8,11 @@ import "./assets/scss/App.scss";
 
 function App() {
   const [choosenCategory, setChoosenCategory] = useState("");
-  const [isCategoryListUpdated, setIsCategoryListUpdated] = useState(false);
   const [isNewTaskCreated, setIsNewTaskCreated] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
 
   const fetchCategoryList = async () => {
-   await axios("/api/v1/category")
+    await axios("/api/v1/category")
       .then((res) => {
         const data = res.data;
         setCategoryList(data);
@@ -21,9 +20,9 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-    useEffect(() => {
-      fetchCategoryList();
-    }, [isCategoryListUpdated]);
+  useEffect(() => {
+    fetchCategoryList();
+  }, []);
 
   const categoryTitleList = categoryList.map(
     (category) => category.categoryTitle
@@ -35,13 +34,11 @@ function App() {
         <CreateCategory
           categoryTitleList={categoryTitleList}
           choosenCategory={choosenCategory}
-          setIsCategoryListUpdated={setIsCategoryListUpdated}
           fetchCategoryList={fetchCategoryList}
         />
         <CreateTask
           choosenCategory={choosenCategory}
           setIsNewTaskCreated={setIsNewTaskCreated}
-          isCategoryListUpdated={isCategoryListUpdated}
         />
       </div>
       <div className="App-lists">
@@ -49,8 +46,6 @@ function App() {
           categoryTitleList={categoryTitleList}
           setChoosenCategory={setChoosenCategory}
           choosenCategory={choosenCategory}
-          isCategoryListUpdated={isCategoryListUpdated}
-          setIsCategoryListUpdated={setIsCategoryListUpdated}
           categoryList={categoryList}
           fetchCategoryList={fetchCategoryList}
         />

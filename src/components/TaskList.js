@@ -6,13 +6,17 @@ import "../assets/scss/TaskList.scss";
 const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
   const [taskList, setTaskList] = useState([]);
 
+    const fetchTaskList = async () => {
+      await axios("/api/v1/task")
+        .then((res) => {
+          const data = res.data;
+          setTaskList(data);
+        })
+        .catch((err) => console.log(err));
+    };
+
   useEffect(() => {
-    axios("/api/v1/task")
-      .then((res) => {
-        const data = res.data;
-        setTaskList(data);
-      })
-      .catch((err) => console.log(err));
+    fetchTaskList()
   }, [isNewTaskCreated]);
 
   return (
@@ -22,10 +26,10 @@ const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
           <div className="Task" key={task.taskId}>
             <input
               type="checkbox"
-              id="read_only"
-              name="read_only"
+              id="status"
+              name="status"
               className=""
-              // checked={data.read_only ?? false}
+              // checked={data.status === done ?? false}
               // value={data.read_only ?? false}
               // onChange={""}
             />
