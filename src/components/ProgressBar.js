@@ -1,18 +1,12 @@
 import React from "react";
 import "../assets/scss/ProgressBar.scss";
 
-const ProgressBar = ({ bgcolor, completed }) => {
-
-  const labelStyles = {
-    padding: 5,
-    color: "white",
-    fontWeight: "bold",
-  };
+const ProgressBar = ({ completed }) => {
 
   return (
     <div className="container">
       <div style={{ width: `${completed}%` }} className="filler">
-        <span style={labelStyles}>{`${completed}%`}</span>
+        <span className="label">{`${completed}%`}</span>
       </div>
     </div>
   );
