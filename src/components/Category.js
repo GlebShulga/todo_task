@@ -15,7 +15,7 @@ const Category = ({
 
   const categoryId = category.categoryId;
 
-  const onTitleChange = (e) => {
+  const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
   };
 
@@ -43,7 +43,7 @@ const Category = ({
           className="Edit_input"
           type="text"
           value={newTitle}
-          onChange={onTitleChange}
+          onChange={onChangeTitle}
         />
       )}
       <button

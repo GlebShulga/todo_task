@@ -4,7 +4,7 @@
   padding-right: 0.5rem;
 }
 
-.Task {
+.TaskTable {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,11 +12,3 @@
   padding: 0.5rem 0.5rem;
 } // duplicated with category from CategoryList.scss
 
-.Task-Edit_icon {
-  border: solid thin;
-  margin-left: auto;
-}
-
-.Task-title {
-  margin-left: 1.5rem;
-}

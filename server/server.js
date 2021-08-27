@@ -201,14 +201,13 @@ app.get("/api/v1/task", async (req, res) => {
   res.json(data);
 });
 
-app.patch("/api/v1/task/:id", async (req, res) => {
-  const { id } = req.params;
+app.patch("/api/v1/task", async (req, res) => {
 
-  let { status, title, description } = req.body;
+  let { taskId, title, description, status } = req.body;
   const data = await toReadTask()
     .then((file) => {
       return file?.map((task) => {
-        if (task.taskId !== id) {
+        if (task.taskId !== taskId) {
           return task;
         }
         if (status === undefined) {

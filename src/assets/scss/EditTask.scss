@@ -1,0 +1,60 @@
+.EditTask {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.EditTask-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.EditTask-buttons_close {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: grey;
+  color: white;
+  font-weight: 700;
+  &:hover {
+    background-color: lightslategray;
+  }
+}
+
+.EditTask-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.EditTask-title_input {
+  padding: 0.5rem 1rem;
+  border: lightgrey;
+  background-color: rgb(235, 235, 235);
+  outline: none;
+
+  &:focus {
+    background-color: darkgrey;
+  }
+}
+
+.EditTask-description_input {
+  margin-top: 1rem;
+  border: solid thin;
+  background-color: rgb(235, 235, 235);
+  width: 90%;
+  height: 100%;
+  &:focus {
+    background-color: white;
+  }
+  &::placeholder {
+    font-size: 1rem;
+position: absolute;
+top: 0.5rem; left: 0.5rem;
+  }
+}
+
+.EditTask-Error {
+  color: red;
+  padding-top: 0.3rem;
+}

@@ -72,6 +72,7 @@ const CategoryList = ({
             />
             <div className="Icon">
               <button
+                type="button"
                 onClick={async () => {
                   await deleteCategory(categoryId);
                   await fetchCategoryList();
