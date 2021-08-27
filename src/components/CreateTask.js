@@ -2,42 +2,45 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../assets/scss/CreateTask.scss";
 
-const CreateTask = ({ choosenCategory, setIsNewTaskCreated }) => {
+const CreateTask = ({
+  choosenCategory,
+  setIsNewTaskCreated,
+  isNewTaskCreated,
+}) => {
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
-  const [noCategoryError, setNoCategoryError] = useState(false)
+  const [noCategoryError, setNoCategoryError] = useState(false);
 
   const onChange = (e) => {
     setTitle(e.target.value);
     setLengthError(false);
   };
 
-    const postTask = async () => {
-      await axios({
-        method: "post",
-        url: "/api/v1/task",
-        data: {
-          title,
-          categoryId,
-        },
-      });
-    };
+  const postTask = async () => {
+    await axios({
+      method: "post",
+      url: "/api/v1/task",
+      data: {
+        title,
+        categoryId,
+      },
+    });
+  };
 
-  const categoryId = choosenCategory.categoryId
+  const categoryId = choosenCategory.categoryId;
 
   const onClickAddTask = async () => {
     if (categoryId) {
       if (title.length <= 20 && title.length >= 3) {
-        await postTask()
-        setIsNewTaskCreated(true);
+        await postTask();
+        setIsNewTaskCreated(!isNewTaskCreated);
       } else {
         setNoCategoryError(false);
         setLengthError(true);
       }
     } else {
-      setNoCategoryError(true)
+      setNoCategoryError(true);
     }
-
   };
   const handleKeypress = (e) => {
     if (e.key === "Enter") {
@@ -56,13 +59,13 @@ const CreateTask = ({ choosenCategory, setIsNewTaskCreated }) => {
           placeholder="Add new task"
           onKeyPress={handleKeypress}
         />
-          <button
-            type="button"
-            className="CreateTask-form_button"
-            onClick={onClickAddTask}
-          >
-            Add
-          </button>
+        <button
+          type="button"
+          className="CreateTask-form_button"
+          onClick={onClickAddTask}
+        >
+          Add
+        </button>
       </div>
       {lengthError && (
         <div className="Error">

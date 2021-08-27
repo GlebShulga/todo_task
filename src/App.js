@@ -39,6 +39,7 @@ function App() {
         <CreateTask
           choosenCategory={choosenCategory}
           setIsNewTaskCreated={setIsNewTaskCreated}
+          isNewTaskCreated={isNewTaskCreated}
         />
       </div>
       <div className="App-lists">
