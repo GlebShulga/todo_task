@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import basketIcon from "../assets/images/basketIcon.svg";
-import plusIcon from "../assets/images/plusIcon.svg";
-import checkMark from "../assets/images/checkMark.svg";
 import CreateCategory from "./CreateCategory";
 import Category from "./Category";
 import "../assets/scss/CategoryList.scss";
@@ -14,9 +11,7 @@ const CategoryList = ({
   categoryTitleList,
   fetchCategoryList,
 }) => {
-  const [toggle, setToggle] = useState(false);
-
-  const choosenCategoryId = choosenCategory.categoryId;
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
 
   const deleteCategory = async (categoryId) => {
     await axios({
@@ -42,7 +37,6 @@ const CategoryList = ({
   return (
     <div className="CategoryList">
       {categoryList.map((category) => {
-        const categoryId = category.categoryId;
         // const visibleCategory =
         //   category.parentCategoryId === null ||
         //   category.parentCategoryId === choosenCategoryId ||
@@ -55,50 +49,24 @@ const CategoryList = ({
             className="CategoryTable"
             key={category.categoryId}
           >
-            <img
-              src={checkMark}
-              className={
-                category.categoryId === choosenCategoryId
-                  ? "checkMark"
-                  : "checkMark_hidden"
-              }
-              alt="check mark icon"
-            />
             <Category
               category={category}
               patchCategory={patchCategory}
+              deleteCategory={deleteCategory}
               setChoosenCategory={setChoosenCategory}
+              choosenCategory={choosenCategory}
               fetchCategoryList={fetchCategoryList}
+              isCreateTaskModalOpen={isCreateTaskModalOpen}
+              setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
             />
-            <div className="Icon">
-              <button
-                type="button"
-                onClick={async () => {
-                  await deleteCategory(categoryId);
-                  await fetchCategoryList();
-                }}
-              >
-                <img src={basketIcon} className="" alt="delete icon" />
-              </button>
-              <button
-                type="button"
-                className="Plus_icon"
-                onClick={() => {
-                  setChoosenCategory(category);
-                  setToggle(!toggle);
-                }}
-              >
-                <img src={plusIcon} className="" alt="add icon" />
-              </button>
-            </div>
           </div>
         );
       })}
-      {toggle && (
+      {isCreateTaskModalOpen && (
         <div className="CreateCategoryModal">
           <CreateCategory
-            toggle={toggle}
-            setToggle={setToggle}
+            isCreateTaskModalOpen={isCreateTaskModalOpen}
+            setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
             categoryTitleList={categoryTitleList}
             choosenCategory={choosenCategory}
             fetchCategoryList={fetchCategoryList}

@@ -1,5 +1,9 @@
 import React from "react";
-import editIcon from "../assets/images/editIcon.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPen,
+
+} from "@fortawesome/free-solid-svg-icons";
 import "../assets/scss/Task.scss";
 
 const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
@@ -11,10 +15,10 @@ const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
         type="button"
         onClick={() => {
           setEditingTaskMode(true);
-          setChoosenTask(task)
+          setChoosenTask(task);
         }}
       >
-        <img src={editIcon} alt="edit icon" />
+        <FontAwesomeIcon icon={faPen} />
       </button>
     </div>
   );

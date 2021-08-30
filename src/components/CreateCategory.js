@@ -5,8 +5,8 @@ import "../assets/scss/CreateCategory.scss";
 const CreateCategory = ({
   choosenCategory,
   categoryTitleList,
-  toggle,
-  setToggle,
+  isCreateTaskModalOpen,
+  setIsCreateTaskModalOpen,
   fetchCategoryList
 }) => {
   const [categoryTitle, setCategoryTitle] = useState("");
@@ -40,8 +40,8 @@ const CreateCategory = ({
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         await postCategory();
         await fetchCategoryList();
-        if (toggle) {
-          setToggle(false);
+        if (isCreateTaskModalOpen) {
+          setIsCreateTaskModalOpen(false);
         }
       } else {
         setCategoryAlreadyExist(true);
@@ -67,12 +67,12 @@ const CreateCategory = ({
           placeholder="Add new category"
           onKeyPress={handleKeypress}
         />
-        {toggle && (
+        {isCreateTaskModalOpen && (
           <button
             type="button"
             className="CreateCategory-form_button_close"
             onClick={() => {
-              setToggle(false);
+              setIsCreateTaskModalOpen(false);
             }}
           >
             Close

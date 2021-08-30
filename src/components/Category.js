@@ -1,32 +1,43 @@
 import React, { useState } from "react";
-import editIcon from "../assets/images/editIcon.svg";
-import saveIcon from "../assets/images/saveIcon.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faTrashAlt, faPen, faSave, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
 import "../assets/scss/Category.scss";
 
 const Category = ({
   category,
   setChoosenCategory,
+  choosenCategory,
   fetchCategoryList,
   patchCategory,
+  deleteCategory,
+  isCreateTaskModalOpen,
+  setIsCreateTaskModalOpen,
 }) => {
   const [isEditingMode, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
 
   const categoryId = category.categoryId;
+  const choosenCategoryId = choosenCategory.categoryId;
 
   const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
   };
 
   const edit = isEditingMode ? (
-    <img src={saveIcon} className="" alt="save icon" />
+    <FontAwesomeIcon icon={faSave} />
   ) : (
-    <img src={editIcon} className="" alt="edit icon" />
+    <FontAwesomeIcon icon={faPen} />
   );
 
   return (
     <div className="Category">
+      <FontAwesomeIcon
+        icon={faCheckSquare}
+        className={
+          categoryId === choosenCategoryId ? "checkMark" : "checkMark_hidden"
+        }
+      />
       {!isEditingMode && (
         <button
           className="Category-title"
@@ -57,6 +68,27 @@ const Category = ({
       >
         {edit}
       </button>
+      <div className="Icon">
+        <button
+          type="button"
+          onClick={async () => {
+            await deleteCategory(categoryId);
+            await fetchCategoryList();
+          }}
+        >
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </button>
+        <button
+          type="button"
+          className="Plus_icon"
+          onClick={() => {
+            setChoosenCategory(category);
+            setIsCreateTaskModalOpen(!isCreateTaskModalOpen);
+          }}
+        >
+          <FontAwesomeIcon icon={faPlus} />
+        </button>
+      </div>
     </div>
   );
 };
