@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import CategoryList from "./components/CategoryList";
-import TaskList from "./components/TaskList";
-import CreateCategory from "./components/CreateCategory";
-import CreateTask from "./components/CreateTask";
-import ProgressBar from "./components/ProgressBar";
-import "./assets/scss/App.scss";
+import CategoryList from "../CategoryList/CategoryList";
+import TaskList from "../TaskList/TaskList";
+import CreateCategory from "../CreateCategory/CreateCategory";
+import CreateTask from "../CreateTask/CreateTask";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import "./App.scss";
 
 function App() {
   const [choosenCategory, setChoosenCategory] = useState("");

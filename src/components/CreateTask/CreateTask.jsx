@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/scss/CreateTask.scss";
+import "./CreateTask.scss";
 
 const CreateTask = ({
   choosenCategory,
@@ -9,7 +9,7 @@ const CreateTask = ({
 }) => {
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
-  const [noCategoryError, setNoCategoryError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -35,11 +35,11 @@ const CreateTask = ({
         await postTask();
         setIsNewTaskCreated(!isNewTaskCreated);
       } else {
-        setNoCategoryError(false);
+        setCategoryError(true);
         setLengthError(true);
       }
     } else {
-      setNoCategoryError(true);
+      setCategoryError(false);
     }
   };
   const handleKeypress = (e) => {
@@ -74,7 +74,7 @@ const CreateTask = ({
           <div>must not exceed 20 characters.</div>
         </div>
       )}
-      {noCategoryError && (
+      {categoryError && (
         <div className="Error">
           <div>Please, choose category</div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/scss/CreateCategory.scss";
+import "./CreateCategory.scss";
 
 const CreateCategory = ({
   choosenCategory,

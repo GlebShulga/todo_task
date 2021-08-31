@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../assets/scss/EditTask.scss";
+import "./EditTask.scss";
 
 const EditTask = ({
   task,
@@ -11,14 +11,21 @@ const EditTask = ({
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [status, setStatus] = useState('new')
   const [lengthError, setLengthError] = useState(false);
   const taskId = task.taskId;
-  const status = task.status
+  // const status = task.status
+
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
     setLengthError(false);
   };
+
+    const onChangeStatus = (e) => {
+      e.target.value ? setStatus("done") : setStatus("new");
+    };
+    console.log(status, "status");
 
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
@@ -33,6 +40,10 @@ const EditTask = ({
       setLengthError(true);
     }
   };
+  const taskDescription =
+    task.description === ""
+      ? "Write description of your task"
+      : task.description;
 
   return (
     <div className="EditTask">
@@ -41,9 +52,7 @@ const EditTask = ({
           <button
             type="button"
             className="CreateTask-form_button"
-            onClick={() =>
-              (onClickEditTask(taskId, title, description, status))
-            }
+            onClick={() => onClickEditTask(taskId, title, description, status)}
           >
             Save changes
           </button>
@@ -77,23 +86,18 @@ const EditTask = ({
             type="checkbox"
             id="status"
             name="status"
-            className=""
-            // checked={data.status === done ?? false}
-            // value={data.read_only ?? false}
-            // onChange={""}
+            // checked={true}
+            value={true}
+            onChange={onChangeStatus}
           />
-          <label for="status">Done</label>
+          <label htmlFor="status">Done</label>
         </div>
-        <input
+        <textarea
           className="EditTask-description_input"
           type="text"
           value={description}
           onChange={onChangeDescription}
-          placeholder={
-            task.description === ""
-              ? "Write description of your task"
-              : task.description
-          }
+          placeholder={taskDescription}
         />
       </div>
     </div>

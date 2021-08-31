@@ -7,8 +7,8 @@ import {
   faSave,
   faCheckSquare,
 } from "@fortawesome/free-solid-svg-icons";
-import CreateCategory from "./CreateCategory";
-import "../assets/scss/Category.scss";
+import CreateCategory from "../CreateCategory/CreateCategory";
+import "./Category.scss";
 
 const Category = ({
   category,

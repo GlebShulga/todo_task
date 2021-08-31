@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Category from "./Category";
-import "../assets/scss/CategoryList.scss";
+import Category from "../Category/Category";
+import "./CategoryList.scss";
 
 const CategoryList = ({
   choosenCategory,

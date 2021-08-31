@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCheckSquare,
 } from "@fortawesome/free-solid-svg-icons";
-import Task from './Task'
-import EditTask from './EditTask'
-import "../assets/scss/TaskList.scss";
+import Task from '../Task/Task'
+import EditTask from '../EditTask/EditTask'
+import "./TaskList.scss";
 
 const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
   const [taskList, setTaskList] = useState([]);
