@@ -12,8 +12,8 @@ const EditTask = ({
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [lengthError, setLengthError] = useState(false);
-
-  console.log(title,'title')
+  const taskId = task.taskId;
+  const status = task.status
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -24,6 +24,16 @@ const EditTask = ({
     setDescription(e.target.value);
   };
 
+  const onClickEditTask = async (taskId, title, description, status) => {
+    if (title?.length <= 20 && title?.length >= 3) {
+      await patchTask(taskId, status, title, description);
+      await fetchTaskList();
+      setEditingTaskMode(false);
+    } else {
+      setLengthError(true);
+    }
+  };
+
   return (
     <div className="EditTask">
       <div className="">
@@ -31,15 +41,9 @@ const EditTask = ({
           <button
             type="button"
             className="CreateTask-form_button"
-            onClick={async (taskId, title, description, status) => {
-              if (title?.length <= 20 && title?.length >= 3) {
-                await patchTask(taskId, status, title, description);
-                await fetchTaskList();
-                setEditingTaskMode(false);
-              } else {
-                setLengthError(true);
-              }
-            }}
+            onClick={() =>
+              (onClickEditTask(taskId, title, description, status))
+            }
           >
             Save changes
           </button>

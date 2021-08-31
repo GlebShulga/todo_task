@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faTrashAlt, faPen, faSave, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlus,
+  faTrashAlt,
+  faPen,
+  faSave,
+  faCheckSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import CreateCategory from "./CreateCategory";
 import "../assets/scss/Category.scss";
 
@@ -11,17 +17,39 @@ const Category = ({
   fetchCategoryList,
   patchCategory,
   deleteCategory,
-  categoryTitleList
+  categoryTitleList,
 }) => {
   const [isEditingMode, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
-    const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
+  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
 
   const categoryId = category.categoryId;
   const choosenCategoryId = choosenCategory.categoryId;
 
   const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
+  };
+
+  const onClickEditCategoryTitle = async (categoryId, newTitle) => {
+    if (isEditingMode) {
+      await patchCategory(categoryId, newTitle);
+      await fetchCategoryList();
+    }
+    setEditing(!isEditingMode);
+  };
+
+  const onClickChooseCategory = (category) => {
+    setChoosenCategory(category);
+  };
+
+  const onClickDeleteCategory = async (categoryId) => {
+    await deleteCategory(categoryId);
+    await fetchCategoryList();
+  };
+
+  const onClickCreateTaskModalOpen = (category, isCreateTaskModalOpen) => {
+    setChoosenCategory(category);
+    setIsCreateTaskModalOpen(!isCreateTaskModalOpen);
   };
 
   const edit = isEditingMode ? (
@@ -42,9 +70,7 @@ const Category = ({
         <button
           className="Category-title"
           style={{ marginLeft: `${category.lvl}rem` }}
-          onClick={() => {
-            setChoosenCategory(category);
-          }}
+          onClick={() => onClickChooseCategory(category)}
         >
           {category.categoryTitle}
         </button>
@@ -57,34 +83,19 @@ const Category = ({
           onChange={onChangeTitle}
         />
       )}
-      <button
-        onClick={async () => {
-          if (isEditingMode) {
-            await patchCategory(categoryId, newTitle);
-            await fetchCategoryList();
-          }
-          setEditing(!isEditingMode);
-        }}
-      >
+      <button onClick={() => onClickEditCategoryTitle(categoryId, newTitle)}>
         {edit}
       </button>
       <div className="Icon">
-        <button
-          type="button"
-          onClick={async () => {
-            await deleteCategory(categoryId);
-            await fetchCategoryList();
-          }}
-        >
+        <button type="button" onClick={() => onClickDeleteCategory(categoryId)}>
           <FontAwesomeIcon icon={faTrashAlt} />
         </button>
         <button
           type="button"
           className="Plus_icon"
-          onClick={() => {
-            setChoosenCategory(category);
-            setIsCreateTaskModalOpen(!isCreateTaskModalOpen);
-          }}
+          onClick={() =>
+            onClickCreateTaskModalOpen(category, isCreateTaskModalOpen)
+          }
         >
           <FontAwesomeIcon icon={faPlus} />
         </button>

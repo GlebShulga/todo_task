@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckSquare,
+} from "@fortawesome/free-solid-svg-icons";
 import Task from './Task'
 import EditTask from './EditTask'
 import "../assets/scss/TaskList.scss";
@@ -47,17 +51,16 @@ const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
         />
       )}
       {!isEditingTaskMode &&
-        taskList.map((task) => {
-          return choosenCategory.categoryId === task.categoryId ? (
+        taskList.filter((task) => choosenCategory.categoryId === task.categoryId).map((task) => {
+          return (
             <div className="TaskTable" key={task.taskId}>
-              <input
-                type="checkbox"
-                id="status"
-                name="status"
-                className=""
-                // checked={data.status === done ?? false}
-                // value={data.read_only ?? false}
-                // onChange={""}
+              <FontAwesomeIcon
+                icon={faCheckSquare}
+                className={
+                  task.status === 'done'
+                    ? "checkMark"
+                    : "checkMark_hidden"
+                }
               />
               <Task
                 task={task}
@@ -65,7 +68,7 @@ const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
                 setChoosenTask={setChoosenTask}
               />
             </div>
-          ) : null;
+          );
         })}
     </div>
   );
