@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTrashAlt, faPen, faSave, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
-
+import CreateCategory from "./CreateCategory";
 import "../assets/scss/Category.scss";
 
 const Category = ({
@@ -11,11 +11,11 @@ const Category = ({
   fetchCategoryList,
   patchCategory,
   deleteCategory,
-  isCreateTaskModalOpen,
-  setIsCreateTaskModalOpen,
+  categoryTitleList
 }) => {
   const [isEditingMode, setEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
+    const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
 
   const categoryId = category.categoryId;
   const choosenCategoryId = choosenCategory.categoryId;
@@ -89,6 +89,17 @@ const Category = ({
           <FontAwesomeIcon icon={faPlus} />
         </button>
       </div>
+      {isCreateTaskModalOpen && (
+        <div className="CreateCategoryModal">
+          <CreateCategory
+            isCreateTaskModalOpen={isCreateTaskModalOpen}
+            setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
+            categoryTitleList={categoryTitleList}
+            choosenCategory={choosenCategory}
+            fetchCategoryList={fetchCategoryList}
+          />
+        </div>
+      )}
     </div>
   );
 };

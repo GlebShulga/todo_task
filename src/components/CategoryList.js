@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-import CreateCategory from "./CreateCategory";
 import Category from "./Category";
 import "../assets/scss/CategoryList.scss";
 
@@ -11,8 +10,6 @@ const CategoryList = ({
   categoryTitleList,
   fetchCategoryList,
 }) => {
-  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
-
   const deleteCategory = async (categoryId) => {
     await axios({
       method: "delete",
@@ -35,14 +32,14 @@ const CategoryList = ({
   };
 
   return (
-    <div className="CategoryList">
+    <ul className="CategoryList">
       {categoryList.map((category) => {
         // const visibleCategory =
         //   category.parentCategoryId === null ||
         //   category.parentCategoryId === choosenCategoryId ||
         //   category.categoryId === choosenCategoryId;
         return (
-          <div
+          <li
             // className={
             //   visibleCategory ? "CategoryTable" : "CategoryTable_hidden"
             // }
@@ -56,24 +53,12 @@ const CategoryList = ({
               setChoosenCategory={setChoosenCategory}
               choosenCategory={choosenCategory}
               fetchCategoryList={fetchCategoryList}
-              isCreateTaskModalOpen={isCreateTaskModalOpen}
-              setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
+              categoryTitleList={categoryTitleList}
             />
-          </div>
+          </li>
         );
       })}
-      {isCreateTaskModalOpen && (
-        <div className="CreateCategoryModal">
-          <CreateCategory
-            isCreateTaskModalOpen={isCreateTaskModalOpen}
-            setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
-            categoryTitleList={categoryTitleList}
-            choosenCategory={choosenCategory}
-            fetchCategoryList={fetchCategoryList}
-          />
-        </div>
-      )}
-    </div>
+    </ul>
   );
 };
 
