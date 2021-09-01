@@ -1,5 +1,5 @@
 const express = require("express");
-const { nanoid } = require("nanoid")
+const { nanoid } = require("nanoid");
 
 const { readFile, writeFile } = require("fs").promises;
 
@@ -19,7 +19,7 @@ const categoryTemplate = {
   _isDeleted: false,
   _createdAt: 0,
   _deletedAt: 0,
-  lvl: 0
+  lvl: 0,
 };
 
 const toWriteTask = (fileData) => {
@@ -57,20 +57,8 @@ const removeSpecialFields = (dataList) => {
     });
 };
 
-function flattenCategories(current, all) {
-  const SortedByDate = current.sort((a, b) => b._createdAt - a._createdAt);
-  const allItems = all || current;
-  if (typeof current === "undefined") return [];
-  return SortedByDate.reduce((result, item) => {
-    const children = allItems.filter(
-      (it) => it.parentCategoryId === item.categoryId
-    );
-
-    if (item.parentCategoryId === null || typeof all !== "undefined") {
-      return [...result, item, ...flattenCategories(children, allItems)];
-    }
-    return [...result];
-  }, []);
+function sortCategoriesByDate(categoryList) {
+  return categoryList.sort((a, b) => b._createdAt - a._createdAt);
 }
 
 const FilterDeletedCategories = (categories) => {
@@ -80,13 +68,11 @@ const FilterDeletedCategories = (categories) => {
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-const middleware = [
-  express.json({ limit: "50mb", extended: true }),
-];
+const middleware = [express.json({ limit: "50mb", extended: true })];
 
 middleware.forEach((it) => app.use(it));
 
-app.post('/api/v1/category', async (req, res) => {
+app.post("/api/v1/category", async (req, res) => {
   const { categoryTitle, parentCategoryId, lvl } = req.body;
   const newCategory = {
     ...categoryTemplate,
@@ -94,7 +80,7 @@ app.post('/api/v1/category', async (req, res) => {
     parentCategoryId,
     categoryTitle,
     lvl,
-    _createdAt: +new Date()
+    _createdAt: +new Date(),
   };
   const categoryList = await toReadCategory()
     .then((existingCategoryList) => {
@@ -107,12 +93,12 @@ app.post('/api/v1/category', async (req, res) => {
       return [newCategory];
     });
   res.json(FilterDeletedCategories(categoryList));
-})
+});
 
 app.get("/api/v1/category", async (req, res) => {
   const data = await toReadCategory()
     .then((categoryList) => {
-      return flattenCategories(categoryList);
+      return sortCategoriesByDate(categoryList);
     })
     .then((categoryList) => removeSpecialFields(categoryList))
     .catch(() => {
@@ -137,7 +123,7 @@ app.patch("/api/v1/category", async (req, res) => {
       });
     })
     .then((categoryList) => {
-      return flattenCategories(categoryList);
+      return sortCategoriesByDate(categoryList);
     })
     .catch(() => {
       res.status(404);
@@ -202,8 +188,7 @@ app.get("/api/v1/task", async (req, res) => {
 });
 
 app.patch("/api/v1/task", async (req, res) => {
-
-  let { taskId, title, description, status } = req.body;
+  let { taskId, title, description, status, categoryId } = req.body;
   const data = await toReadTask()
     .then((file) => {
       return file?.map((task) => {
@@ -219,7 +204,10 @@ app.patch("/api/v1/task", async (req, res) => {
         if (description === undefined) {
           description = task.description;
         }
-        return { ...task, status, title, description };
+        if (categoryId === undefined || categoryId === "") {
+          categoryId = task.categoryId;
+        }
+        return { ...task, status, title, description, categoryId };
       });
     })
     .then((file) => {
@@ -232,7 +220,6 @@ app.patch("/api/v1/task", async (req, res) => {
   toWriteTask(data);
   res.json(data);
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);

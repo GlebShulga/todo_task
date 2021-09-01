@@ -9,8 +9,7 @@ $border-color: #d8d8d8;
 
 .CategoryTable {
 display: flex;
-flex-direction: row;
-align-items: center;
+flex-direction: column;
 border: solid thin;
 padding: 0.5rem 0.5rem;
 } // duplicated with task from TaskList.scss
@@ -22,25 +21,6 @@ padding: 0.5rem 0.5rem;
 
 .Category-title-child_open {
   display: block;
-}
-
-.checkMark {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.2rem;
-}
-
-.checkMark_hidden {
-  margin-right: 0.2rem;
-  visibility: hidden;
-}
-
-.Icon {
-  margin-left: auto;
-}
-
-.Plus_icon {
-  margin-left: 0.3rem;
 }
 
 .CreateCategoryModal {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -8,37 +8,29 @@ import Task from '../Task/Task'
 import EditTask from '../EditTask/EditTask'
 import "./TaskList.scss";
 
-const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
-  const [taskList, setTaskList] = useState([]);
-  const [isEditingTaskMode, setEditingTaskMode] = useState(false);
-  const [choosenTask, setChoosenTask] = useState({})
-
-    const fetchTaskList = async () => {
-      await axios("/api/v1/task")
-        .then((res) => {
-          const data = res.data;
-          setTaskList(data);
-        })
-        .catch((err) => console.log(err));
-    };
-
-     const patchTask = async (taskId, status, title, description) => {
-       await axios({
-         method: "patch",
-         url: "/api/v1/task",
-         data: {
-           taskId,
-           status,
-           title,
-           description,
-         },
-       });
-     };
-
-
-  useEffect(() => {
-    fetchTaskList()
-  }, [isNewTaskCreated]);
+const TaskList = ({
+  choosenCategory,
+  isEditingTaskMode,
+  setEditingTaskMode,
+  choosenTask,
+  setChoosenTask,
+  newCategoryIdForTask,
+  taskList,
+  fetchTaskList,
+}) => {
+  const patchTask = async (taskId, status, title, description, categoryId) => {
+    await axios({
+      method: "patch",
+      url: "/api/v1/task",
+      data: {
+        taskId,
+        status,
+        title,
+        description,
+        categoryId,
+      },
+    });
+  };
 
   return (
     <div className="TaskList">
@@ -48,28 +40,29 @@ const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
           task={choosenTask}
           patchTask={patchTask}
           fetchTaskList={fetchTaskList}
+          newCategoryIdForTask={newCategoryIdForTask}
         />
       )}
       {!isEditingTaskMode &&
-        taskList.filter((task) => choosenCategory.categoryId === task.categoryId).map((task) => {
-          return (
-            <div className="TaskTable" key={task.taskId}>
-              <FontAwesomeIcon
-                icon={faCheckSquare}
-                className={
-                  task.status === 'done'
-                    ? "checkMark"
-                    : "checkMark_hidden"
-                }
-              />
-              <Task
-                task={task}
-                setEditingTaskMode={setEditingTaskMode}
-                setChoosenTask={setChoosenTask}
-              />
-            </div>
-          );
-        })}
+        taskList
+          .filter((task) => choosenCategory.categoryId === task.categoryId)
+          .map((task) => {
+            return (
+              <div className="TaskTable" key={task.taskId}>
+                <FontAwesomeIcon
+                  icon={faCheckSquare}
+                  className={
+                    task.status === "done" ? "checkMark" : "checkMark_hidden"
+                  }
+                />
+                <Task
+                  task={task}
+                  setEditingTaskMode={setEditingTaskMode}
+                  setChoosenTask={setChoosenTask}
+                />
+              </div>
+            );
+          })}
     </div>
   );
 };

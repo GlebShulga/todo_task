@@ -43,18 +43,26 @@
     "status": "new"
   },
   {
+    "categoryId": "RuQ3m0zrlNX9uY68zWCN1",
+    "taskId": "454zuMqEHrrcDxwj1B5_p",
+    "title": "One more task",
+    "description": "",
+    "_createdAt": 1630474050432,
+    "status": "new"
+  },
+  {
     "categoryId": "wzvzJGZ_u7JggnKSlamOg",
     "taskId": "mmYWc9uO3xPriRWkB5nGy",
     "title": "Test task 1",
     "description": "",
     "_createdAt": 1630040570377,
-    "status": "new"
+    "status": "done"
   },
   {
-    "categoryId": "6",
+    "categoryId": "5",
     "taskId": "BHD3mf0sWR5HRmtELuECx",
-    "title": "Edited task 2.0",
-    "description": "This is first edited task second time",
+    "title": "Edited task 4.0",
+    "description": "Does category ID was changed to 5?",
     "_createdAt": 1629947176640,
     "status": "done"
   },

@@ -11,12 +11,27 @@ function App() {
   const [choosenCategory, setChoosenCategory] = useState("");
   const [isNewTaskCreated, setIsNewTaskCreated] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
+  const [rootCategories, setRootCategories] = useState([]);
+  const [isEditingTaskMode, setEditingTaskMode] = useState(false);
+  const [choosenTask, setChoosenTask] = useState({});
+  const [newCategoryIdForTask, setNewCategoryIdForTask] = useState("");
+  const [taskList, setTaskList] = useState([]);
 
   const fetchCategoryList = async () => {
     await axios("/api/v1/category")
       .then((res) => {
         const data = res.data;
         setCategoryList(data);
+        setRootCategories(data.filter((el) => el.parentCategoryId === null));
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const fetchTaskList = async () => {
+    await axios("/api/v1/task")
+      .then((res) => {
+        const data = res.data;
+        setTaskList(data);
       })
       .catch((err) => console.log(err));
   };
@@ -25,15 +40,20 @@ function App() {
     fetchCategoryList();
   }, []);
 
+  useEffect(() => {
+    fetchTaskList();
+  }, [isNewTaskCreated]);
+
   const categoryTitleList = categoryList.map(
     (category) => category.categoryTitle
   );
 
-  const completed = 70
-
   return (
     <div className="App">
-      <ProgressBar completed={completed} />
+      <ProgressBar
+        taskList={taskList}
+        choosenCategory={choosenCategory}
+      />
       <div className="App-lists">
         <CreateCategory
           categoryTitleList={categoryTitleList}
@@ -53,10 +73,21 @@ function App() {
           choosenCategory={choosenCategory}
           categoryList={categoryList}
           fetchCategoryList={fetchCategoryList}
+          rootCategories={rootCategories}
+          isEditingTaskMode={isEditingTaskMode}
+          choosenTask={choosenTask}
+          setNewCategoryIdForTask={setNewCategoryIdForTask}
         />
         <TaskList
+          taskList={taskList}
+          fetchTaskList={fetchTaskList}
+          isEditingTaskMode={isEditingTaskMode}
+          setEditingTaskMode={setEditingTaskMode}
           choosenCategory={choosenCategory}
           isNewTaskCreated={isNewTaskCreated}
+          setChoosenTask={setChoosenTask}
+          choosenTask={choosenTask}
+          newCategoryIdForTask={newCategoryIdForTask}
         />
       </div>
     </div>

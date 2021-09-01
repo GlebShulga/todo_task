@@ -9,6 +9,10 @@ const CategoryList = ({
   categoryList,
   categoryTitleList,
   fetchCategoryList,
+  rootCategories,
+  isEditingTaskMode,
+  choosenTask,
+  setNewCategoryIdForTask,
 }) => {
   const deleteCategory = async (categoryId) => {
     await axios({
@@ -26,26 +30,16 @@ const CategoryList = ({
       url: "/api/v1/category",
       data: {
         categoryId,
-        categoryTitle
+        categoryTitle,
       },
     });
   };
 
   return (
     <ul className="CategoryList">
-      {categoryList.map((category) => {
-        // const visibleCategory =
-        //   category.parentCategoryId === null ||
-        //   category.parentCategoryId === choosenCategoryId ||
-        //   category.categoryId === choosenCategoryId;
+      {rootCategories.map((category) => {
         return (
-          <li
-            // className={
-            //   visibleCategory ? "CategoryTable" : "CategoryTable_hidden"
-            // }
-            className="CategoryTable"
-            key={category.categoryId}
-          >
+          <li className="CategoryTable" key={category.categoryId}>
             <Category
               category={category}
               patchCategory={patchCategory}
@@ -54,6 +48,10 @@ const CategoryList = ({
               choosenCategory={choosenCategory}
               fetchCategoryList={fetchCategoryList}
               categoryTitleList={categoryTitleList}
+              categoryList={categoryList}
+              isEditingTaskMode={isEditingTaskMode}
+              choosenTask={choosenTask}
+              setNewCategoryIdForTask={setNewCategoryIdForTask}
             />
           </li>
         );

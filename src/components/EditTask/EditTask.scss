@@ -38,22 +38,23 @@
   }
 }
 
-.EditTask-description_input {
+.EditTask_description_input {
   margin-top: 1rem;
   border: solid thin;
   border-color: lightskyblue;
   background-color: rgb(235, 235, 235);
   width: 90%;
   height: 100%;
-  font-size:large;
+  font-size: large;
   padding: 0.5rem 0.5rem;
   &:focus {
     background-color: white;
   }
   &::placeholder {
     font-size: 1rem;
-position: absolute;
-top: 0.5rem; left: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
   }
 }
 

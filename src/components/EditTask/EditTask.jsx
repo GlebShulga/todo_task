@@ -5,32 +5,32 @@ const EditTask = ({
   task,
   patchTask,
   fetchTaskList,
-  setIsNewTaskCreated,
-  isNewTaskCreated,
   setEditingTaskMode,
+  newCategoryIdForTask,
 }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [status, setStatus] = useState('new')
+  const [status, setStatus] = useState("new");
   const [lengthError, setLengthError] = useState(false);
   const taskId = task.taskId;
+  const categoryId = newCategoryIdForTask;
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
     setLengthError(false);
   };
 
-    const onChangeStatus = (e) => {
-      e.target.checked ? setStatus("done") : setStatus("new");
-    };
+  const onChangeStatus = (e) => {
+    e.target.checked ? setStatus("done") : setStatus("new");
+  };
 
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
   };
 
-  const onClickEditTask = async (taskId, title, description, status) => {
+  const onClickEditTask = async () => {
     if (title?.length <= 20 && title?.length >= 3) {
-      await patchTask(taskId, status, title, description);
+      await patchTask(taskId, status, title, description, categoryId);
       await fetchTaskList();
       setEditingTaskMode(false);
     } else {
@@ -38,7 +38,6 @@ const EditTask = ({
     }
   };
 
-  console.log(task,'task')
   const taskDescription =
     task.description === ""
       ? "Write description of your task"
@@ -51,7 +50,7 @@ const EditTask = ({
           <button
             type="button"
             className="CreateTask-form_button"
-            onClick={() => onClickEditTask(taskId, title, description, status)}
+            onClick={onClickEditTask}
           >
             Save changes
           </button>
@@ -80,12 +79,12 @@ const EditTask = ({
             </div>
           )}
         </div>
-        <div>
+        <div className="">
           <input
             type="checkbox"
             id="status"
             name="status"
-            checked={status === 'done'}
+            checked={status === "done"}
             value={true}
             onChange={onChangeStatus}
           />

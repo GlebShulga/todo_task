@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin: 0.3rem 0;
 }
 
 .Category-title {
@@ -15,4 +16,28 @@
   border: solid thin;
   color: black;
   padding-left: 0.2rem;
+}
+
+.checkMark {
+  margin-right: 0.2rem;
+}
+
+.ReplyIcon {
+  margin-right: 0.2rem;
+  &:focus {
+    background-color: #4e46bb46;
+  }
+}
+
+.checkMark_hidden {
+  margin-right: 0.2rem;
+  visibility: hidden;
+}
+
+.Icon {
+  margin-left: auto;
+}
+
+.Plus_icon {
+  margin-left: 0.3rem;
 }
