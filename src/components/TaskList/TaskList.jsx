@@ -25,7 +25,7 @@ const TaskList = ({ choosenCategory, isNewTaskCreated }) => {
      const patchTask = async (taskId, status, title, description) => {
        await axios({
          method: "patch",
-         url: "/api/v1/category",
+         url: "/api/v1/task",
          data: {
            taskId,
            status,

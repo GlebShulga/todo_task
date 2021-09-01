@@ -21,13 +21,6 @@
   },
   {
     "categoryId": "4",
-    "taskId": "4",
-    "title": "Fly to the Mars",
-    "description": "bla-bla-bla",
-    "status": "done"
-  },
-  {
-    "categoryId": "4",
     "taskId": "5",
     "title": "Fly to the Neptune",
     "description": "bla-bla-bla-bla",
@@ -39,14 +32,6 @@
     "title": "Save the world today",
     "description": "Save all species",
     "_createdAt": 1629857898431,
-    "status": "new"
-  },
-  {
-    "categoryId": "6",
-    "taskId": "BHD3mf0sWR5HRmtELuECx",
-    "title": "First real task",
-    "description": "",
-    "_createdAt": 1629947176640,
     "status": "new"
   },
   {
@@ -64,5 +49,20 @@
     "description": "",
     "_createdAt": 1630040570377,
     "status": "new"
+  },
+  {
+    "categoryId": "6",
+    "taskId": "BHD3mf0sWR5HRmtELuECx",
+    "title": "Edited task 2.0",
+    "description": "This is first edited task second time",
+    "_createdAt": 1629947176640,
+    "status": "done"
+  },
+  {
+    "categoryId": "4",
+    "taskId": "4",
+    "title": "Fly to the Mars",
+    "description": "bla-bla-bla",
+    "status": "done"
   }
 ]

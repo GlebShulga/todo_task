@@ -14,8 +14,6 @@ const EditTask = ({
   const [status, setStatus] = useState('new')
   const [lengthError, setLengthError] = useState(false);
   const taskId = task.taskId;
-  // const status = task.status
-
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -23,9 +21,8 @@ const EditTask = ({
   };
 
     const onChangeStatus = (e) => {
-      e.target.value ? setStatus("done") : setStatus("new");
+      e.target.checked ? setStatus("done") : setStatus("new");
     };
-    console.log(status, "status");
 
   const onChangeDescription = (e) => {
     setDescription(e.target.value);
@@ -40,6 +37,8 @@ const EditTask = ({
       setLengthError(true);
     }
   };
+
+  console.log(task,'task')
   const taskDescription =
     task.description === ""
       ? "Write description of your task"
@@ -86,7 +85,7 @@ const EditTask = ({
             type="checkbox"
             id="status"
             name="status"
-            // checked={true}
+            checked={status === 'done'}
             value={true}
             onChange={onChangeStatus}
           />
