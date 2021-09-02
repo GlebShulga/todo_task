@@ -18,8 +18,6 @@ const TaskList = ({
   const list = isFilterStatusDone ? doneTasksList : taskList;
   const currentTaskList = isSearch ? searchResultsList : list
 
-  console.log(searchResultsList, "searchResultsList");
-
   return (
     <div className="TaskList">
       {currentTaskList

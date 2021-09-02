@@ -90,7 +90,7 @@ const EditTask = ({
         <label htmlFor="status">Done</label>
       </div>
       <textarea
-        className="EditTask-description_input"
+        className="EditTask_description_input"
         type="text"
         value={description}
         onChange={onChangeDescription}
