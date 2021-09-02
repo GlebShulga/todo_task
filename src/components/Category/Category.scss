@@ -1,14 +1,23 @@
 .Category {
   display: flex;
   flex-direction: row;
+  align-items: center;
   width: 100%;
-  margin: 0.3rem 0;
+  padding: 0.3rem;
+  border: solid thin;
 }
 
 .Category-title {
   margin: 0 0.5rem;
-    &:hover {
-    background-color: #e7e7e77a;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 17px;
+  font-weight: bold;
+  color: #6495ed;
+  &:hover {
+    background-color: #e7e7e7;
+    color: black;
   }
 }
 

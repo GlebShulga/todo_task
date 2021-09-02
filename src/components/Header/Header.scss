@@ -1,0 +1,48 @@
+.Header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.5rem 2rem;
+}
+
+.Header-title {
+  font-size: 27px;
+}
+
+.Header-form {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+}
+
+/* Style the search field */
+.Header-form_input {
+  padding: 0.5rem;
+  font-size: 12px;
+  border: thin solid grey;
+  float: left;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+.Header-form_button {
+  float: left;
+  width: 20%;
+  padding: 0.5rem;
+  background: #2196f3;
+  color: white;
+  font-size: 12px;
+  border: thin solid grey;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  &:hover {
+    background: #0b7dda;
+  }
+  &::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+}

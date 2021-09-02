@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import "./Task.scss";
 
 const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
@@ -17,7 +17,7 @@ const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
         type="button"
         onClick={onClickEditTask}
       >
-        <FontAwesomeIcon icon={faPen} />
+        <FontAwesomeIcon icon={faEdit} />
       </button>
     </div>
   );

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
   faTrashAlt,
-  faPen,
+  faEdit,
   faSave,
   faCheckSquare,
   faReply,
@@ -73,12 +73,16 @@ const Category = ({
   const edit = isEditingCategoryMode ? (
     <FontAwesomeIcon icon={faSave} />
   ) : (
-    <FontAwesomeIcon icon={faPen} />
+    <FontAwesomeIcon icon={faEdit} />
   );
 
   return (
     <>
-      <div className="Category" onClick={onClickExpandedTree}>
+      <div
+        className="Category"
+        style={{ marginLeft: `${category.lvl}rem` }}
+        onClick={onClickExpandedTree}
+      >
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
@@ -88,7 +92,6 @@ const Category = ({
         {!isEditingCategoryMode ? (
           <button
             className="Category-title"
-            style={{ marginLeft: `${category.lvl}rem` }}
             onClick={() => onClickChooseCategory(category)}
           >
             {category.categoryTitle}

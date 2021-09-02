@@ -6,6 +6,7 @@ import EditTask from "../EditTask/EditTask";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import Header from "../Header/Header";
 import "./App.scss";
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
       <div className="App-lists">
         <div className="App-list">

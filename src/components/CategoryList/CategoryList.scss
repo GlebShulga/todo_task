@@ -1,23 +1,17 @@
-/* colors */
-$border-color: #d8d8d8;
 
 .CategoryList {
   text-align: center;
-  width: 100%;
+
   padding-left: 0.5rem;
 }
 
 .CategoryTable {
 display: flex;
 flex-direction: column;
-border: solid thin;
-padding: 0.5rem 0.5rem;
+// border: solid thin;
+padding: 0rem 0.5rem;
 } // duplicated with task from TaskList.scss
 
-.CategoryTable_hidden {
-  display: none;
-  overflow: hidden;
-}
 
 .Category-title-child_open {
   display: block;
