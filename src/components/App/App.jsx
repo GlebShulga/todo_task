@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CategoryList from "../CategoryList/CategoryList";
 import TaskList from "../TaskList/TaskList";
+import EditTask from "../EditTask/EditTask";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -35,6 +36,25 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
+    const patchTask = async (
+      taskId,
+      status,
+      title,
+      description,
+      categoryId
+    ) => {
+      await axios({
+        method: "patch",
+        url: "/api/v1/task",
+        data: {
+          taskId,
+          status,
+          title,
+          description,
+          categoryId,
+        },
+      });
+    };
 
   useEffect(() => {
     fetchCategoryList();
@@ -50,45 +70,54 @@ function App() {
 
   return (
     <div className="App">
-      <ProgressBar
-        taskList={taskList}
-        choosenCategory={choosenCategory}
-      />
+      <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
       <div className="App-lists">
-        <CreateCategory
-          categoryTitleList={categoryTitleList}
-          choosenCategory={choosenCategory}
-          fetchCategoryList={fetchCategoryList}
-        />
-        <CreateTask
-          choosenCategory={choosenCategory}
-          setIsNewTaskCreated={setIsNewTaskCreated}
-          isNewTaskCreated={isNewTaskCreated}
-        />
-      </div>
-      <div className="App-lists">
-        <CategoryList
-          categoryTitleList={categoryTitleList}
-          setChoosenCategory={setChoosenCategory}
-          choosenCategory={choosenCategory}
-          categoryList={categoryList}
-          fetchCategoryList={fetchCategoryList}
-          rootCategories={rootCategories}
-          isEditingTaskMode={isEditingTaskMode}
-          choosenTask={choosenTask}
-          setNewCategoryIdForTask={setNewCategoryIdForTask}
-        />
-        <TaskList
-          taskList={taskList}
-          fetchTaskList={fetchTaskList}
-          isEditingTaskMode={isEditingTaskMode}
-          setEditingTaskMode={setEditingTaskMode}
-          choosenCategory={choosenCategory}
-          isNewTaskCreated={isNewTaskCreated}
-          setChoosenTask={setChoosenTask}
-          choosenTask={choosenTask}
-          newCategoryIdForTask={newCategoryIdForTask}
-        />
+        <div className="App-list">
+          {!isEditingTaskMode && (
+            <CreateCategory
+              categoryTitleList={categoryTitleList}
+              choosenCategory={choosenCategory}
+              fetchCategoryList={fetchCategoryList}
+            />
+          )}
+          <CategoryList
+            categoryTitleList={categoryTitleList}
+            setChoosenCategory={setChoosenCategory}
+            choosenCategory={choosenCategory}
+            categoryList={categoryList}
+            fetchCategoryList={fetchCategoryList}
+            rootCategories={rootCategories}
+            isEditingTaskMode={isEditingTaskMode}
+            choosenTask={choosenTask}
+            setNewCategoryIdForTask={setNewCategoryIdForTask}
+          />
+        </div>
+        <div className="App-list">
+          {!isEditingTaskMode && (
+            <CreateTask
+              choosenCategory={choosenCategory}
+              setIsNewTaskCreated={setIsNewTaskCreated}
+              isNewTaskCreated={isNewTaskCreated}
+            />
+          )}
+          {!isEditingTaskMode && (
+            <TaskList
+              taskList={taskList}
+              setEditingTaskMode={setEditingTaskMode}
+              choosenCategory={choosenCategory}
+              setChoosenTask={setChoosenTask}
+            />
+          )}
+          {isEditingTaskMode && (
+            <EditTask
+              setEditingTaskMode={setEditingTaskMode}
+              task={choosenTask}
+              patchTask={patchTask}
+              fetchTaskList={fetchTaskList}
+              newCategoryIdForTask={newCategoryIdForTask}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

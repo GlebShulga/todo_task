@@ -1,13 +1,13 @@
 .EditTask {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+display: flex;
+flex-direction: column;
 }
 
 .EditTask-buttons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  margin-bottom: 2.5rem;
 }
 
 .EditTask-buttons_close {
@@ -29,22 +29,23 @@
 
 .EditTask-title_input {
   padding: 0.5rem 1rem;
-  border: lightgrey;
+  border: solid thin lightgrey;
   background-color: rgb(235, 235, 235);
   outline: none;
 
   &:focus {
-    background-color: darkgrey;
+    background-color: white;
+    border: solid thin lightgrey;
   }
+}
+.EditTask-status {
+  margin: 1rem 0rem;
+
 }
 
 .EditTask_description_input {
   margin-top: 1rem;
   border: solid thin;
-  border-color: lightskyblue;
-  background-color: rgb(235, 235, 235);
-  width: 90%;
-  height: 100%;
   font-size: large;
   padding: 0.5rem 0.5rem;
   &:focus {

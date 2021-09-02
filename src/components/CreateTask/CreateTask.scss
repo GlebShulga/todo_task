@@ -1,6 +1,8 @@
 .CreateTask {
-  justify-items: center;
+  display: flex;
+  justify-content: flex-end;
   padding: 1rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .CreateTask-form {
