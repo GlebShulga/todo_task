@@ -70,7 +70,6 @@ const EditTask = ({
           value={title}
           onChange={onChangeTitle}
           placeholder={task.title}
-          defaultValue={task.title ?? ''}
         />
         {lengthError && (
           <div className="EditTask-Error">

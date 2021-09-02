@@ -9,28 +9,31 @@ const TaskList = ({
   setEditingTaskMode,
   setChoosenTask,
   taskList,
+  isFilterStatusDone,
 }) => {
+  const doneTasksList = taskList.filter((task) => task.status === "done");
+  const list = isFilterStatusDone ? doneTasksList : taskList;
   return (
     <div className="TaskList">
-      {taskList
-        .filter((task) => choosenCategory.categoryId === task.categoryId)
-        .map((task) => {
-          return (
-            <div className="TaskTable" key={task.taskId}>
-              <FontAwesomeIcon
-                icon={faCheckSquare}
-                className={
-                  task.status === "done" ? "checkMark" : "checkMark_hidden"
-                }
-              />
-              <Task
-                task={task}
-                setEditingTaskMode={setEditingTaskMode}
-                setChoosenTask={setChoosenTask}
-              />
-            </div>
-          );
-        })}
+      {list
+            .filter((task) => choosenCategory.categoryId === task.categoryId)
+            .map((task) => {
+              return (
+                <div className="TaskTable" key={task.taskId}>
+                  <FontAwesomeIcon
+                    icon={faCheckSquare}
+                    className={
+                      task.status === "done" ? "checkMark" : "checkMark_hidden"
+                    }
+                  />
+                  <Task
+                    task={task}
+                    setEditingTaskMode={setEditingTaskMode}
+                    setChoosenTask={setChoosenTask}
+                  />
+                </div>
+              );
+            })}
     </div>
   );
 };

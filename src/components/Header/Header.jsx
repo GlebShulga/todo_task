@@ -5,16 +5,22 @@ import "./Header.scss";
 
 const Header = ({
   setIsFilterStatusDone,
+  isFilterStatusDone,
   isEditingTaskMode,
   choosenTask,
 }) => {
-  const onClickFilterStatusDone = () => {
-    setIsFilterStatusDone(true);
+
+  const onChangeFilterStatusDone = (e) => {
+    e.target.checked
+      ? setIsFilterStatusDone(true)
+      : setIsFilterStatusDone(false);
   };
 
   return (
     <div className="Header">
-      <div className="Header-title">{isEditingTaskMode? choosenTask.title :'To-Do List'}</div>
+      <div className="Header-title">
+        {isEditingTaskMode ? choosenTask.title : "To-Do List"}
+      </div>
       <div className="Header-filter-form">
         <div className="EditTask-status">
           <input
@@ -22,7 +28,7 @@ const Header = ({
             id="statusDone"
             name="statusDone"
             value={true}
-            onChange={onClickFilterStatusDone}
+            onChange={onChangeFilterStatusDone}
           />
           <label htmlFor="statusDone">Show done</label>
         </div>

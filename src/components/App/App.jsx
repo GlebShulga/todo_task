@@ -20,6 +20,8 @@ function App() {
   const [taskList, setTaskList] = useState([]);
   const [isFilterStatusDone, setIsFilterStatusDone] = useState(false);
 
+  console.log(isFilterStatusDone, "isFilterStatusDone");
+
   const fetchCategoryList = async () => {
     await axios("/api/v1/category")
       .then((res) => {
@@ -74,6 +76,7 @@ function App() {
     <div className="App">
       <Header
         setIsFilterStatusDone={setIsFilterStatusDone}
+        isFilterStatusDone={isFilterStatusDone}
         isEditingTaskMode={isEditingTaskMode}
         choosenTask={choosenTask}
       />
@@ -113,6 +116,7 @@ function App() {
               setEditingTaskMode={setEditingTaskMode}
               choosenCategory={choosenCategory}
               setChoosenTask={setChoosenTask}
+              isFilterStatusDone={isFilterStatusDone}
             />
           )}
           {isEditingTaskMode && (
