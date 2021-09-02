@@ -19,8 +19,8 @@ function App() {
   const [newCategoryIdForTask, setNewCategoryIdForTask] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isFilterStatusDone, setIsFilterStatusDone] = useState(false);
-
-  console.log(isFilterStatusDone, "isFilterStatusDone");
+  const [searchResultsList, setSearchResultsList] = useState([]);
+  const [isSearch, setIsSearch] = useState(false)
 
   const fetchCategoryList = async () => {
     await axios("/api/v1/category")
@@ -76,9 +76,11 @@ function App() {
     <div className="App">
       <Header
         setIsFilterStatusDone={setIsFilterStatusDone}
-        isFilterStatusDone={isFilterStatusDone}
         isEditingTaskMode={isEditingTaskMode}
         choosenTask={choosenTask}
+        taskList={taskList}
+        setSearchResultsList={setSearchResultsList}
+        setIsSearch={setIsSearch}
       />
       <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
       <div className="App-lists">
@@ -117,6 +119,8 @@ function App() {
               choosenCategory={choosenCategory}
               setChoosenTask={setChoosenTask}
               isFilterStatusDone={isFilterStatusDone}
+              searchResultsList={searchResultsList}
+              isSearch={isSearch}
             />
           )}
           {isEditingTaskMode && (

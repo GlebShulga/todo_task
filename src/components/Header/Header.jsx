@@ -1,14 +1,29 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 
 const Header = ({
   setIsFilterStatusDone,
-  isFilterStatusDone,
   isEditingTaskMode,
   choosenTask,
+  taskList,
+  setSearchResultsList,
+  setIsSearch,
 }) => {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    const results = taskList.filter((task) =>
+      task.title.toLowerCase().includes(searchTerm)
+    );
+    setSearchResultsList(results);
+  }, [searchTerm, taskList]);
+
+  const onChangeSearch = (event) => {
+    setSearchTerm(event.target.value);
+    setIsSearch(true)
+  };
 
   const onChangeFilterStatusDone = (e) => {
     e.target.checked
@@ -38,9 +53,11 @@ const Header = ({
             placeholder="Search"
             name="search"
             className="Header-form_input"
+            value={searchTerm}
+            onChange={onChangeSearch}
           />
-          <button className="Header-form_button" type="submit">
-            <FontAwesomeIcon icon={faSearch} />
+          <button className="Header-form_button">
+            <FontAwesomeIcon icon={faTimes} />
           </button>
         </form>
       </div>
