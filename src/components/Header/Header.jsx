@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 
-const Header = ({ task }) => {
-
-  // const onClickEditTask = () => {
-  //   setEditingTaskMode(true);
-  //   setChoosenTask(task);
-  // };
+const Header = ({
+  setIsFilterStatusDone,
+  isEditingTaskMode,
+  choosenTask,
+}) => {
+  const onClickFilterStatusDone = () => {
+    setIsFilterStatusDone(true);
+  };
 
   return (
     <div className="Header">
-      <div className="Header-title">To-Do List</div>
+      <div className="Header-title">{isEditingTaskMode? choosenTask.title :'To-Do List'}</div>
       <div className="Header-filter-form">
         <div className="EditTask-status">
           <input
@@ -20,6 +22,7 @@ const Header = ({ task }) => {
             id="statusDone"
             name="statusDone"
             value={true}
+            onChange={onClickFilterStatusDone}
           />
           <label htmlFor="statusDone">Show done</label>
         </div>
