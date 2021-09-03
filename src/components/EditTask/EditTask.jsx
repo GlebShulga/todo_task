@@ -67,9 +67,8 @@ const EditTask = ({
         <input
           className="EditTask-title_input"
           type="text"
-          value={title}
+          value={task.title}
           onChange={onChangeTitle}
-          placeholder={task.title}
         />
         {lengthError && (
           <div className="EditTask-Error">
@@ -92,7 +91,7 @@ const EditTask = ({
       <textarea
         className="EditTask_description_input"
         type="text"
-        value={description}
+        value={task.description ?? null}
         onChange={onChangeDescription}
         placeholder={taskDescription}
       />
