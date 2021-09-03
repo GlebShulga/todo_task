@@ -4,8 +4,6 @@ import "./CreateTask.scss";
 
 const CreateTask = ({
   choosenCategory,
-  // setIsNewTaskCreated,
-  // isNewTaskCreated,
   setTaskList,
 }) => {
   const [title, setTitle] = useState("");
@@ -39,7 +37,6 @@ const CreateTask = ({
     if (categoryId) {
       if (title.length <= 20 && title.length >= 3) {
         await postTask();
-        // setIsNewTaskCreated(!isNewTaskCreated);
       } else {
         setCategoryError(true);
         setLengthError(true);

@@ -203,7 +203,6 @@ app.patch("/api/v1/task", async (req, res) => {
         if (description === undefined) {
           description = task.description;
         }
-        // Comment
         if (categoryId === undefined || categoryId === "") {
           categoryId = task.categoryId;
         }
