@@ -17,7 +17,10 @@ const EditTask = ({
   useEffect(() => {
     setTitle(task.title);
     setDescription(task.description)
+    setStatus(task.status)
   }, []);
+
+  const isChecked = status === "done";
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -85,7 +88,7 @@ const EditTask = ({
           type="checkbox"
           id="status"
           name="status"
-          checked={status === "done"}
+          checked={isChecked}
           value={true}
           onChange={onChangeStatus}
         />
