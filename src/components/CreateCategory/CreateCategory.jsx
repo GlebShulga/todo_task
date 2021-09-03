@@ -40,6 +40,7 @@ const CreateCategory = ({
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         await postCategory();
         await fetchCategoryList();
+        setCategoryTitle('')
         if (isCreateTaskModalOpen) {
           setIsCreateTaskModalOpen(false);
         }
