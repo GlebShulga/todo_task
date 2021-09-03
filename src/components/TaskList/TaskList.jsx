@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Task from "../Task/Task";
@@ -13,13 +13,33 @@ const TaskList = ({
   searchCriteria,
   isSearch,
 }) => {
+  const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
-  const currentTaskList = taskList.filter(
-    (task) =>
-      (isFilterStatusDone && task.status === "done") ||
-      (isSearch && task.title.toLowerCase().includes(searchCriteria)) ||
-      (!isFilterStatusDone && !isSearch && task.status)
-  );
+  useEffect(() => {
+    if (isFilterStatusDone && isSearch) {
+      setCurrentTaskList(
+        taskList.filter(
+          (task) =>
+            task.status === "done" &&
+            task.title.toLowerCase().includes(searchCriteria)
+        )
+      );
+    } else if (isFilterStatusDone) {
+      setCurrentTaskList(
+        taskList.filter((task) => task.status === "done")
+      );
+      } else if (isSearch) {
+              setCurrentTaskList(
+                taskList.filter(
+                  (task) =>
+                    task.title.toLowerCase().includes(searchCriteria)
+                )
+              );
+      } else {
+        setCurrentTaskList(taskList)
+      }
+  }, [isFilterStatusDone, isSearch, searchCriteria, taskList]);
+
 
   return (
     <div className="TaskList">
