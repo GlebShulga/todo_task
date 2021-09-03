@@ -83,11 +83,13 @@ app.post("/api/v1/category", async (req, res) => {
     _createdAt: +new Date(),
   };
   const categoryList = await toReadCategory()
-    .then((existingCategoryList) => {
+    .then(async (existingCategoryList) => {
       const list = [...existingCategoryList, newCategory];
-      toWriteCategory(list);
+      await toWriteCategory(list);
       return list;
     })
+    .then((categoryList) => sortCategoriesByDate(categoryList))
+    .then((categoryList) => removeSpecialFields(categoryList))
     .catch(async () => {
       await toWriteCategory([newCategory]);
       return [newCategory];
@@ -97,15 +99,13 @@ app.post("/api/v1/category", async (req, res) => {
 
 app.get("/api/v1/category", async (req, res) => {
   const data = await toReadCategory()
-    .then((categoryList) => {
-      return sortCategoriesByDate(categoryList);
-    })
+    .then((categoryList) => sortCategoriesByDate(categoryList))
     .then((categoryList) => removeSpecialFields(categoryList))
     .catch(() => {
       res.status(404);
       res.end();
     });
-  res.json(data);
+  res.json(FilterDeletedCategories(data));
 });
 
 app.patch("/api/v1/category", async (req, res) => {
@@ -122,15 +122,13 @@ app.patch("/api/v1/category", async (req, res) => {
         return { ...category, categoryTitle };
       });
     })
-    .then((categoryList) => {
-      return sortCategoriesByDate(categoryList);
-    })
+    .then((categoryList) => sortCategoriesByDate(categoryList))
     .catch(() => {
       res.status(404);
       res.end();
     });
   toWriteCategory(data);
-  res.json(FilterDeletedCategories(data));
+  res.json(removeSpecialFields(FilterDeletedCategories(data)));
 });
 
 app.delete("/api/v1/category", async (req, res) => {
@@ -143,12 +141,13 @@ app.delete("/api/v1/category", async (req, res) => {
           : { ...category, _isDeleted: true, _deletedAt: +new Date() };
       })
     )
+    .then((categoryList) => sortCategoriesByDate(categoryList))
     .catch(() => {
       res.status(404);
       res.end();
     });
   await toWriteCategory(data);
-  res.json(FilterDeletedCategories(data));
+  res.json(removeSpecialFields(FilterDeletedCategories(data)));
 });
 
 app.post("/api/v1/task", async (req, res) => {
@@ -171,15 +170,15 @@ app.post("/api/v1/task", async (req, res) => {
       await toWriteTask([newTask]);
       return [newTask];
     });
-  res.json(taskList);
+  res.json(removeSpecialFields(taskList));
 });
 
 app.get("/api/v1/task", async (req, res) => {
   const data = await toReadTask()
-    .then((file) => {
-      return file.sort((a, b) => b.status.localeCompare(a.status));
+    .then((taskList) => {
+      return taskList.sort((a, b) => b.status.localeCompare(a.status));
     })
-    .then((file) => removeSpecialFields(file))
+    .then((taskList) => removeSpecialFields(taskList))
     .catch(() => {
       res.status(404);
       res.end();
@@ -218,7 +217,7 @@ app.patch("/api/v1/task", async (req, res) => {
       res.end();
     });
   toWriteTask(data);
-  res.json(data);
+  res.json(removeSpecialFields(data));
 });
 
 app.listen(PORT, () => {

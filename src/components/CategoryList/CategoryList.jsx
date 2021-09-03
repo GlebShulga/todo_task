@@ -8,11 +8,12 @@ const CategoryList = ({
   setChoosenCategory,
   categoryList,
   categoryTitleList,
-  fetchCategoryList,
   rootCategories,
   isEditingTaskMode,
   choosenTask,
   setNewCategoryIdForTask,
+  setCategoryList,
+  setRootCategories,
 }) => {
   const deleteCategory = async (categoryId) => {
     await axios({
@@ -21,6 +22,10 @@ const CategoryList = ({
       data: {
         categoryId,
       },
+    }).then((res) => {
+      const data = res.data;
+      setCategoryList(data);
+      setRootCategories(data.filter((el) => el.parentCategoryId === null));
     });
   };
 
@@ -32,6 +37,10 @@ const CategoryList = ({
         categoryId,
         categoryTitle,
       },
+    }).then((res) => {
+      const data = res.data;
+      setCategoryList(data);
+      setRootCategories(data.filter((el) => el.parentCategoryId === null));
     });
   };
 
@@ -46,12 +55,13 @@ const CategoryList = ({
               deleteCategory={deleteCategory}
               setChoosenCategory={setChoosenCategory}
               choosenCategory={choosenCategory}
-              fetchCategoryList={fetchCategoryList}
               categoryTitleList={categoryTitleList}
               categoryList={categoryList}
               isEditingTaskMode={isEditingTaskMode}
               choosenTask={choosenTask}
               setNewCategoryIdForTask={setNewCategoryIdForTask}
+              setCategoryList={setCategoryList}
+              setRootCategories={setRootCategories}
             />
           </li>
         );

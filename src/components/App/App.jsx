@@ -11,7 +11,7 @@ import "./App.scss";
 
 function App() {
   const [choosenCategory, setChoosenCategory] = useState("");
-  const [isNewTaskCreated, setIsNewTaskCreated] = useState(false);
+  // const [isNewTaskCreated, setIsNewTaskCreated] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
   const [rootCategories, setRootCategories] = useState([]);
   const [isEditingTaskMode, setEditingTaskMode] = useState(false);
@@ -19,8 +19,8 @@ function App() {
   const [newCategoryIdForTask, setNewCategoryIdForTask] = useState("");
   const [taskList, setTaskList] = useState([]);
   const [isFilterStatusDone, setIsFilterStatusDone] = useState(false);
-  const [searchResultsList, setSearchResultsList] = useState([]);
-  const [isSearch, setIsSearch] = useState(false)
+  const [searchCriteria, setSearchCriteria] = useState("");
+  const [isSearch, setIsSearch] = useState(false);
 
   const fetchCategoryList = async () => {
     await axios("/api/v1/category")
@@ -40,25 +40,24 @@ function App() {
       })
       .catch((err) => console.log(err));
   };
-    const patchTask = async (
-      taskId,
-      status,
-      title,
-      description,
-      categoryId
-    ) => {
-      await axios({
-        method: "patch",
-        url: "/api/v1/task",
-        data: {
-          taskId,
-          status,
-          title,
-          description,
-          categoryId,
-        },
-      });
-    };
+  const patchTask = async (taskId, status, title, description, categoryId) => {
+    await axios({
+      method: "patch",
+      url: "/api/v1/task",
+      data: {
+        taskId,
+        status,
+        title,
+        description,
+        categoryId,
+      },
+    })
+      .then((res) => {
+        const data = res.data;
+        setTaskList(data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   useEffect(() => {
     fetchCategoryList();
@@ -66,7 +65,7 @@ function App() {
 
   useEffect(() => {
     fetchTaskList();
-  }, [isNewTaskCreated]);
+  }, []);
 
   const categoryTitleList = categoryList.map(
     (category) => category.categoryTitle
@@ -78,18 +77,21 @@ function App() {
         setIsFilterStatusDone={setIsFilterStatusDone}
         isEditingTaskMode={isEditingTaskMode}
         choosenTask={choosenTask}
-        taskList={taskList}
-        setSearchResultsList={setSearchResultsList}
+        setSearchCriteria={setSearchCriteria}
+        searchCriteria={searchCriteria}
         setIsSearch={setIsSearch}
       />
-      <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
+      {!isEditingTaskMode && (
+        <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
+      )}
       <div className="App-lists">
         <div className="App-list">
           {!isEditingTaskMode && (
             <CreateCategory
               categoryTitleList={categoryTitleList}
               choosenCategory={choosenCategory}
-              fetchCategoryList={fetchCategoryList}
+              setCategoryList={setCategoryList}
+              setRootCategories={setRootCategories}
             />
           )}
           <CategoryList
@@ -97,19 +99,21 @@ function App() {
             setChoosenCategory={setChoosenCategory}
             choosenCategory={choosenCategory}
             categoryList={categoryList}
-            fetchCategoryList={fetchCategoryList}
             rootCategories={rootCategories}
             isEditingTaskMode={isEditingTaskMode}
             choosenTask={choosenTask}
             setNewCategoryIdForTask={setNewCategoryIdForTask}
+            setCategoryList={setCategoryList}
+            setRootCategories={setRootCategories}
           />
         </div>
         <div className="App-list">
           {!isEditingTaskMode && (
             <CreateTask
               choosenCategory={choosenCategory}
-              setIsNewTaskCreated={setIsNewTaskCreated}
-              isNewTaskCreated={isNewTaskCreated}
+              // setIsNewTaskCreated={setIsNewTaskCreated}
+              // isNewTaskCreated={isNewTaskCreated}
+              setTaskList={setTaskList}
             />
           )}
           {!isEditingTaskMode && (
@@ -119,7 +123,7 @@ function App() {
               choosenCategory={choosenCategory}
               setChoosenTask={setChoosenTask}
               isFilterStatusDone={isFilterStatusDone}
-              searchResultsList={searchResultsList}
+              searchCriteria={searchCriteria}
               isSearch={isSearch}
             />
           )}
@@ -128,7 +132,6 @@ function App() {
               setEditingTaskMode={setEditingTaskMode}
               task={choosenTask}
               patchTask={patchTask}
-              fetchTaskList={fetchTaskList}
               newCategoryIdForTask={newCategoryIdForTask}
             />
           )}

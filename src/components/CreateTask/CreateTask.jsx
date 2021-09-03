@@ -4,8 +4,9 @@ import "./CreateTask.scss";
 
 const CreateTask = ({
   choosenCategory,
-  setIsNewTaskCreated,
-  isNewTaskCreated,
+  // setIsNewTaskCreated,
+  // isNewTaskCreated,
+  setTaskList,
 }) => {
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
@@ -24,7 +25,12 @@ const CreateTask = ({
         title,
         categoryId,
       },
-    });
+    })
+      .then((res) => {
+        const data = res.data;
+        setTaskList(data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const categoryId = choosenCategory.categoryId;
@@ -33,7 +39,7 @@ const CreateTask = ({
     if (categoryId) {
       if (title.length <= 20 && title.length >= 3) {
         await postTask();
-        setIsNewTaskCreated(!isNewTaskCreated);
+        // setIsNewTaskCreated(!isNewTaskCreated);
       } else {
         setCategoryError(true);
         setLengthError(true);

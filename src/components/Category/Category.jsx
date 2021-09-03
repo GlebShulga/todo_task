@@ -15,7 +15,6 @@ const Category = ({
   category,
   setChoosenCategory,
   choosenCategory,
-  fetchCategoryList,
   patchCategory,
   deleteCategory,
   categoryTitleList,
@@ -23,6 +22,8 @@ const Category = ({
   isEditingTaskMode,
   choosenTask,
   setNewCategoryIdForTask,
+  setCategoryList,
+  setRootCategories,
 }) => {
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
@@ -43,7 +44,6 @@ const Category = ({
   const onClickEditCategoryTitle = async (categoryId, newTitle) => {
     if (isEditingCategoryMode) {
       await patchCategory(categoryId, newTitle);
-      await fetchCategoryList();
     }
     setIsEditingCategoryMode(!isEditingCategoryMode);
   };
@@ -54,7 +54,6 @@ const Category = ({
 
   const onClickDeleteCategory = async (categoryId) => {
     await deleteCategory(categoryId);
-    await fetchCategoryList();
   };
 
   const onClickCreateTaskModalOpen = (category, isCreateTaskModalOpen) => {
@@ -149,7 +148,8 @@ const Category = ({
               setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
               categoryTitleList={categoryTitleList}
               choosenCategory={choosenCategory}
-              fetchCategoryList={fetchCategoryList}
+              setCategoryList={setCategoryList}
+              setRootCategories={setRootCategories}
             />
           </div>
         )}
@@ -164,12 +164,13 @@ const Category = ({
               deleteCategory={deleteCategory}
               setChoosenCategory={setChoosenCategory}
               choosenCategory={choosenCategory}
-              fetchCategoryList={fetchCategoryList}
               categoryTitleList={categoryTitleList}
               categoryList={categoryList}
               isEditingTaskMode={isEditingTaskMode}
               choosenTask={choosenTask}
               setNewCategoryIdForTask={setNewCategoryIdForTask}
+              setCategoryList={setCategoryList}
+              setRootCategories={setRootCategories}
             />
           </div>
         ))}

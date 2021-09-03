@@ -10,13 +10,16 @@ const TaskList = ({
   setChoosenTask,
   taskList,
   isFilterStatusDone,
-  searchResultsList,
+  searchCriteria,
   isSearch,
 }) => {
-  const doneTasksList = taskList.filter((task) => task.status === "done");
 
-  const list = isFilterStatusDone ? doneTasksList : taskList;
-  const currentTaskList = isSearch ? searchResultsList : list
+  const currentTaskList = taskList.filter(
+    (task) =>
+      (isFilterStatusDone && task.status === "done") ||
+      (isSearch && task.title.toLowerCase().includes(searchCriteria)) ||
+      (!isFilterStatusDone && !isSearch && task.status)
+  );
 
   return (
     <div className="TaskList">

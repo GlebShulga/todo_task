@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EditTask.scss";
 
 const EditTask = ({
   task,
   patchTask,
-  fetchTaskList,
   setEditingTaskMode,
   newCategoryIdForTask,
 }) => {
@@ -14,6 +13,11 @@ const EditTask = ({
   const [lengthError, setLengthError] = useState(false);
   const taskId = task.taskId;
   const categoryId = newCategoryIdForTask;
+
+  useEffect(() => {
+    setTitle(task.title);
+    setDescription(task.description)
+  }, []);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -31,7 +35,6 @@ const EditTask = ({
   const onClickEditTask = async () => {
     if (title?.length <= 20 && title?.length >= 3) {
       await patchTask(taskId, status, title, description, categoryId);
-      await fetchTaskList();
       setEditingTaskMode(false);
     } else {
       setLengthError(true);
@@ -67,7 +70,7 @@ const EditTask = ({
         <input
           className="EditTask-title_input"
           type="text"
-          value={task.title}
+          value={title ?? null}
           onChange={onChangeTitle}
         />
         {lengthError && (
@@ -91,7 +94,7 @@ const EditTask = ({
       <textarea
         className="EditTask_description_input"
         type="text"
-        value={task.description ?? null}
+        value={description ?? null}
         onChange={onChangeDescription}
         placeholder={taskDescription}
       />

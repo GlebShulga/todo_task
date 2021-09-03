@@ -7,7 +7,8 @@ const CreateCategory = ({
   categoryTitleList,
   isCreateTaskModalOpen,
   setIsCreateTaskModalOpen,
-  fetchCategoryList
+  setCategoryList,
+  setRootCategories,
 }) => {
   const [categoryTitle, setCategoryTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
@@ -28,7 +29,13 @@ const CreateCategory = ({
         parentCategoryId,
         lvl,
       },
-    });
+    })
+      .then((res) => {
+        const data = res.data;
+        setCategoryList(data);
+        setRootCategories(data.filter((el) => el.parentCategoryId === null));
+      })
+      .catch((err) => console.log(err));
   };
 
   const parentCategoryId = choosenCategory.categoryId ?? null;
@@ -39,8 +46,7 @@ const CreateCategory = ({
     if (categoryTitle.length <= 20 && categoryTitle.length >= 3) {
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         await postCategory();
-        await fetchCategoryList();
-        setCategoryTitle('')
+        setCategoryTitle("");
         if (isCreateTaskModalOpen) {
           setIsCreateTaskModalOpen(false);
         }
