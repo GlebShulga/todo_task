@@ -34,6 +34,8 @@ const Category = ({
     (cat) => cat.parentCategoryId === category.categoryId
   );
 
+  const categoryExpandedConditions = children.length > 0 && isExpanded;
+
   const categoryId = category.categoryId;
   const choosenCategoryId = choosenCategory.categoryId;
 
@@ -154,8 +156,7 @@ const Category = ({
           </div>
         )}
       </div>
-      {children.length > 0 &&
-        isExpanded &&
+      {categoryExpandedConditions &&
         children.map((child) => (
           <div key={child.categoryId}>
             <Category
