@@ -45,15 +45,14 @@ const ProgressBar = ({ taskList, choosenCategory }) => {
       return rec.completed;
     }
     return acc;
-  },0);
-
+  }, 0);
 
   return (
-    <div className="container">
-      <div style={{ width: `${choosenCategoryResult}%` }} className="filler">
-        <span className="label">{`${choosenCategoryResult}%`}</span>
-      </div>
-    </div>
+    <progress
+      value={choosenCategoryResult}
+      max="100"
+      className="progress-bar"
+    ></progress>
   );
 };
 

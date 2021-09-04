@@ -1,20 +1,5 @@
-.container {
-    height: 20%;
+.progress-bar {
     width: 90%;
-    background-color: #e0e0de;
-    border-radius: 50px;
-    margin: 0.5rem;
-}
-
-.filler {
-    height: 100%;
-    background-color: orange;
-    border-radius: inherit;
-    text-align: right;
-}
-
-.label {
-    padding: 0.5rem;
-    color:black;
-    font-weight: bold;
+    border-radius: 5rem;
+    margin: 0.5rem 1rem;
 }
