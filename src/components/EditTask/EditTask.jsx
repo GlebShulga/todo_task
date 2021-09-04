@@ -61,7 +61,7 @@ const EditTask = ({
         </button>
         <button
           type="button"
-          className="EditTask-buttons_close"
+          className="EditTask-buttons__close"
           onClick={() => {
             setEditingTaskMode(false);
           }}
@@ -71,7 +71,7 @@ const EditTask = ({
       </div>
       <div className="EditTask-title">
         <input
-          className="EditTask-title_input"
+          className="EditTask-title__input"
           type="text"
           value={title ?? null}
           onChange={onChangeTitle}
@@ -95,7 +95,7 @@ const EditTask = ({
         <label htmlFor="status">Done</label>
       </div>
       <textarea
-        className="EditTask_description_input"
+        className="EditTask-description__input"
         type="text"
         value={description ?? null}
         onChange={onChangeDescription}
