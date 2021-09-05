@@ -1,5 +1,6 @@
 const express = require("express");
 const { nanoid } = require("nanoid");
+const { isEmpty } = require("./helpers");
 
 const { readFile, writeFile } = require("fs").promises;
 
@@ -116,7 +117,7 @@ app.patch("/api/v1/category", async (req, res) => {
         if (category.categoryId !== categoryId) {
           return category;
         }
-        if (categoryTitle === undefined) {
+        if (isEmpty(categoryTitle)) {
           categoryTitle = category.categoryTitle;
         }
         return { ...category, categoryTitle };
@@ -194,16 +195,16 @@ app.patch("/api/v1/task", async (req, res) => {
         if (task.taskId !== taskId) {
           return task;
         }
-        if (status === undefined) {
+        if (isEmpty(status)) {
           status = task.status;
         }
-        if (title === undefined) {
+        if (isEmpty(title)) {
           title = task.title;
         }
-        if (description === undefined) {
+        if (isEmpty(description)) {
           description = task.description;
         }
-        if (categoryId === undefined || categoryId === "") {
+        if (isEmpty(categoryId)) {
           categoryId = task.categoryId;
         }
         return { ...task, status, title, description, categoryId };
