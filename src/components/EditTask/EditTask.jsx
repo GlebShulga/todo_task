@@ -37,7 +37,7 @@ const EditTask = ({
   };
 
   const onClickEditTask = async () => {
-    if (title?.length <= 20 && title?.length >= 3) {
+    if (title?.trim().length <= 20 && title?.trim().length >= 3) {
       await patchTask(taskId, status, title, description, categoryId);
       setEditingTaskMode(false);
     } else {
@@ -51,18 +51,18 @@ const EditTask = ({
       : task.description;
 
   return (
-    <div className="EditTask">
-      <div className="EditTask-buttons">
+    <div className="edit_task">
+      <div className="edit_task-buttons">
         <button
           type="button"
-          className="CreateTask-form_button"
+          className="form_button_add"
           onClick={onClickEditTask}
         >
           Save changes
         </button>
         <button
           type="button"
-          className="EditTask-buttons__close"
+          className="edit_task-buttons__close"
           onClick={() => {
             setEditingTaskMode(false);
           }}
@@ -70,21 +70,21 @@ const EditTask = ({
           Cancel
         </button>
       </div>
-      <div className="EditTask-title">
+      <div className="edit_task-title">
         <input
-          className="EditTask-title__input"
+          className="edit_task-title__input"
           type="text"
           value={title ?? null}
           onChange={onChangeTitle}
         />
         {lengthError && (
-          <div className="EditTask-Error">
+          <div className="edit_task-error">
             The task length must not be shorter than 3 characters and must not
             exceed 20 characters.
           </div>
         )}
       </div>
-      <div className="EditTask-status">
+      <div className="status">
         <input
           type="checkbox"
           id="status"
@@ -96,7 +96,7 @@ const EditTask = ({
         <label htmlFor="status">Done</label>
       </div>
       <textarea
-        className="EditTask-description__input"
+        className="edit_task-description__input"
         type="text"
         value={description ?? null}
         onChange={onChangeDescription}

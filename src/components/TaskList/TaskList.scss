@@ -1,14 +1,14 @@
-.TaskList {
+.task-list {
   width: 100%;
   height: 100%;
   padding-right: 0.5rem;
 }
 
-.TaskTable {
+.task-table {
   display: flex;
   flex-direction: row;
   align-items: center;
   border: solid thin;
   padding: 0.5rem 0.5rem;
-} // duplicated with category from CategoryList.scss
+}
 

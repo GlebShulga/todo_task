@@ -87,7 +87,9 @@ const Category = ({
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryId === choosenCategoryId ? "check-mark" : "check-mark--hidden"
+            categoryId === choosenCategoryId
+              ? "check-mark"
+              : "check-mark--hidden"
           }
         />
         {!isEditingCategoryMode ? (
@@ -144,7 +146,7 @@ const Category = ({
         </div>
 
         {isCreateTaskModalOpen && (
-          <div className="CreateCategoryModal">
+          <div className="create-category-modal">
             <CreateCategory
               isCreateTaskModalOpen={isCreateTaskModalOpen}
               setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}

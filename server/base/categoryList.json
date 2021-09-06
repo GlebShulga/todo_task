@@ -1,23 +1,5 @@
 [
   {
-    "categorySchema": {
-      "categoryId": "",
-      "parentCategoryId": "",
-      "categoryTitle": "",
-      "_isDeleted": false,
-      "_createdAt": 0,
-      "_deletedAt": 0,
-      "lvl": 0
-    },
-    "categoryId": "_o-EJXSntVay2p8v5HYUo",
-    "parentCategoryId": "8",
-    "categoryTitle": "test 6",
-    "lvl": 2,
-    "_createdAt": 1630890728427,
-    "_isDeleted": true,
-    "_deletedAt": 1630890731224
-  },
-  {
     "categoryId": "d1nN7oUmC1lTNtxGtEnbB",
     "parentCategoryId": null,
     "categoryTitle": "test 5",
@@ -27,19 +9,10 @@
     "lvl": 0
   },
   {
-    "categoryId": "iFU_DQQCSpjy2lyBqo2N9",
-    "parentCategoryId": null,
-    "categoryTitle": "category 5",
-    "_isDeleted": true,
-    "_createdAt": 1630664558219,
-    "_deletedAt": 1630664571962,
-    "lvl": 0
-  },
-  {
     "categoryId": "Wy1dXPxgnYdPJONBEFg5D",
     "parentCategoryId": "wzvzJGZ_u7JggnKSlamOg",
     "categoryTitle": "category 4_1_1",
-    "_isDeleted": true,
+    "_isDeleted": false,
     "_createdAt": 1630026292318,
     "_deletedAt": 1630026300230,
     "lvl": 2

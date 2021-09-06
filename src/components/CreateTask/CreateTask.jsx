@@ -35,7 +35,7 @@ const CreateTask = ({
 
   const onClickAddTask = async () => {
     if (categoryId) {
-      if (title.length <= 20 && title.length >= 3) {
+      if (title?.trim().length <= 20 && title?.trim().length >= 3) {
         await postTask();
       } else {
         setCategoryError(true);
@@ -52,10 +52,10 @@ const CreateTask = ({
   };
 
   return (
-    <div className="CreateTask">
-      <div className="CreateTask-form">
+    <div className="create_task">
+      <div className="create_task-form">
         <input
-          className="CreateTask-form_input"
+          className="create_task-form_input"
           type="text"
           value={title}
           onChange={onChange}
@@ -64,21 +64,21 @@ const CreateTask = ({
         />
         <button
           type="button"
-          className="CreateTask-form_button"
+          className="form_button_add"
           onClick={onClickAddTask}
         >
           Add
         </button>
       </div>
       {lengthError && (
-        <div className="Error">
+        <div className="error">
           <div> The task length must not be shorter than 3 characters</div>
           <div>and</div>
           <div>must not exceed 20 characters.</div>
         </div>
       )}
       {categoryError && (
-        <div className="Error">
+        <div className="error">
           <div>Please, choose category</div>
         </div>
       )}

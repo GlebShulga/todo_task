@@ -45,10 +45,10 @@ const CategoryList = ({
   };
 
   return (
-    <ul className="CategoryList">
+    <ul className="category-list">
       {rootCategories.map((category) => {
         return (
-          <li className="CategoryTable" key={category.categoryId}>
+          <li className="category-table" key={category.categoryId}>
             <Category
               category={category}
               patchCategory={patchCategory}

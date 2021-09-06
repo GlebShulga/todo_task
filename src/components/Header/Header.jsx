@@ -24,13 +24,13 @@ const Header = ({
   };
 
   return (
-    <div className="Header">
-      <div className="Header-title">
+    <div className="header">
+      <div className="header-title">
         {isEditingTaskMode ? choosenTask.title : "To-Do List"}
       </div>
       {!isEditingTaskMode && (
-        <div className="Header-filter-form">
-          <div className="EditTask-status">
+        <div className="header-filter-form">
+          <div className="status">
             <input
               type="checkbox"
               id="statusDone"
@@ -40,16 +40,16 @@ const Header = ({
             />
             <label htmlFor="statusDone">Show done</label>
           </div>
-          <form action="" className="Header-form">
+          <form action="" className="header-form">
             <input
               type="text"
               placeholder="Search"
               name="search"
-              className="Header-form_input"
+              className="header-form_input"
               value={searchCriteria}
               onChange={onChangeSearch}
             />
-            <button className="Header-form_button">
+            <button className="header-form_button">
               <FontAwesomeIcon icon={faTimes} />
             </button>
           </form>

@@ -1,16 +1,16 @@
-.CreateTask {
+.create_task {
   display: flex;
   justify-content: flex-end;
   padding: 1rem 1rem;
   margin-bottom: 1rem;
 }
 
-.CreateTask-form {
+.create_task-form {
   display: flex;
   overflow: hidden;
 }
 
-.CreateTask-form_input {
+.create_task-form_input {
   padding: 0.5rem 1rem;
   border: lightgrey;
   background-color: lightgrey;
@@ -21,22 +21,4 @@
   }
 }
 
-.CreateTask-form_button {
-  padding: 0.5rem 1rem;
-  background-color: limegreen;
-  color: white;
-  font-weight: 700;
-  &:hover {
-    background-color: lightgreen;
-  }
-}
 
-.CreateTask-form_button_error {
-  opacity: 0.5;
-}
-
-.Error {
-  color: red;
-  padding-top: 1rem;
-  text-align: center;
-}

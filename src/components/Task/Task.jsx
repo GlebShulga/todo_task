@@ -10,10 +10,10 @@ const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
   };
 
   return (
-    <div key={task.taskId} className="Task">
+    <div key={task.taskId} className="task">
       {task.title}
       <button
-        className="Task-Edit_icon"
+        className="task-edit_icon"
         type="button"
         onClick={onClickEditTask}
       >

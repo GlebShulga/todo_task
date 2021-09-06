@@ -11,7 +11,6 @@ import "./App.scss";
 
 function App() {
   const [choosenCategory, setChoosenCategory] = useState("");
-  // const [isNewTaskCreated, setIsNewTaskCreated] = useState(false);
   const [categoryList, setCategoryList] = useState([]);
   const [rootCategories, setRootCategories] = useState([]);
   const [isEditingTaskMode, setEditingTaskMode] = useState(false);
@@ -72,7 +71,7 @@ function App() {
   );
 
   return (
-    <div className="App">
+    <div className="app">
       <Header
         setIsFilterStatusDone={setIsFilterStatusDone}
         isEditingTaskMode={isEditingTaskMode}
@@ -84,8 +83,8 @@ function App() {
       {!isEditingTaskMode && (
         <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
       )}
-      <div className="App-lists">
-        <div className="App-list">
+      <div className="app-lists">
+        <div className="app-list">
           {!isEditingTaskMode && (
             <CreateCategory
               categoryTitleList={categoryTitleList}
@@ -107,12 +106,10 @@ function App() {
             setRootCategories={setRootCategories}
           />
         </div>
-        <div className="App-list">
+        <div className="app-list">
           {!isEditingTaskMode && (
             <CreateTask
               choosenCategory={choosenCategory}
-              // setIsNewTaskCreated={setIsNewTaskCreated}
-              // isNewTaskCreated={isNewTaskCreated}
               setTaskList={setTaskList}
             />
           )}

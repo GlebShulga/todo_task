@@ -42,16 +42,16 @@ const TaskList = ({
 
 
   return (
-    <div className="TaskList">
+    <div className="task-list">
       {currentTaskList
         .filter((task) => choosenCategory.categoryId === task.categoryId)
         .map((task) => {
           return (
-            <div className="TaskTable" key={task.taskId}>
+            <div className="task-table " key={task.taskId}>
               <FontAwesomeIcon
                 icon={faCheckSquare}
                 className={
-                  task.status === "done" ? "checkMark" : "checkMark_hidden"
+                  task.status === "done" ? "check-mark" : "check-mark--hidden"
                 }
               />
               <Task

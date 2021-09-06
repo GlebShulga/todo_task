@@ -1,16 +1,16 @@
-.EditTask {
+.edit_task {
   display: flex;
   flex-direction: column;
 }
 
-.EditTask-buttons {
+.edit_task-buttons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin-bottom: 2.5rem;
 }
 
-.EditTask-buttons__close {
+.edit_task-buttons__close {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
   background-color: grey;
@@ -21,13 +21,13 @@
   }
 }
 
-.EditTask-title {
+.edit_task-title {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
 }
 
-.EditTask-title__input {
+.edit_task-title__input {
   padding: 0.5rem 1rem;
   border: solid thin lightgrey;
   background-color: rgb(235, 235, 235);
@@ -38,11 +38,11 @@
     border: solid thin lightgrey;
   }
 }
-.EditTask-status {
+.status {
   margin: 1rem 0rem;
 }
 
-.EditTask-description__input {
+.edit_task-description__input {
   margin-top: 1rem;
   border: solid thin;
   font-size: large;
@@ -58,7 +58,7 @@
   }
 }
 
-.EditTask-Error {
+.edit_task-error {
   color: red;
   padding-top: 0.3rem;
 }
