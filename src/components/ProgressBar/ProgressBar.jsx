@@ -15,7 +15,11 @@ const ProgressBar = ({ taskList, choosenCategory }) => {
             sumOfTasks: 1,
           };
         } else {
-          r[categoryId] = { categoryId: e.categoryId, sumOfTasks: 1 };
+          r[categoryId] = {
+            categoryId: e.categoryId,
+            sumOfTasks: 1,
+            sumOfDoneTasks: 0,
+          };
         }
       } else {
         r[categoryId].sumOfTasks = (r[categoryId].sumOfTasks ?? 0) + 1;
@@ -28,31 +32,41 @@ const ProgressBar = ({ taskList, choosenCategory }) => {
     }, {})
   );
 
+  const categoriesWithTasks = commonTaskData.map((task) => task.categoryId);
+  const choosenCategoryWOTasks = (categoriesWithTasks.includes(choosenCategory.categoryId) === false &&
+    choosenCategory.categoryId) ? true : false
+
   const resultList = commonTaskData.reduce((acc, rec) => {
-    if (rec.sumOfDoneTasks) {
+    if (typeof rec.sumOfDoneTasks === "number") {
       const completed = Math.round((rec.sumOfDoneTasks / rec.sumOfTasks) * 100);
       return [...acc, { ...rec, completed }];
+    }
+    if (choosenCategoryWOTasks) {
+      const completed = 100;
+      return [
+        ...acc,
+        {
+          categoryId: choosenCategory.categoryId,
+          sumOfTasks: 0,
+          sumOfDoneTasks: 0,
+          completed: completed,
+        },
+      ];
     }
     return acc;
   }, []);
 
   const choosenCategoryResult = resultList?.reduce((acc, rec) => {
-    const categoriesWithTasks = commonTaskData.map((task) => task.categoryId);
-    if (
-      rec.categoryId === choosenCategory.categoryId ||
-      categoriesWithTasks.includes(choosenCategory.categoryId) === false
-    ) {
+    if (rec.categoryId === choosenCategory.categoryId) {
       return rec.completed;
     }
     return acc;
   }, 0);
 
+  const result = choosenCategoryWOTasks ? 100 : choosenCategoryResult;
+
   return (
-    <progress
-      value={choosenCategoryResult}
-      max="100"
-      className="progress-bar"
-    ></progress>
+    <progress value={result} max="100" className="progress-bar"></progress>
   );
 };
 
