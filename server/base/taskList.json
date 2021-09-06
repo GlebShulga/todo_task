@@ -1,1 +1,101 @@
-[{"categoryId":"3","taskId":"1","title":"Just do it","description":"bla","status":"new"},{"categoryId":"3","taskId":"2","title":"Do it one more time","status":"new"},{"categoryId":"4","taskId":"3","title":"Fly to the Earth","description":"bla-bla","status":"new"},{"categoryId":"5","taskId":"Osau79o53nO1OAPtFmBXg","title":"Save the world today","description":"Save all species","_createdAt":1629857898431,"status":"new"},{"categoryId":"7","taskId":"6Ni_9cmf7oHxsrxz-R2EP","title":"Second real task","description":"","_createdAt":1630026403446,"status":"new"},{"categoryId":"RuQ3m0zrlNX9uY68zWCN1","taskId":"454zuMqEHrrcDxwj1B5_p","title":"One more task","description":"","_createdAt":1630474050432,"status":"new"},{"categoryId":"4","taskId":"5","title":"Fly to the Neptune","description":"I believe I can fly","status":"done"},{"categoryId":"wzvzJGZ_u7JggnKSlamOg","taskId":"mmYWc9uO3xPriRWkB5nGy","title":"Test task 1","description":"","_createdAt":1630040570377,"status":"done"},{"categoryId":"5","taskId":"BHD3mf0sWR5HRmtELuECx","title":"Edited task 4.0","description":"Does category ID was changed to 5?","_createdAt":1629947176640,"status":"done"},{"categoryId":"4","taskId":"4","title":"Fly to the Mars","description":"bla-bla-bla","status":"done"}]
+[
+  {
+    "categoryId": "3",
+    "taskId": "1",
+    "title": "Just do it",
+    "description": "bla",
+    "status": "new"
+  },
+  {
+    "categoryId": "3",
+    "taskId": "2",
+    "title": "Do it one more time",
+    "status": "new",
+    "description": ""
+  },
+  {
+    "categoryId": "4",
+    "taskId": "3",
+    "title": "Fly to the Earth",
+    "description": "bla-bla",
+    "status": "new"
+  },
+  {
+    "categoryId": "5",
+    "taskId": "Osau79o53nO1OAPtFmBXg",
+    "title": "Save the world today",
+    "description": "Save all species",
+    "_createdAt": 1629857898431,
+    "status": "new"
+  },
+  {
+    "categoryId": "7",
+    "taskId": "6Ni_9cmf7oHxsrxz-R2EP",
+    "title": "Second real task",
+    "description": "",
+    "_createdAt": 1630026403446,
+    "status": "new"
+  },
+  {
+    "categoryId": "RuQ3m0zrlNX9uY68zWCN1",
+    "taskId": "454zuMqEHrrcDxwj1B5_p",
+    "title": "One more task",
+    "description": "",
+    "_createdAt": 1630474050432,
+    "status": "new"
+  },
+  {
+    "categoryId": "d1nN7oUmC1lTNtxGtEnbB",
+    "taskId": "pI2IO5LGgVTfjlWchzpKx",
+    "title": "test task",
+    "description": "",
+    "_createdAt": 1630665095532,
+    "status": "new"
+  },
+  {
+    "taskSchema": {
+      "categoryId": "",
+      "taskId": "",
+      "title": "",
+      "description": "",
+      "_createdAt": 0,
+      "status": "new"
+    },
+    "categoryId": "Kbchx0i_c73rCkMJI8KCf",
+    "taskId": "Q_QT_im_8-m68TZxCLI-n",
+    "title": "New task",
+    "status": "new",
+    "_createdAt": 1630890738948,
+    "description": "New description"
+  },
+  {
+    "categoryId": "4",
+    "taskId": "5",
+    "title": "Fly to the Neptune",
+    "description": "I believe I can fly",
+    "status": "done"
+  },
+  {
+    "categoryId": "wzvzJGZ_u7JggnKSlamOg",
+    "taskId": "mmYWc9uO3xPriRWkB5nGy",
+    "title": "Test task 1.0",
+    "description": "Test",
+    "_createdAt": 1630040570377,
+    "status": "done"
+  },
+  {
+    "categoryId": "1",
+    "taskId": "BHD3mf0sWR5HRmtELuECx",
+    "title": "Edited task 5.0",
+    "description": "Task Limited Edition",
+    "_createdAt": 1629947176640,
+    "status": "done"
+  },
+  {
+    "categoryId": "4",
+    "taskId": "4",
+    "title": "Fly to the Mars",
+    "description": "bla-bla-bla",
+    "status": "done"
+  }
+]

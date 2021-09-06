@@ -18,6 +18,7 @@ const EditTask = ({
     setTitle(task.title);
     setDescription(task.description)
     setStatus(task.status)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isChecked = status === "done";
