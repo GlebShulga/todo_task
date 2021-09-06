@@ -6,8 +6,6 @@ const {
   toWriteTask,
 } = require("../helpers");
 
-const taskSchema = require("../models/task.model");
-
 module.exports = {
   get,
   post,
@@ -22,7 +20,6 @@ async function post(req, res) {
     });
   }
   const newTask = {
-    ...taskSchema,
     categoryId,
     taskId: nanoid(),
     title,

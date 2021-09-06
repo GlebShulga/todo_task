@@ -6,8 +6,6 @@ const {
   toReadCategory,
 } = require("../helpers");
 
-const categorySchema = require("../models/category.model");
-
 module.exports = {
   get,
   post,
@@ -31,7 +29,6 @@ async function post (req, res) {
     });
   }
   const newCategory = {
-    ...categorySchema,
     categoryId: nanoid(),
     parentCategoryId,
     categoryTitle,
