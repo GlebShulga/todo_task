@@ -1,4 +1,4 @@
-.Category {
+.category {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -7,7 +7,7 @@
   border: solid thin;
 }
 
-.Category-title {
+.category-title {
   margin: 0 0.5rem;
   padding: 0;
   border: none;
@@ -21,32 +21,32 @@
   }
 }
 
-.Edit_input {
+.category-edit_input {
   border: solid thin;
   color: black;
   padding-left: 0.2rem;
 }
 
-.checkMark {
+.check-mark {
   margin-right: 0.2rem;
 }
 
-.ReplyIcon {
+.reply-icon {
   margin-right: 0.2rem;
   &:focus {
     background-color: #4e46bb46;
   }
 }
 
-.checkMark_hidden {
+.check-mark--hidden {
   margin-right: 0.2rem;
   visibility: hidden;
 }
 
-.Icon {
+.icon {
   margin-left: auto;
 }
 
-.Plus_icon {
+.plus-icon {
   margin-left: 0.3rem;
 }

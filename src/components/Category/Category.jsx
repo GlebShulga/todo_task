@@ -80,26 +80,26 @@ const Category = ({
   return (
     <>
       <div
-        className="Category"
+        className="category"
         style={{ marginLeft: `${category.lvl}rem` }}
         onClick={onClickExpandedTree}
       >
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryId === choosenCategoryId ? "checkMark" : "checkMark_hidden"
+            categoryId === choosenCategoryId ? "check-mark" : "check-mark--hidden"
           }
         />
         {!isEditingCategoryMode ? (
           <button
-            className="Category-title"
+            className="category-title"
             onClick={() => onClickChooseCategory(category)}
           >
             {category.categoryTitle}
           </button>
         ) : (
           <input
-            className="Edit_input"
+            className="category-edit_input"
             type="text"
             value={newTitle}
             onChange={onChangeTitle}
@@ -109,7 +109,7 @@ const Category = ({
           {edit}
         </button>
 
-        <div className="Icon">
+        <div className="icon">
           {!isEditingTaskMode ? (
             <>
               <button
@@ -120,7 +120,7 @@ const Category = ({
               </button>
               <button
                 type="button"
-                className="Plus_icon"
+                className="plus-icon"
                 onClick={() =>
                   onClickCreateTaskModalOpen(category, isCreateTaskModalOpen)
                 }
@@ -132,8 +132,8 @@ const Category = ({
             <button
               className={
                 categoryId === choosenTask.categoryId
-                  ? "checkMark_hidden"
-                  : "ReplyIcon"
+                  ? "check-mark--hidden"
+                  : "reply-icon"
               }
               type="button"
               onClick={() => onClickChangeCategory(categoryId)}
