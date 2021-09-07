@@ -29,7 +29,7 @@ const Header = ({
         {isEditingTaskMode ? choosenTask.title : "To-Do List"}
       </div>
       {!isEditingTaskMode && (
-        <div className="header-filter-form">
+        <div className="header-filter_form">
           <div className="status">
             <input
               type="checkbox"
@@ -49,7 +49,7 @@ const Header = ({
               value={searchCriteria}
               onChange={onChangeSearch}
             />
-            <button className="header-form_button">
+            <button className="header-form_button" disabled>
               <FontAwesomeIcon icon={faTimes} />
             </button>
           </form>
