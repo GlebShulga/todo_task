@@ -37,23 +37,8 @@ const ProgressBar = ({ taskList, choosenCategory }) => {
     choosenCategory.categoryId) ? true : false
 
   const resultList = commonTaskData.reduce((acc, rec) => {
-    if (typeof rec.sumOfDoneTasks === "number") {
       const completed = Math.round((rec.sumOfDoneTasks / rec.sumOfTasks) * 100);
       return [...acc, { ...rec, completed }];
-    }
-    if (choosenCategoryWOTasks) {
-      const completed = 100;
-      return [
-        ...acc,
-        {
-          categoryId: choosenCategory.categoryId,
-          sumOfTasks: 0,
-          sumOfDoneTasks: 0,
-          completed: completed,
-        },
-      ];
-    }
-    return acc;
   }, []);
 
   const choosenCategoryResult = resultList?.reduce((acc, rec) => {
