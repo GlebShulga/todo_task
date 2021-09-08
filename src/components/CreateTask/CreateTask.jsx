@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./CreateTask.scss";
 
-const CreateTask = ({
-  choosenCategory,
-  setTaskList,
-}) => {
+const CreateTask = ({ choosenCategory, setTaskList }) => {
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
   const [categoryError, setCategoryError] = useState(false);
@@ -36,13 +33,15 @@ const CreateTask = ({
   const onClickAddTask = async () => {
     if (categoryId) {
       if (title?.trim().length <= 20 && title?.trim().length >= 3) {
+        setCategoryError(false);
+        setLengthError(false);
         await postTask();
       } else {
-        setCategoryError(true);
         setLengthError(true);
+        setCategoryError(false);
       }
     } else {
-      setCategoryError(false);
+      setCategoryError(true);
     }
   };
   const handleKeypress = (e) => {
