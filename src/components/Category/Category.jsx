@@ -133,7 +133,7 @@ const Category = ({
         </button>
 
         <div className="icon">
-          {!isEditingTaskMode ? (
+          {!isEditingTaskMode && (
             <>
               <button
                 type="button"
@@ -151,7 +151,8 @@ const Category = ({
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             </>
-          ) : (
+          )}
+          {isEditingTaskMode && (
             <button
               className={
                 categoryId === choosenTask.categoryId
