@@ -65,7 +65,9 @@ const CategoryList = ({
         );
       })
 
-  return <ul className="category-list">{rootCategoryItem}</ul>;
+  return (
+    <ul className="category-list scroll">{rootCategoryItem}</ul>
+  );
 };
 
 export default CategoryList;

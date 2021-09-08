@@ -1,14 +1,14 @@
-
+.scroll {
+  overflow: auto;
+}
 .category-list {
   text-align: center;
   padding-left: 0.5rem;
-  list-style-type:none
+  list-style-type: none;
 }
 
 .category-table {
-display: flex;
-flex-direction: column;
-padding: 0rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0rem 0.5rem;
 }
-
-
