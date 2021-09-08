@@ -77,6 +77,27 @@ const Category = ({
     <FontAwesomeIcon icon={faEdit} />
   );
 
+  const childrenCategoryItem =
+    categoryExpandedConditions &&
+    children.map((child) => (
+      <li key={child.categoryId}>
+        <Category
+          category={child}
+          patchCategory={patchCategory}
+          deleteCategory={deleteCategory}
+          setChoosenCategory={setChoosenCategory}
+          choosenCategory={choosenCategory}
+          categoryTitleList={categoryTitleList}
+          categoryList={categoryList}
+          isEditingTaskMode={isEditingTaskMode}
+          choosenTask={choosenTask}
+          setNewCategoryIdForTask={setNewCategoryIdForTask}
+          setCategoryList={setCategoryList}
+          setRootCategories={setRootCategories}
+        />
+      </li>
+    ));
+
   return (
     <>
       <div
@@ -158,25 +179,7 @@ const Category = ({
           </div>
         )}
       </div>
-      {categoryExpandedConditions &&
-        children.map((child) => (
-          <div key={child.categoryId}>
-            <Category
-              category={child}
-              patchCategory={patchCategory}
-              deleteCategory={deleteCategory}
-              setChoosenCategory={setChoosenCategory}
-              choosenCategory={choosenCategory}
-              categoryTitleList={categoryTitleList}
-              categoryList={categoryList}
-              isEditingTaskMode={isEditingTaskMode}
-              choosenTask={choosenTask}
-              setNewCategoryIdForTask={setNewCategoryIdForTask}
-              setCategoryList={setCategoryList}
-              setRootCategories={setRootCategories}
-            />
-          </div>
-        ))}
+      <ul className="category-list">{childrenCategoryItem}</ul>
     </>
   );
 };

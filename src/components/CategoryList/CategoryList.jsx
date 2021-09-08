@@ -44,9 +44,7 @@ const CategoryList = ({
     });
   };
 
-  return (
-    <ul className="category-list">
-      {rootCategories.map((category) => {
+  const rootCategoryItem = rootCategories.map((category) => {
         return (
           <li className="category-table" key={category.categoryId}>
             <Category
@@ -65,9 +63,9 @@ const CategoryList = ({
             />
           </li>
         );
-      })}
-    </ul>
-  );
+      })
+
+  return <ul className="category-list">{rootCategoryItem}</ul>;
 };
 
 export default CategoryList;
