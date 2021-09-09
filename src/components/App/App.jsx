@@ -60,9 +60,6 @@ function App() {
 
   useEffect(() => {
     fetchCategoryList();
-  }, []);
-
-  useEffect(() => {
     fetchTaskList();
   }, []);
 
@@ -80,19 +77,15 @@ function App() {
         searchCriteria={searchCriteria}
         setIsSearch={setIsSearch}
       />
-      {!isEditingTaskMode && (
         <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
-      )}
       <div className="app-lists">
         <div className="app-list">
-          {!isEditingTaskMode && (
             <CreateCategory
               categoryTitleList={categoryTitleList}
               choosenCategory={choosenCategory}
               setCategoryList={setCategoryList}
               setRootCategories={setRootCategories}
             />
-          )}
           <CategoryList
             categoryTitleList={categoryTitleList}
             setChoosenCategory={setChoosenCategory}
@@ -107,21 +100,20 @@ function App() {
           />
         </div>
         <div className="app-list">
-          {!isEditingTaskMode && (
             <CreateTask
               choosenCategory={choosenCategory}
               setTaskList={setTaskList}
             />
-          )}
           {!isEditingTaskMode && (
             <TaskList
               taskList={taskList}
               setEditingTaskMode={setEditingTaskMode}
-              choosenCategory={choosenCategory}
               setChoosenTask={setChoosenTask}
               isFilterStatusDone={isFilterStatusDone}
               searchCriteria={searchCriteria}
               isSearch={isSearch}
+              categoryList={categoryList}
+              isEditingTaskMode={isEditingTaskMode}
             />
           )}
           {isEditingTaskMode && (

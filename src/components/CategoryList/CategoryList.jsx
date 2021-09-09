@@ -44,6 +44,7 @@ const CategoryList = ({
     });
   };
 
+  const choosenTaskTitle = choosenTask.title
   const rootCategoryItem = rootCategories.map((category) => {
         return (
           <li className="category-table" key={category.categoryId}>
@@ -66,7 +67,12 @@ const CategoryList = ({
       })
 
   return (
-    <ul className="category-list scroll">{rootCategoryItem}</ul>
+    <>
+      {isEditingTaskMode && (
+        <div className="task-title">To-Do {choosenTaskTitle}</div>
+      )}
+      <ul className="category-list scroll">{rootCategoryItem}</ul>
+    </>
   );
 };
 

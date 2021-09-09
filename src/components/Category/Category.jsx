@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -25,6 +26,7 @@ const Category = ({
   setCategoryList,
   setRootCategories,
 }) => {
+  const { category: choosenCategoryTitle } = useParams();
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
@@ -34,10 +36,11 @@ const Category = ({
     (cat) => cat.parentCategoryId === category.categoryId
   );
 
-  const categoryExpandedConditions = children.length > 0 && isExpanded;
+  const categoryExpandedConditions = children?.length > 0 && isExpanded;
 
   const categoryId = category.categoryId;
-  const choosenCategoryId = choosenCategory.categoryId;
+
+  const categoryTitle = category.categoryTitle;
 
   const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
@@ -63,7 +66,7 @@ const Category = ({
     setIsCreateTaskModalOpen(!isCreateTaskModalOpen);
   };
 
-  const onClickChangeCategory = (categoryId) => {
+  const onClickEditCategory = (categoryId) => {
     setNewCategoryIdForTask(categoryId);
   };
 
@@ -108,14 +111,18 @@ const Category = ({
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryId === choosenCategoryId
+            categoryTitle === choosenCategoryTitle
               ? "check-mark"
               : "check-mark--hidden"
           }
         />
         {!isEditingCategoryMode ? (
           <button
-            className="category-title"
+            className={
+              categoryTitle === choosenCategoryTitle
+                ? "category-title category-title--green"
+                : "category-title"
+            }
             onClick={() => onClickChooseCategory(category)}
           >
             {category.categoryTitle}
@@ -160,7 +167,7 @@ const Category = ({
                   : "reply-icon"
               }
               type="button"
-              onClick={() => onClickChangeCategory(categoryId)}
+              onClick={() => onClickEditCategory(categoryId)}
             >
               <FontAwesomeIcon icon={faReply} />
             </button>
