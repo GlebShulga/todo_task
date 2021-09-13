@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/scss/CreateCategory.scss";
+import "./CreateCategory.scss";
 
 const CreateCategory = ({
   choosenCategory,
   categoryTitleList,
-  toggle,
-  setToggle,
-  fetchCategoryList
+  isCreateTaskModalOpen,
+  setIsCreateTaskModalOpen,
+  setCategoryList,
+  setRootCategories,
 }) => {
   const [categoryTitle, setCategoryTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
@@ -28,7 +29,13 @@ const CreateCategory = ({
         parentCategoryId,
         lvl,
       },
-    });
+    })
+      .then((res) => {
+        const data = res.data;
+        setCategoryList(data);
+        setRootCategories(data.filter((el) => el.parentCategoryId === null));
+      })
+      .catch((err) => console.log(err));
   };
 
   const parentCategoryId = choosenCategory.categoryId ?? null;
@@ -36,12 +43,15 @@ const CreateCategory = ({
   const lvl = choosenCategory?.lvl === undefined ? 0 : choosenCategory?.lvl + 1;
 
   const onClickAddTask = async () => {
-    if (categoryTitle.length <= 20 && categoryTitle.length >= 3) {
+    if (
+      categoryTitle?.trim().length <= 20 &&
+      categoryTitle?.trim().length >= 3
+    ) {
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         await postCategory();
-        await fetchCategoryList();
-        if (toggle) {
-          setToggle(false);
+        setCategoryTitle("");
+        if (isCreateTaskModalOpen) {
+          setIsCreateTaskModalOpen(false);
         }
       } else {
         setCategoryAlreadyExist(true);
@@ -57,22 +67,22 @@ const CreateCategory = ({
   };
 
   return (
-    <div className="CreateCategory">
-      <div className="CreateCategory-form">
+    <div className="create_category">
+      <div className="create_category-form">
         <input
-          className="CreateCategory-form_input"
+          className="create_category-form_input"
           type="text"
           value={categoryTitle}
           onChange={onChange}
           placeholder="Add new category"
           onKeyPress={handleKeypress}
         />
-        {toggle && (
+        {isCreateTaskModalOpen && (
           <button
             type="button"
-            className="CreateCategory-form_button_close"
+            className="create_category-form_button_close"
             onClick={() => {
-              setToggle(false);
+              setIsCreateTaskModalOpen(false);
             }}
           >
             Close
@@ -80,21 +90,21 @@ const CreateCategory = ({
         )}
         <button
           type="button"
-          className="CreateCategory-form_button_add"
+          className="form_button_add"
           onClick={onClickAddTask}
         >
           Add
         </button>
       </div>
       {lengthError && (
-        <div className="Error">
+        <div className="error">
           <div> The task length must not be shorter than 3 characters</div>
           <div>and</div>
           <div>must not exceed 20 characters.</div>
         </div>
       )}
       {categoryAlreadyExist && (
-        <div className="Error">
+        <div className="error">
           <div> Channel`s name already exist</div>
         </div>
       )}

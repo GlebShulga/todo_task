@@ -1,12 +1,21 @@
 [
   {
-    "categoryId": "RuQ3m0zrlNX9uY68zWCN1",
+    "categoryId": "d1nN7oUmC1lTNtxGtEnbB",
     "parentCategoryId": null,
-    "categoryTitle": "category 4",
+    "categoryTitle": "test 5",
     "_isDeleted": false,
-    "_createdAt": 1630026272027,
+    "_createdAt": 1630665085901,
     "_deletedAt": 0,
     "lvl": 0
+  },
+  {
+    "categoryId": "Wy1dXPxgnYdPJONBEFg5D",
+    "parentCategoryId": "wzvzJGZ_u7JggnKSlamOg",
+    "categoryTitle": "category 4_1_1",
+    "_isDeleted": false,
+    "_createdAt": 1630026292318,
+    "_deletedAt": 1630026300230,
+    "lvl": 2
   },
   {
     "categoryId": "wzvzJGZ_u7JggnKSlamOg",
@@ -18,26 +27,26 @@
     "lvl": 1
   },
   {
-    "categoryId": "Wy1dXPxgnYdPJONBEFg5D",
-    "parentCategoryId": "wzvzJGZ_u7JggnKSlamOg",
-    "categoryTitle": "category 4_1_1",
-    "_isDeleted": true,
-    "_createdAt": 1630026292318,
-    "_deletedAt": 1630026300230,
-    "lvl": 2
-  },
-  {
-    "categoryId": "5",
-    "categoryTitle": "category 2",
+    "categoryId": "RuQ3m0zrlNX9uY68zWCN1",
     "parentCategoryId": null,
-    "lvl": 0,
-    "_createdAt": 1629964332728
+    "categoryTitle": "category 4",
+    "_isDeleted": false,
+    "_createdAt": 1630026272027,
+    "_deletedAt": 0,
+    "lvl": 0
   },
   {
     "categoryId": "6",
     "categoryTitle": "category 2_1",
     "parentCategoryId": "5",
     "_createdAt": 1629964332826,
+    "lvl": 1
+  },
+  {
+    "categoryId": "8",
+    "categoryTitle": "category 2_2",
+    "parentCategoryId": "5",
+    "_createdAt": 1629964332818,
     "lvl": 1
   },
   {
@@ -48,43 +57,11 @@
     "lvl": 2
   },
   {
-    "categoryId": "8",
-    "categoryTitle": "category 2_2",
-    "parentCategoryId": "5",
-    "_createdAt": 1629964332818,
-    "lvl": 1
-  },
-  {
-    "categoryId": "Kbchx0i_c73rCkMJI8KCf",
-    "parentCategoryId": "8",
-    "categoryTitle": "category 2_2_1",
-    "_isDeleted": false,
-    "_createdAt": 1629943298760,
-    "_deletedAt": 0,
-    "lvl": 2
-  },
-  {
-    "categoryId": "PoMWPerFYXlI9_uCQH_Em",
-    "parentCategoryId": "Kbchx0i_c73rCkMJI8KCf",
-    "categoryTitle": "category 2_2_1_1",
-    "_isDeleted": false,
-    "_createdAt": 1629944188034,
-    "_deletedAt": 0,
-    "lvl": 3
-  },
-  {
-    "categoryId": "1",
-    "categoryTitle": "category 1",
+    "categoryId": "5",
+    "categoryTitle": "category 2",
     "parentCategoryId": null,
     "lvl": 0,
-    "_createdAt": 1629964332420
-  },
-  {
-    "categoryId": "2",
-    "categoryTitle": "category 1_1",
-    "parentCategoryId": "1",
-    "lvl": 1,
-    "_createdAt": 1629964332428
+    "_createdAt": 1629964332728
   },
   {
     "categoryId": "4",
@@ -99,6 +76,38 @@
     "parentCategoryId": "2",
     "lvl": 2,
     "_createdAt": 1629964332528
+  },
+  {
+    "categoryId": "2",
+    "categoryTitle": "category 1_1",
+    "parentCategoryId": "1",
+    "lvl": 1,
+    "_createdAt": 1629964332428
+  },
+  {
+    "categoryId": "1",
+    "categoryTitle": "category 1",
+    "parentCategoryId": null,
+    "lvl": 0,
+    "_createdAt": 1629964332420
+  },
+  {
+    "categoryId": "PoMWPerFYXlI9_uCQH_Em",
+    "parentCategoryId": "Kbchx0i_c73rCkMJI8KCf",
+    "categoryTitle": "category 2_2_1_1",
+    "_isDeleted": false,
+    "_createdAt": 1629944188034,
+    "_deletedAt": 0,
+    "lvl": 3
+  },
+  {
+    "categoryId": "Kbchx0i_c73rCkMJI8KCf",
+    "parentCategoryId": "8",
+    "categoryTitle": "category 2_2_1",
+    "_isDeleted": false,
+    "_createdAt": 1629943298760,
+    "_deletedAt": 0,
+    "lvl": 2
   },
   {
     "categoryId": "iQZpSMLpL0crGLqoS9M1d",

@@ -1,0 +1,64 @@
+.edit_task {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit_task-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.edit_task-buttons__close {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  background-color: grey;
+  color: white;
+  font-weight: 700;
+  &:hover {
+    background-color: lightslategray;
+  }
+}
+
+.edit_task-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.edit_task-title__input {
+  padding: 0.5rem 1rem;
+  border: solid thin lightgrey;
+  background-color: rgb(235, 235, 235);
+  outline: none;
+
+  &:focus {
+    background-color: white;
+    border: solid thin lightgrey;
+  }
+}
+.status {
+  margin: 1rem 0rem;
+}
+
+.edit_task-description__input {
+  margin-top: 1rem;
+  border: solid thin;
+  font-size: large;
+  padding: 0.5rem 0.5rem;
+  &:focus {
+    background-color: white;
+  }
+  &::placeholder {
+    font-size: 1rem;
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+  }
+}
+
+.edit_task-error {
+  color: red;
+  padding-top: 0.3rem;
+}

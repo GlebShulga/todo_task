@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../assets/scss/CreateTask.scss";
+import "./CreateTask.scss";
 
-const CreateTask = ({
-  choosenCategory,
-  setIsNewTaskCreated,
-  isNewTaskCreated,
-}) => {
+const CreateTask = ({ choosenCategory, setTaskList }) => {
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
-  const [noCategoryError, setNoCategoryError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
 
   const onChange = (e) => {
     setTitle(e.target.value);
@@ -24,22 +20,28 @@ const CreateTask = ({
         title,
         categoryId,
       },
-    });
+    })
+      .then((res) => {
+        const data = res.data;
+        setTaskList(data);
+      })
+      .catch((err) => console.log(err));
   };
 
   const categoryId = choosenCategory.categoryId;
 
   const onClickAddTask = async () => {
     if (categoryId) {
-      if (title.length <= 20 && title.length >= 3) {
+      if (title?.trim().length <= 20 && title?.trim().length >= 3) {
+        setCategoryError(false);
+        setLengthError(false);
         await postTask();
-        setIsNewTaskCreated(!isNewTaskCreated);
       } else {
-        setNoCategoryError(false);
         setLengthError(true);
+        setCategoryError(false);
       }
     } else {
-      setNoCategoryError(true);
+      setCategoryError(true);
     }
   };
   const handleKeypress = (e) => {
@@ -49,10 +51,10 @@ const CreateTask = ({
   };
 
   return (
-    <div className="CreateTask">
-      <div className="CreateTask-form">
+    <div className="create_task">
+      <div className="create_task-form">
         <input
-          className="CreateTask-form_input"
+          className="create_task-form_input"
           type="text"
           value={title}
           onChange={onChange}
@@ -61,21 +63,21 @@ const CreateTask = ({
         />
         <button
           type="button"
-          className="CreateTask-form_button"
+          className="form_button_add"
           onClick={onClickAddTask}
         >
           Add
         </button>
       </div>
       {lengthError && (
-        <div className="Error">
+        <div className="error">
           <div> The task length must not be shorter than 3 characters</div>
           <div>and</div>
           <div>must not exceed 20 characters.</div>
         </div>
       )}
-      {noCategoryError && (
-        <div className="Error">
+      {categoryError && (
+        <div className="error">
           <div>Please, choose category</div>
         </div>
       )}

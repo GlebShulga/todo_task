@@ -1,0 +1,24 @@
+.create_task {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.create_task-form {
+  display: flex;
+  overflow: hidden;
+}
+
+.create_task-form_input {
+  padding: 0.5rem 1rem;
+  border: lightgrey;
+  background-color: lightgrey;
+  outline: none;
+
+  &:focus {
+    background-color: darkgrey;
+  }
+}
