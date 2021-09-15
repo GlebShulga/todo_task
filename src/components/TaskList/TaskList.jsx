@@ -44,7 +44,7 @@ const TaskList = ({
   return (
     <div className="task-list">
       {currentTaskList
-        .filter((task) => choosenCategory.categoryId === task.categoryId)
+        .filter((task) => choosenCategory?.categoryId === task.categoryId)
         .map((task) => {
           return (
             <div className="task-table " key={task.taskId}>

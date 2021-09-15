@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
@@ -24,9 +23,9 @@ const Header = ({
 
   return (
     <div className="header">
-        <Link className="header-title" to="/">
+        <div className="header-title" to="/">
           To-Do List
-        </Link>
+        </div>
         <div className="header-filter_form">
           <div className="status">
             <input

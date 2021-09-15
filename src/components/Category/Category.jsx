@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -26,7 +25,6 @@ const Category = ({
   setCategoryList,
   setRootCategories,
 }) => {
-  const { category: choosenCategoryTitle } = useParams();
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
   const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
@@ -111,7 +109,7 @@ const Category = ({
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryTitle === choosenCategoryTitle
+            categoryTitle === choosenCategory.categoryTitle
               ? "check-mark"
               : "check-mark--hidden"
           }
@@ -119,7 +117,7 @@ const Category = ({
         {!isEditingCategoryMode ? (
           <button
             className={
-              categoryTitle === choosenCategoryTitle
+              categoryTitle === choosenCategory.categoryTitle
                 ? "category-title category-title--green"
                 : "category-title"
             }
