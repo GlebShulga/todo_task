@@ -9,37 +9,28 @@ const TaskList = ({
   setEditingTaskMode,
   setChoosenTask,
   taskList,
-  isFilterStatusDone,
   searchCriteria,
   isSearch,
 }) => {
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
-  useEffect(() => {
-    if (isFilterStatusDone && isSearch) {
-      setCurrentTaskList(
-        taskList.filter(
-          (task) =>
-            task.status === "done" &&
+    useEffect(() => {
+      if (isSearch) {
+        setCurrentTaskList(
+          taskList.filter((task) =>
             task.title.toLowerCase().includes(searchCriteria)
-        )
-      );
-    } else if (isFilterStatusDone) {
-      setCurrentTaskList(
-        taskList.filter((task) => task.status === "done")
-      );
+          )
+        );
       } else if (isSearch) {
-              setCurrentTaskList(
-                taskList.filter(
-                  (task) =>
-                    task.title.toLowerCase().includes(searchCriteria)
-                )
-              );
+        setCurrentTaskList(
+          taskList.filter((task) =>
+            task.title.toLowerCase().includes(searchCriteria)
+          )
+        );
       } else {
-        setCurrentTaskList(taskList)
+        setCurrentTaskList(taskList);
       }
-  }, [isFilterStatusDone, isSearch, searchCriteria, taskList]);
-
+    }, [isSearch, searchCriteria, taskList]);
 
   return (
     <div className="task-list">

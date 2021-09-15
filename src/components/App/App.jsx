@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import CategoryList from "../CategoryList/CategoryList";
 import TaskList from "../TaskList/TaskList";
@@ -8,6 +8,7 @@ import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Header from "../Header/Header";
 import "./App.scss";
+import { catListWithDoneFlag } from "./helpers";
 
 function App() {
   const [choosenCategory, setChoosenCategory] = useState("");
@@ -63,9 +64,28 @@ function App() {
     fetchTaskList();
   }, []);
 
+  const categoryListWithDoneFlag = useMemo(
+    () => catListWithDoneFlag(taskList, categoryList),
+    [taskList, categoryList]
+  );
+
   const categoryTitleList = categoryList.map(
     (category) => category.categoryTitle
   );
+
+    useEffect(() => {
+      if (isFilterStatusDone) {
+        setRootCategories(
+          categoryListWithDoneFlag.filter(
+            (el) => el.parentCategoryId === null && el.isAllTasksDone
+          )
+        );
+      } else {
+        setRootCategories(
+          categoryList.filter((el) => el.parentCategoryId === null)
+        );
+      }
+    }, [categoryList, categoryListWithDoneFlag, isFilterStatusDone]);
 
   return (
     <div className="app">
@@ -77,15 +97,15 @@ function App() {
         searchCriteria={searchCriteria}
         setIsSearch={setIsSearch}
       />
-        <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
+      <ProgressBar taskList={taskList} choosenCategory={choosenCategory} />
       <div className="app-lists">
         <div className="app-list">
-            <CreateCategory
-              categoryTitleList={categoryTitleList}
-              choosenCategory={choosenCategory}
-              setCategoryList={setCategoryList}
-              setRootCategories={setRootCategories}
-            />
+          <CreateCategory
+            categoryTitleList={categoryTitleList}
+            choosenCategory={choosenCategory}
+            setCategoryList={setCategoryList}
+            setRootCategories={setRootCategories}
+          />
           <CategoryList
             categoryTitleList={categoryTitleList}
             setChoosenCategory={setChoosenCategory}
@@ -100,10 +120,10 @@ function App() {
           />
         </div>
         <div className="app-list">
-            <CreateTask
-              choosenCategory={choosenCategory}
-              setTaskList={setTaskList}
-            />
+          <CreateTask
+            choosenCategory={choosenCategory}
+            setTaskList={setTaskList}
+          />
           {!isEditingTaskMode && (
             <TaskList
               taskList={taskList}
@@ -114,6 +134,7 @@ function App() {
               isSearch={isSearch}
               categoryList={categoryList}
               isEditingTaskMode={isEditingTaskMode}
+              choosenCategory={choosenCategory}
             />
           )}
           {isEditingTaskMode && (
