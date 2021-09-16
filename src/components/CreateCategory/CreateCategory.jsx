@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { addCategory } from "../../redux/reducers/category";
 import "./CreateCategory.scss";
+import { setIsCreateTaskModalOpen } from "../../redux/reducers/category";
 
-const CreateCategory = ({
-  choosenCategory,
-  categoryTitleList,
-  isCreateTaskModalOpen,
-  setIsCreateTaskModalOpen,
-  setCategoryList,
-  setRootCategories,
-}) => {
+const CreateCategory = () => {
+  const dispatch = useDispatch();
+  const { chosenCategory, categoryTitleList, isCreateTaskModalOpen } =
+    useSelector((s) => s.category);
   const [categoryTitle, setCategoryTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
   const [categoryAlreadyExist, setCategoryAlreadyExist] = useState(false);
@@ -20,38 +18,20 @@ const CreateCategory = ({
     setCategoryAlreadyExist(false);
   };
 
-  const postCategory = async () => {
-    await axios({
-      method: "post",
-      url: "/api/v1/category",
-      data: {
-        categoryTitle,
-        parentCategoryId,
-        lvl,
-      },
-    })
-      .then((res) => {
-        const data = res.data;
-        setCategoryList(data);
-        setRootCategories(data.filter((el) => el.parentCategoryId === null));
-      })
-      .catch((err) => console.log(err));
-  };
+  const parentCategoryId = chosenCategory?.categoryId ?? null;
 
-  const parentCategoryId = choosenCategory.categoryId ?? null;
+  const lvl = chosenCategory?.lvl === undefined ? 0 : chosenCategory?.lvl + 1;
 
-  const lvl = choosenCategory?.lvl === undefined ? 0 : choosenCategory?.lvl + 1;
-
-  const onClickAddTask = async () => {
+  const onClickAddTask = () => {
     if (
       categoryTitle?.trim().length <= 20 &&
       categoryTitle?.trim().length >= 3
     ) {
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
-        await postCategory();
+        dispatch(addCategory(categoryTitle, parentCategoryId, lvl));
         setCategoryTitle("");
         if (isCreateTaskModalOpen) {
-          setIsCreateTaskModalOpen(false);
+          dispatch(setIsCreateTaskModalOpen(false));
         }
       } else {
         setCategoryAlreadyExist(true);
@@ -82,7 +62,7 @@ const CreateCategory = ({
             type="button"
             className="create_category-form_button_close"
             onClick={() => {
-              setIsCreateTaskModalOpen(false);
+              dispatch(setIsCreateTaskModalOpen(false));
             }}
           >
             Close

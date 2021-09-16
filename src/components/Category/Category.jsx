@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -10,62 +10,78 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import "./Category.scss";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  delCategory,
+  renameCategory,
+  updateChosenCategory,
+  setIsEditingCategoryMode,
+  setIsCreateTaskModalOpen,
+} from "../../redux/reducers/category";
+import { setNewCategoryIdForTask } from "../../redux/reducers/task";
 
-const Category = ({
-  category,
-  setChoosenCategory,
-  choosenCategory,
-  patchCategory,
-  deleteCategory,
-  categoryTitleList,
-  categoryList,
-  isEditingTaskMode,
-  choosenTask,
-  setNewCategoryIdForTask,
-  setCategoryList,
-  setRootCategories,
-}) => {
-  const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
+const Category = ({ category, categoryListWithDoneFlag }) => {
+  const dispatch = useDispatch();
+  const {
+    categoryList,
+    chosenCategory,
+    isFilterStatusDone,
+    isEditingCategoryMode,
+    isCreateTaskModalOpen,
+  } = useSelector((s) => s.category);
+  const { isEditingTaskMode, chosenTask } = useSelector((s) => s.task);
+
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
-  const [isCreateTaskModalOpen, setIsCreateTaskModalOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const children = categoryList?.filter(
-    (cat) => cat.parentCategoryId === category.categoryId
-  );
+  useEffect(() => {
+    const isCurrentCategoryDone = categoryListWithDoneFlag?.find(
+      (cat) => cat.categoryId === chosenCategory.categoryId
+    )?.isAllTasksDone;
+    if (isFilterStatusDone && !isCurrentCategoryDone) {
+      dispatch(updateChosenCategory({}));
+    }
+  }, [isFilterStatusDone]);
+
+  const children = isFilterStatusDone
+    ? categoryListWithDoneFlag.filter(
+        (cat) =>
+          cat.parentCategoryId === category.categoryId && cat.isAllTasksDone
+      )
+    : categoryList?.filter(
+        (cat) => cat.parentCategoryId === category.categoryId
+      );
 
   const categoryExpandedConditions = children?.length > 0 && isExpanded;
-
   const categoryId = category.categoryId;
-
   const categoryTitle = category.categoryTitle;
 
   const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
   };
 
-  const onClickEditCategoryTitle = async (categoryId, newTitle) => {
+  const onClickEditCategoryTitle = (categoryId, newTitle) => {
     if (isEditingCategoryMode) {
-      await patchCategory(categoryId, newTitle);
+      dispatch(renameCategory(categoryId, newTitle));
     }
-    setIsEditingCategoryMode(!isEditingCategoryMode);
+    dispatch(setIsEditingCategoryMode(!isEditingCategoryMode));
   };
 
   const onClickChooseCategory = (category) => {
-    setChoosenCategory(category);
+    dispatch(updateChosenCategory(category));
   };
 
-  const onClickDeleteCategory = async (categoryId) => {
-    await deleteCategory(categoryId);
+  const onClickDeleteCategory = (categoryId) => {
+    dispatch(delCategory(categoryId));
   };
 
   const onClickCreateTaskModalOpen = (category, isCreateTaskModalOpen) => {
-    setChoosenCategory(category);
-    setIsCreateTaskModalOpen(!isCreateTaskModalOpen);
+    dispatch(updateChosenCategory(category));
+    dispatch(setIsCreateTaskModalOpen(!isCreateTaskModalOpen));
   };
 
   const onClickEditCategory = (categoryId) => {
-    setNewCategoryIdForTask(categoryId);
+    dispatch(setNewCategoryIdForTask(categoryId));
   };
 
   const onClickExpandedTree = () => {
@@ -84,17 +100,7 @@ const Category = ({
       <li key={child.categoryId}>
         <Category
           category={child}
-          patchCategory={patchCategory}
-          deleteCategory={deleteCategory}
-          setChoosenCategory={setChoosenCategory}
-          choosenCategory={choosenCategory}
-          categoryTitleList={categoryTitleList}
-          categoryList={categoryList}
-          isEditingTaskMode={isEditingTaskMode}
-          choosenTask={choosenTask}
-          setNewCategoryIdForTask={setNewCategoryIdForTask}
-          setCategoryList={setCategoryList}
-          setRootCategories={setRootCategories}
+          categoryListWithDoneFlag={categoryListWithDoneFlag}
         />
       </li>
     ));
@@ -109,7 +115,7 @@ const Category = ({
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryTitle === choosenCategory.categoryTitle
+            categoryTitle === chosenCategory.categoryTitle
               ? "check-mark"
               : "check-mark--hidden"
           }
@@ -117,7 +123,7 @@ const Category = ({
         {!isEditingCategoryMode ? (
           <button
             className={
-              categoryTitle === choosenCategory.categoryTitle
+              categoryTitle === chosenCategory.categoryTitle
                 ? "category-title category-title--green"
                 : "category-title"
             }
@@ -160,7 +166,7 @@ const Category = ({
           {isEditingTaskMode && (
             <button
               className={
-                categoryId === choosenTask.categoryId
+                categoryId === chosenTask.categoryId
                   ? "check-mark--hidden"
                   : "reply-icon"
               }
@@ -174,14 +180,7 @@ const Category = ({
 
         {isCreateTaskModalOpen && (
           <div className="create-category-modal">
-            <CreateCategory
-              isCreateTaskModalOpen={isCreateTaskModalOpen}
-              setIsCreateTaskModalOpen={setIsCreateTaskModalOpen}
-              categoryTitleList={categoryTitleList}
-              choosenCategory={choosenCategory}
-              setCategoryList={setCategoryList}
-              setRootCategories={setRootCategories}
-            />
+            <CreateCategory />
           </div>
         )}
       </div>

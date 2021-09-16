@@ -1,25 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { patchTask, setEditingTaskMode } from "../../redux/reducers/task";
 import "./EditTask.scss";
 
-const EditTask = ({
-  task,
-  patchTask,
-  setEditingTaskMode,
-  newCategoryIdForTask,
-}) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("new");
-  const [lengthError, setLengthError] = useState(false);
-  const taskId = task.taskId;
-  const categoryId = newCategoryIdForTask;
+const EditTask = () => {
+  const dispatch = useDispatch();
+  const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
 
-  useEffect(() => {
-    setTitle(task.title);
-    setDescription(task.description)
-    setStatus(task.status)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [title, setTitle] = useState(chosenTask.title);
+  const [description, setDescription] = useState(chosenTask.description);
+  const [status, setStatus] = useState(chosenTask.status);
+  const [lengthError, setLengthError] = useState(false);
+  const taskId = chosenTask.taskId;
+  const categoryId = newCategoryIdForTask;
 
   const isChecked = status === "done";
 
@@ -38,17 +31,17 @@ const EditTask = ({
 
   const onClickEditTask = async () => {
     if (title?.trim().length <= 20 && title?.trim().length >= 3) {
-      await patchTask(taskId, status, title, description, categoryId);
-      setEditingTaskMode(false);
+      dispatch(patchTask(taskId, status, title, description, categoryId));
+      dispatch(setEditingTaskMode(false));
     } else {
       setLengthError(true);
     }
   };
 
   const taskDescription =
-    task.description === ""
+    chosenTask.description === "" || chosenTask.description === undefined
       ? "Write description of your task"
-      : task.description;
+      : chosenTask.description;
 
   return (
     <div className="edit_task">
@@ -64,7 +57,7 @@ const EditTask = ({
           type="button"
           className="edit_task-buttons__close"
           onClick={() => {
-            setEditingTaskMode(false);
+            dispatch(setEditingTaskMode(false));
           }}
         >
           Cancel

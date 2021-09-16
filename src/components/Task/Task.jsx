@@ -2,11 +2,18 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import "./Task.scss";
+import { useDispatch } from "react-redux";
+import {
+  updateChosenTask,
+  setEditingTaskMode,
+} from "../../redux/reducers/task";
 
-const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
+const Task = ({ task }) => {
+  const dispatch = useDispatch();
+
   const onClickEditTask = () => {
-    setEditingTaskMode(true);
-    setChoosenTask(task);
+    dispatch(setEditingTaskMode(true));
+    dispatch(updateChosenTask(task));
   };
 
   return (
