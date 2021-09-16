@@ -7,6 +7,7 @@ import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Header from "../Header/Header";
+import TaskTable from "../TaskTable/TaskTable";
 import "./App.scss";
 import { fetchCategoryList } from "../../redux/reducers/category";
 import { fetchTaskList } from "../../redux/reducers/task";
@@ -14,6 +15,8 @@ import { fetchTaskList } from "../../redux/reducers/task";
 function App() {
   const dispatch = useDispatch();
   const { isEditingTaskMode } = useSelector((s) => s.task);
+    const { isOpenTaskTable } =
+      useSelector((s) => s.category);
 
   useEffect(() => {
     dispatch(fetchCategoryList());
@@ -23,18 +26,22 @@ function App() {
   return (
     <div className="app">
       <Header />
-      <ProgressBar />
-      <div className="app-lists">
-        <div className="app-list">
-          <CreateCategory />
-          <CategoryList />
+      {!isOpenTaskTable &&
+      <>
+        <ProgressBar />
+        <div className="app-lists">
+          <div className="app-list">
+            <CreateCategory />
+            <CategoryList />
+          </div>
+          <div className="app-list">
+            <CreateTask />
+            {!isEditingTaskMode && <TaskList />}
+            {isEditingTaskMode && <EditTask />}
+          </div>
         </div>
-        <div className="app-list">
-          <CreateTask />
-          {!isEditingTaskMode && <TaskList />}
-          {isEditingTaskMode && <EditTask />}
-        </div>
-      </div>
+      </>}
+      {isOpenTaskTable && <TaskTable />}
     </div>
   );
 }

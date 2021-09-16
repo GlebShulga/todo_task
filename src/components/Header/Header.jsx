@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsFilterStatusDone } from "../../redux/reducers/category";
+import {
+  setIsFilterStatusDone,
+  setIsOpenTaskTable,
+} from "../../redux/reducers/category";
 import { setIsSearch, setSearchCriteria } from "../../redux/reducers/task";
 
 const Header = () => {
@@ -26,6 +29,14 @@ const Header = () => {
       <div className="header-title" to="/">
         To-Do List
       </div>
+      <button
+        className="header-task-table_button"
+        onClick={() => {
+          dispatch(setIsOpenTaskTable(true));
+        }}
+      >
+        Task table button
+      </button>
       <div className="header-filter_form">
         <div className="status">
           <input

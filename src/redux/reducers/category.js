@@ -10,6 +10,7 @@ const UPDATE_CHOSEN_CATEGORY = "UPDATE_CHOSEN_CATEGORY";
 const SET_IS_FILTER_STATUS_DONE = "SET_IS_FILTER_STATUS_DONE";
 const SET_IS_EDITING_CATEGORY_MODE = "SET_IS_EDITING_CATEGORY_MODE";
 const SET_IS_CREATE_TASK_MODAL = "SET_IS_CREATE_TASK_MODAL";
+const SET_IS_OPEN_TASK_TABLE = "SET_IS_OPEN_TASK_TABLE";
 
 const initialState = {
   categoryList: [],
@@ -19,6 +20,7 @@ const initialState = {
   isFilterStatusDone: false,
   isEditingCategoryMode: false,
   isCreateTaskModalOpen: false,
+  isOpenTaskTable: false,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -47,6 +49,9 @@ export default (state = initialState, action) => {
     }
     case SET_IS_CREATE_TASK_MODAL: {
       return { ...state, isCreateTaskModalOpen: action.data };
+    }
+    case SET_IS_OPEN_TASK_TABLE: {
+      return { ...state, isOpenTaskTable: action.data };
     }
     default:
       return state;
@@ -154,4 +159,8 @@ export function setIsCreateTaskModalOpen(data) {
   };
 }
 
-
+export function setIsOpenTaskTable(data) {
+  return (dispatch) => {
+    dispatch({ type: SET_IS_OPEN_TASK_TABLE, data });
+  };
+}

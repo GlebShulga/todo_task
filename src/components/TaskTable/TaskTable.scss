@@ -1,0 +1,28 @@
+.title {
+  text-align: center;
+}
+
+.fetching {
+  text-align: center;
+  font-size: large;
+}
+
+.tasks-table {
+  text-align: center;
+  border-collapse: collapse;
+  border: 0.2rem solid #ddd;
+  width: 100%;
+
+}
+
+.tasks-table td, .tasks-table th {
+  border: 0.1rem solid #ddd;
+  padding: 0.5rem;
+}
+
+.tasks-table th {
+  padding: 1rem 0;
+  text-align: center;
+  background-color: #4CAF50;
+  color: white;
+}
