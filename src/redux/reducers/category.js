@@ -8,7 +8,6 @@ const RENAME_CATEGORY = "RENAME_CATEGORY";
 const DEL_CATEGORY = "DEL_CATEGORY";
 const UPDATE_CHOSEN_CATEGORY = "UPDATE_CHOSEN_CATEGORY";
 const SET_IS_FILTER_STATUS_DONE = "SET_IS_FILTER_STATUS_DONE";
-const SET_IS_EDITING_CATEGORY_MODE = "SET_IS_EDITING_CATEGORY_MODE";
 const SET_IS_CREATE_TASK_MODAL = "SET_IS_CREATE_TASK_MODAL";
 const SET_IS_OPEN_TASK_TABLE = "SET_IS_OPEN_TASK_TABLE";
 
@@ -18,7 +17,6 @@ const initialState = {
   categoryTitleList: [],
   chosenCategory: {},
   isFilterStatusDone: false,
-  isEditingCategoryMode: false,
   isCreateTaskModalOpen: false,
   isOpenTaskTable: false,
 };
@@ -43,9 +41,6 @@ export default (state = initialState, action) => {
     }
     case SET_IS_FILTER_STATUS_DONE: {
       return { ...state, isFilterStatusDone: action.data };
-    }
-    case SET_IS_EDITING_CATEGORY_MODE: {
-      return { ...state, isEditingCategoryMode: action.data };
     }
     case SET_IS_CREATE_TASK_MODAL: {
       return { ...state, isCreateTaskModalOpen: action.data };
@@ -144,12 +139,6 @@ export function updateChosenCategory(chosenCategory) {
 export function setIsFilterStatusDone(data) {
   return (dispatch) => {
     dispatch({ type: SET_IS_FILTER_STATUS_DONE, data });
-  };
-}
-
-export function setIsEditingCategoryMode(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_IS_EDITING_CATEGORY_MODE, data });
   };
 }
 

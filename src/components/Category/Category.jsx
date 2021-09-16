@@ -15,7 +15,6 @@ import {
   delCategory,
   renameCategory,
   updateChosenCategory,
-  setIsEditingCategoryMode,
   setIsCreateTaskModalOpen,
 } from "../../redux/reducers/category";
 import { setNewCategoryIdForTask } from "../../redux/reducers/task";
@@ -26,11 +25,11 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     categoryList,
     chosenCategory,
     isFilterStatusDone,
-    isEditingCategoryMode,
     isCreateTaskModalOpen,
   } = useSelector((s) => s.category);
   const { isEditingTaskMode, chosenTask } = useSelector((s) => s.task);
 
+  const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -64,7 +63,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     if (isEditingCategoryMode) {
       dispatch(renameCategory(categoryId, newTitle));
     }
-    dispatch(setIsEditingCategoryMode(!isEditingCategoryMode));
+    (setIsEditingCategoryMode(!isEditingCategoryMode));
   };
 
   const onClickChooseCategory = (category) => {
