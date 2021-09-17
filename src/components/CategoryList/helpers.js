@@ -1,49 +1,20 @@
 const catListWithDoneFlag = (taskList, categoryList) => {
-  const commonTaskData = Object.values(
-    taskList.reduce((r, e) => {
-      let categoryId = `${e.categoryId}`;
-      let status = `${e.status}`;
-      if (!r[categoryId]) {
-        if (status === "done") {
-          r[categoryId] = {
-            categoryId: e.categoryId,
-            sumOfDoneTasks: 1,
-            sumOfTasks: 1,
-          };
-        } else {
-          r[categoryId] = {
-            categoryId: e.categoryId,
-            sumOfTasks: 1,
-            sumOfDoneTasks: 0,
-          };
+  const categoriesWithTask = categoryList.reduce((acc, rec) => {
+    let isDone = 0;
+    let count = 0;
+    taskList
+      .filter((item) => item.categoryId === rec.categoryId)
+      .forEach((item) => {
+        if (item.status === "done") {
+          isDone += 1;
         }
-      } else {
-        r[categoryId].sumOfTasks = (r[categoryId].sumOfTasks ?? 0) + 1;
-        if (status === "done") {
-          r[categoryId].sumOfDoneTasks =
-            (r[categoryId].sumOfDoneTasks ?? 0) + 1;
-        }
-      }
-      return r;
-    }, {})
-  );
-
-  const categoriesWithTask = commonTaskData.reduce((acc, rec) => {
-    const isAllTasksDone =
-      Number(rec.sumOfTasks) / Number(rec.sumOfDoneTasks) === 1 ? true : false;
-    return [...acc, { categoryId: rec.categoryId, isAllTasksDone }];
+        count += 1;
+      });
+    const isAllTasksDone = isDone / count === 1 ? true : false;
+    return [...acc, { ...rec, isAllTasksDone }];
   }, []);
 
-  const allTaskDoneStatusList = categoryList.map((itm) => ({
-    ...categoriesWithTask.find(
-      (item) => item.categoryId === itm.categoryId && item
-    ),
-    ...itm,
-  }));
-
-  const taskDoneStatusList = allTaskDoneStatusList.filter(el => el.isAllTasksDone)
-
-  return taskDoneStatusList;
+  return categoriesWithTask.filter((el) => el.isAllTasksDone);
 };
 
 module.exports = {
