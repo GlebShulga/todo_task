@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   updateChosenTask,
   setEditingTaskMode,
-} from "../../redux/reducers/task";
+} from "../../redux/actions/task";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();

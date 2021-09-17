@@ -16,8 +16,8 @@ import {
   renameCategory,
   updateChosenCategory,
   setIsCreateTaskModalOpen,
-} from "../../redux/reducers/category";
-import { setNewCategoryIdForTask } from "../../redux/reducers/task";
+} from "../../redux/actions/category";
+import { setNewCategoryIdForTask } from "../../redux/actions/task";
 
 const Category = ({ category, categoryListWithDoneFlag }) => {
   const dispatch = useDispatch();

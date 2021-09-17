@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { patchTask, setEditingTaskMode } from "../../redux/reducers/task";
+import { patchTask, setEditingTaskMode } from "../../redux/actions/task";
 import "./EditTask.scss";
 
 const EditTask = () => {

@@ -6,8 +6,8 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setIsFilterStatusDone,
   setIsOpenTaskTable,
-} from "../../redux/reducers/category";
-import { setIsSearch, setSearchCriteria } from "../../redux/reducers/task";
+} from "../../redux/actions/category";
+import { setIsSearch, setSearchCriteria } from "../../redux/actions/task";
 
 const Header = () => {
   const dispatch = useDispatch();

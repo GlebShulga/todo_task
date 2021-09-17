@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addCategory } from "../../redux/reducers/category";
+import { addCategory } from "../../redux/actions/category";
 import "./CreateCategory.scss";
-import { setIsCreateTaskModalOpen } from "../../redux/reducers/category";
+import { setIsCreateTaskModalOpen } from "../../redux/actions/category";
 
 const CreateCategory = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const CreateCategory = () => {
 
   const lvl = chosenCategory?.lvl === undefined ? 0 : chosenCategory?.lvl + 1;
 
-  const onClickAddTask = () => {
+  const onClickAddCategory = () => {
     if (
       categoryTitle?.trim().length <= 20 &&
       categoryTitle?.trim().length >= 3
@@ -42,7 +42,7 @@ const CreateCategory = () => {
   };
   const handleKeypress = (e) => {
     if (e.key === "Enter") {
-      onClickAddTask();
+      onClickAddCategory();
     }
   };
 
@@ -71,7 +71,7 @@ const CreateCategory = () => {
         <button
           type="button"
           className="form_button_add"
-          onClick={onClickAddTask}
+          onClick={onClickAddCategory}
         >
           Add
         </button>

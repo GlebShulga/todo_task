@@ -9,8 +9,8 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import Header from "../Header/Header";
 import TaskTable from "../TaskTable/TaskTable";
 import "./App.scss";
-import { fetchCategoryList } from "../../redux/reducers/category";
-import { fetchTaskList } from "../../redux/reducers/task";
+import { fetchCategoryList } from "../../redux/actions/category";
+import { fetchTaskList } from "../../redux/actions/task";
 
 function App() {
   const dispatch = useDispatch();
