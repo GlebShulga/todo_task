@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
   const { isEditingTaskMode } = useSelector((s) => s.task);
     const { isOpenTaskTable } =
-      useSelector((s) => s.category);
+      useSelector(s => s.category);
 
   useEffect(() => {
     dispatch(fetchCategoryList());

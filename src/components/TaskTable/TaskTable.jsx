@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { setIsOpenTaskTable } from "../../redux/actions/category";
+import { connect } from "react-redux";
 import "./TaskTable.scss";
 
 class TaskTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFetching: false,
-      tasks: [],
+      tasks: props.tasks.taskList,
     };
   }
 
@@ -37,6 +37,16 @@ class TaskTable extends Component {
   render() {
     return (
       <div>
+        <div className="task-table_button_position">
+          <button
+            className="task-table_button"
+            onClick={() => {
+              this.props.setIsOpenTaskTable(false);
+            }}
+          >
+            X
+          </button>
+        </div>
         <h1 className="title">Tasks Table</h1>
         <table className="tasks-table">
           <tbody>
@@ -44,28 +54,18 @@ class TaskTable extends Component {
             {this.renderTableData()}
           </tbody>
         </table>
-        <p className="fetching">
-          {this.state.isFetching ? "Fetching tasks..." : ""}
-        </p>
       </div>
     );
   }
-  componentDidMount() {
-    this.fetchTasks();
-  }
 
-  async fetchTasksAsync() {
-    try {
-      this.setState({ ...this.state, isFetching: true });
-      const response = await axios.get("/api/v1/task");
-      this.setState({ tasks: response.data, isFetching: false });
-    } catch (e) {
-      console.log(e);
-      this.setState({ ...this.state, isFetching: false });
-    }
-  }
-
-  fetchTasks = this.fetchTasksAsync;
 }
 
-export default TaskTable;
+const mapStateToProps = (state) => ({
+  tasks: state.task
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setIsOpenTaskTable: () => dispatch(setIsOpenTaskTable(false)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskTable);

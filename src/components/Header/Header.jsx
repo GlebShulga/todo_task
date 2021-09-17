@@ -12,6 +12,7 @@ import { setIsSearch, setSearchCriteria } from "../../redux/actions/task";
 const Header = () => {
   const dispatch = useDispatch();
   const { searchCriteria } = useSelector((s) => s.task);
+  const { isOpenTaskTable } = useSelector((s) => s.category);
 
   const onChangeSearch = (event) => {
     dispatch(setSearchCriteria(event.target.value));
@@ -29,14 +30,16 @@ const Header = () => {
       <div className="header-title" to="/">
         To-Do List
       </div>
-      <button
-        className="header-task-table_button"
-        onClick={() => {
-          dispatch(setIsOpenTaskTable(true));
-        }}
-      >
-        Task table button
-      </button>
+      {!isOpenTaskTable && (
+        <button
+          className="header-task-table_button"
+          onClick={() => {
+            dispatch(setIsOpenTaskTable(true));
+          }}
+        >
+          Task table button
+        </button>
+      )}
       <div className="header-filter_form">
         <div className="status">
           <input
