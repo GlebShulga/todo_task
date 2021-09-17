@@ -5,7 +5,7 @@ import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setIsFilterStatusDone,
-  setIsOpenTaskTable,
+  toggleTaskTable,
 } from "../../redux/actions/category";
 import { setIsSearch, setSearchCriteria } from "../../redux/actions/task";
 
@@ -34,7 +34,7 @@ const Header = () => {
         <button
           className="header-task-table_button"
           onClick={() => {
-            dispatch(setIsOpenTaskTable(true));
+            dispatch(toggleTaskTable(!isOpenTaskTable));
           }}
         >
           Task table button

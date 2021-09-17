@@ -107,7 +107,7 @@ export function setIsCreateTaskModalOpen(data) {
   };
 }
 
-export function setIsOpenTaskTable(data) {
+export function toggleTaskTable(data) {
   return (dispatch) => {
     dispatch({ type: SET_IS_OPEN_TASK_TABLE, data });
   };

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { setIsOpenTaskTable } from "../../redux/actions/category";
+import { toggleTaskTable } from "../../redux/actions/category";
 import { connect } from "react-redux";
 import "./TaskTable.scss";
 
@@ -41,7 +41,7 @@ class TaskTable extends Component {
           <button
             className="task-table_button"
             onClick={() => {
-              this.props.setIsOpenTaskTable(false);
+              this.props.toggleTaskTable(false);
             }}
           >
             X
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setIsOpenTaskTable: () => dispatch(setIsOpenTaskTable(false)),
+  toggleTaskTable: () => dispatch(toggleTaskTable(false)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TaskTable);
