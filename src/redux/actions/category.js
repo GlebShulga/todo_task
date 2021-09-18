@@ -59,12 +59,7 @@ export function renameCategory(categoryId, categoryTitle) {
       },
     })
       .then(({ data: categoryList }) => {
-        const rootList = categoryList.filter(
-          (el) => el.parentCategoryId === null
-        );
         dispatch({ type: RENAME_CATEGORY, categoryList });
-        dispatch({ type: ADD_CATEGORY, categoryList });
-        dispatch({ type: GET_ROOT_CATEGORY_LIST, rootList });
       })
       .catch((err) => console.log(err));
   };
@@ -83,7 +78,6 @@ export function delCategory(categoryId) {
         (el) => el.parentCategoryId === null
       );
       dispatch({ type: DEL_CATEGORY, categoryList });
-      dispatch({ type: ADD_CATEGORY, categoryList });
       dispatch({ type: GET_ROOT_CATEGORY_LIST, rootList });
     });
   };
