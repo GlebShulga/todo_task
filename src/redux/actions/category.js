@@ -84,25 +84,18 @@ export function delCategory(categoryId) {
 }
 
 export function updateChosenCategory(chosenCategory) {
-  return (dispatch) => {
-    dispatch({ type: UPDATE_CHOSEN_CATEGORY, chosenCategory });
-  };
+  return { type: UPDATE_CHOSEN_CATEGORY, chosenCategory }
 }
 
 export function setIsFilterStatusDone(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_IS_FILTER_STATUS_DONE, data });
-  };
+  return ({ type: SET_IS_FILTER_STATUS_DONE, data });
+
 }
 
 export function setIsCreateTaskModalOpen(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_IS_CREATE_TASK_MODAL, data });
-  };
+  return ({ type: SET_IS_CREATE_TASK_MODAL, data });
 }
 
 export function toggleTaskTable(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_IS_OPEN_TASK_TABLE, data });
-  };
+  return ({ type: SET_IS_OPEN_TASK_TABLE, data });
 }

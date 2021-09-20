@@ -59,31 +59,21 @@ export function patchTask(taskId, status, title, description, categoryId) {
 }
 
 export function updateChosenTask(chosenTask) {
-  return (dispatch) => {
-    dispatch({ type: UPDATE_CHOSEN_TASK, chosenTask });
-  };
+  return { type: UPDATE_CHOSEN_TASK, chosenTask }
 }
 
 export function setEditingTaskMode(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_EDITING_TASK_MODE, data });
-  };
+  return { type: SET_EDITING_TASK_MODE, data }
 }
 
 export function setIsSearch(data) {
-  return (dispatch) => {
-    dispatch({ type: SET_IS_SEARCH, data });
-  };
+  return { type: SET_IS_SEARCH, data }
 }
 
 export function setSearchCriteria(searchCriteria) {
-  return (dispatch) => {
-    dispatch({ type: SET_SEARCH_CRITERIA, searchCriteria });
-  };
+  return { type: SET_SEARCH_CRITERIA, searchCriteria }
 }
 
 export function setNewCategoryIdForTask(categoryId) {
-  return (dispatch) => {
-    dispatch({ type: SET_NEW_CATEGORY_FOR_TASK, categoryId });
-  };
+  return { type: SET_NEW_CATEGORY_FOR_TASK, categoryId }
 }
