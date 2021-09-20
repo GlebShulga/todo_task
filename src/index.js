@@ -1,18 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import "./index.scss";
-import App from "./components/App/App";
 import { Provider } from "react-redux";
-import store from "./redux";
+import { ConnectedRouter } from "connected-react-router";
+import { Switch, StaticRouter } from "react-router-dom";
+import store, { history } from "./redux";
+import "./index.scss";
+import App from "./components/routes";
 import * as serviceWorker from './serviceWorker';
+
+const RouterSelector = (props) =>
+  typeof window !== "undefined" ? (
+    <ConnectedRouter {...props} />
+  ) : (
+    <StaticRouter {...props} />
+  );
+
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <RouterSelector history={history}>
+        <Switch>
+          <App />
+        </Switch>
+      </RouterSelector>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
