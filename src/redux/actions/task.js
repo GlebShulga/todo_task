@@ -6,7 +6,6 @@ import {
   UPDATE_CHOSEN_TASK,
   SET_EDITING_TASK_MODE,
   SET_NEW_CATEGORY_FOR_TASK,
-  SET_IS_SEARCH,
   SET_SEARCH_CRITERIA,
 } from "../types/task";
 
@@ -64,10 +63,6 @@ export function updateChosenTask(chosenTask) {
 
 export function setEditingTaskMode(data) {
   return { type: SET_EDITING_TASK_MODE, data }
-}
-
-export function setIsSearch(data) {
-  return { type: SET_IS_SEARCH, data }
 }
 
 export function setSearchCriteria(searchCriteria) {

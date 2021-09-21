@@ -17,6 +17,7 @@ const initialState = {
   chosenCategory: {},
   isFilterStatusDone: false,
   isCreateTaskModalOpen: false,
+  locationBeforeTransitions: null,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -43,9 +44,11 @@ export default (state = initialState, action) => {
     case SET_IS_CREATE_TASK_MODAL: {
       return { ...state, isCreateTaskModalOpen: action.data };
     }
+    case "@@router/LOCATION_CHANGE": {
+      console.warn("LOCATION_CHANGE from reducer", action);
+      return state;
+    }
     default:
       return state;
   }
 };
-
-

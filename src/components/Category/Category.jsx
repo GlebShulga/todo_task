@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -8,19 +10,20 @@ import {
   faCheckSquare,
   faReply,
 } from "@fortawesome/free-solid-svg-icons";
-import CreateCategory from "../CreateCategory/CreateCategory";
-import "./Category.scss";
-import { useSelector, useDispatch } from "react-redux";
 import {
   delCategory,
   renameCategory,
   updateChosenCategory,
   setIsCreateTaskModalOpen,
 } from "../../redux/actions/category";
+import CreateCategory from "../CreateCategory/CreateCategory";
+import "./Category.scss";
 import { setNewCategoryIdForTask } from "../../redux/actions/task";
 
 const Category = ({ category, categoryListWithDoneFlag }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { category: choosenCategoryTitle } = useParams();
   const {
     categoryList,
     chosenCategory,
@@ -63,11 +66,12 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     if (isEditingCategoryMode) {
       dispatch(renameCategory(categoryId, newTitle));
     }
-    (setIsEditingCategoryMode(!isEditingCategoryMode));
+    setIsEditingCategoryMode(!isEditingCategoryMode);
   };
 
   const onClickChooseCategory = (category) => {
     dispatch(updateChosenCategory(category));
+    history.push(`/${category.categoryTitle}`);
   };
 
   const onClickDeleteCategory = (categoryId) => {
@@ -86,6 +90,8 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   const onClickExpandedTree = () => {
     setIsExpanded(!isExpanded);
   };
+
+  console.log(isExpanded, "isExpanded");
 
   const edit = isEditingCategoryMode ? (
     <FontAwesomeIcon icon={faSave} />
@@ -114,7 +120,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryTitle === chosenCategory.categoryTitle
+            categoryTitle === choosenCategoryTitle
               ? "check-mark"
               : "check-mark--hidden"
           }
@@ -122,7 +128,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
         {!isEditingCategoryMode ? (
           <button
             className={
-              categoryTitle === chosenCategory.categoryTitle
+              categoryTitle === choosenCategoryTitle
                 ? "category-title category-title--green"
                 : "category-title"
             }

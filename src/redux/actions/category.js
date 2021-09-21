@@ -83,7 +83,9 @@ export function delCategory(categoryId) {
 }
 
 export function updateChosenCategory(chosenCategory) {
-  return { type: UPDATE_CHOSEN_CATEGORY, chosenCategory }
+  return (dispatch) => {
+    dispatch({ type: UPDATE_CHOSEN_CATEGORY, chosenCategory })
+   }
 }
 
 export function setIsFilterStatusDone(data) {

@@ -1,6 +1,5 @@
 import React from "react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   StaticRouter,
@@ -8,8 +7,9 @@ import {
 import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
 import store, { history } from "../redux";
-import TaskList from "./TaskList/TaskList";
-import EditTask from "./EditTask/EditTask";
+// import TaskList from "./TaskList/TaskList";
+// import EditTask from "./EditTask/EditTask";
+// import CategoryList from "./CategoryList/CategoryList";
 import TaskTable from "./TaskTable/TaskTable";
 import App from "./App/App";
 
@@ -22,8 +22,12 @@ const RouterSelector = (props) =>
 
 const routes = [
   {
-    path: "/search/:subString",
-    component: TaskList,
+    path: "/:category/search/:subString",
+    component: App,
+  },
+  {
+    path: "/categories/showDone=true",
+    component: App,
   },
   {
     path: "/tasktable",
@@ -31,11 +35,11 @@ const routes = [
   },
   {
     path: "/:category/:task/edit",
-    component: EditTask,
+    component: App,
   },
   {
     path: "/:category",
-    component: TaskList,
+    component: App,
   },
 ];
 

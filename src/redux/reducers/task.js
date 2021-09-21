@@ -5,7 +5,6 @@ import {
   UPDATE_CHOSEN_TASK,
   SET_EDITING_TASK_MODE,
   SET_NEW_CATEGORY_FOR_TASK,
-  SET_IS_SEARCH,
   SET_SEARCH_CRITERIA,
 } from "../types/task";
 
@@ -14,7 +13,6 @@ const initialState = {
   chosenTask: {},
   searchCriteria: "",
   isEditingTaskMode: false,
-  isSearch: false,
   newCategoryIdForTask: "",
 };
 
@@ -31,9 +29,6 @@ export default (state = initialState, action) => {
     }
     case SET_EDITING_TASK_MODE: {
       return { ...state, isEditingTaskMode: action.data };
-    }
-    case SET_IS_SEARCH: {
-      return { ...state, isSearch: action.data };
     }
     case SET_SEARCH_CRITERIA: {
       return { ...state, searchCriteria: action.searchCriteria };

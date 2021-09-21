@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Task from "../Task/Task";
@@ -6,12 +7,17 @@ import "./TaskList.scss";
 import { useSelector } from "react-redux";
 
 const TaskList = () => {
-  const { taskList, searchCriteria, isSearch } = useSelector((s) => s.task);
-  const { chosenCategory } = useSelector((s) => s.category);
+  const { category: choosenCategoryTitle, subString: searchCriteria } = useParams();
+  const { taskList } = useSelector((s) => s.task);
+  const { categoryList } = useSelector((s) => s.category);
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
+  const chosenCategory = categoryList.find(
+    (cat) => cat.categoryTitle === choosenCategoryTitle
+  );
+
   useEffect(() => {
-    if (isSearch) {
+    if (searchCriteria) {
       setCurrentTaskList(
         taskList.filter((task) =>
           task.title.toLowerCase().includes(searchCriteria)
@@ -20,7 +26,7 @@ const TaskList = () => {
     } else {
       setCurrentTaskList(taskList);
     }
-  }, [isSearch, searchCriteria, taskList]);
+  }, [searchCriteria, taskList]);
 
   return (
     <div className="task-list">

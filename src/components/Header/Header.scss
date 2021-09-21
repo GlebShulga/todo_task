@@ -8,6 +8,12 @@
 
 .header-title {
   font-size: calc(20px + 1vmin);
+  border: none;
+  background: white;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 a {
@@ -15,8 +21,7 @@ a {
   text-decoration: none;
 }
 a:hover {
- text-decoration: underline
-
+  text-decoration: underline;
 }
 
 .header-form {

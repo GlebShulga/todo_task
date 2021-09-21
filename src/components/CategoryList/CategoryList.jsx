@@ -8,7 +8,6 @@ const CategoryList = () => {
   const { categoryList, rootCategoryList, isFilterStatusDone } = useSelector(
     (s) => s.category
   );
-
   const { isEditingTaskMode, chosenTask, taskList } = useSelector(
     (s) => s.task
   );

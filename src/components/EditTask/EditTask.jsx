@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import { patchTask, setEditingTaskMode } from "../../redux/actions/task";
 import "./EditTask.scss";
 
 const EditTask = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  const { category: choosenCategoryTitle } = useParams();
   const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
 
   const [title, setTitle] = useState(chosenTask.title);
@@ -29,10 +32,11 @@ const EditTask = () => {
     setDescription(e.target.value);
   };
 
-  const onClickEditTask = async () => {
+  const onClickEditTask = () => {
     if (title?.trim().length <= 20 && title?.trim().length >= 3) {
       dispatch(patchTask(taskId, status, title, description, categoryId));
       dispatch(setEditingTaskMode(false));
+      history.push(`/${choosenCategoryTitle}`);
     } else {
       setLengthError(true);
     }
@@ -58,6 +62,7 @@ const EditTask = () => {
           className="edit_task-buttons__close"
           onClick={() => {
             dispatch(setEditingTaskMode(false));
+            history.push(`/${choosenCategoryTitle}`);
           }}
         >
           Cancel

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
@@ -6,30 +6,54 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import {
   setIsFilterStatusDone,
+  updateChosenCategory,
 } from "../../redux/actions/category";
-import { setIsSearch, setSearchCriteria } from "../../redux/actions/task";
+import {
+  setSearchCriteria,
+  setEditingTaskMode,
+} from "../../redux/actions/task";
 
 const Header = () => {
   const dispatch = useDispatch();
-    const history = useHistory();
-  const { searchCriteria } = useSelector((s) => s.task);
+  const history = useHistory();
+  const { category: choosenCategoryTitle } = useParams();
+
+  const { isFilterStatusDone } = useSelector((s) => s.category);
+
+  const [search, setSearch] = useState("");
 
   const onChangeSearch = (event) => {
-    dispatch(setSearchCriteria(event.target.value));
-    dispatch(setIsSearch(true));
+    setSearch(event.target.value);
   };
 
   const onChangeFilterStatusDone = (e) => {
-    e.target.checked
-      ? dispatch(setIsFilterStatusDone(true))
-      : dispatch(setIsFilterStatusDone(false));
+    if (e.target.checked) {
+      dispatch(setIsFilterStatusDone(true));
+      history.push("/categories/showDone=true");
+    } else {
+    dispatch(setIsFilterStatusDone(false));
+    history.goBack();
+    }
+
+  };
+
+  const onClickReturnToStartPage = () => {
+    history.push(`/`);
+    dispatch(updateChosenCategory({}));
+    dispatch(setEditingTaskMode(false));
+    dispatch(setIsFilterStatusDone(false));
+  };
+
+  const onClickSearch = () => {
+    dispatch(setSearchCriteria(search));
+    history.push(`/${choosenCategoryTitle}/search/${search}`);
   };
 
   return (
     <div className="header">
-      <div className="header-title" to="/">
+      <button className="header-title" onClick={onClickReturnToStartPage}>
         To-Do List
-      </div>
+      </button>
 
       <button
         className="header-task-table_button"
@@ -48,19 +72,20 @@ const Header = () => {
             name="statusDone"
             value={true}
             onChange={onChangeFilterStatusDone}
+            checked={isFilterStatusDone}
           />
           <label htmlFor="statusDone">Show done</label>
         </div>
-        <form action="" className="header-form">
+        <form className="header-form">
           <input
             type="text"
             placeholder="Search"
             name="search"
             className="header-form_input"
-            value={searchCriteria}
+            value={search}
             onChange={onChangeSearch}
           />
-          <button className="header-form_button" disabled>
+          <button className="header-form_button" onClick={onClickSearch}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
         </form>
@@ -69,4 +94,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);
