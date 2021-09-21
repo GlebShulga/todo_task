@@ -8,7 +8,6 @@ import {
   UPDATE_CHOSEN_CATEGORY,
   SET_IS_FILTER_STATUS_DONE,
   SET_IS_CREATE_TASK_MODAL,
-  SET_IS_OPEN_TASK_TABLE,
 } from "../types/category";
 
 const initialState = {
@@ -18,7 +17,6 @@ const initialState = {
   chosenCategory: {},
   isFilterStatusDone: false,
   isCreateTaskModalOpen: false,
-  isOpenTaskTable: false,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -44,9 +42,6 @@ export default (state = initialState, action) => {
     }
     case SET_IS_CREATE_TASK_MODAL: {
       return { ...state, isCreateTaskModalOpen: action.data };
-    }
-    case SET_IS_OPEN_TASK_TABLE: {
-      return { ...state, isOpenTaskTable: action.data };
     }
     default:
       return state;

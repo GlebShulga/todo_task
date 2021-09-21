@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
 import {
   setIsFilterStatusDone,
-  toggleTaskTable,
 } from "../../redux/actions/category";
 import { setIsSearch, setSearchCriteria } from "../../redux/actions/task";
 
 const Header = () => {
   const dispatch = useDispatch();
+    const history = useHistory();
   const { searchCriteria } = useSelector((s) => s.task);
-  const { isOpenTaskTable } = useSelector((s) => s.category);
 
   const onChangeSearch = (event) => {
     dispatch(setSearchCriteria(event.target.value));
@@ -30,16 +30,16 @@ const Header = () => {
       <div className="header-title" to="/">
         To-Do List
       </div>
-      {!isOpenTaskTable && (
-        <button
-          className="header-task-table_button"
-          onClick={() => {
-            dispatch(toggleTaskTable(!isOpenTaskTable));
-          }}
-        >
-          Task table button
-        </button>
-      )}
+
+      <button
+        className="header-task-table_button"
+        onClick={() => {
+          history.push(`/tasktable`);
+        }}
+      >
+        Task table button
+      </button>
+
       <div className="header-filter_form">
         <div className="status">
           <input

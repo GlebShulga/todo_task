@@ -9,7 +9,6 @@ import {
   UPDATE_CHOSEN_CATEGORY,
   SET_IS_FILTER_STATUS_DONE,
   SET_IS_CREATE_TASK_MODAL,
-  SET_IS_OPEN_TASK_TABLE,
 } from "../types/category";
 
 export function fetchCategoryList() {
@@ -96,6 +95,3 @@ export function setIsCreateTaskModalOpen(data) {
   return ({ type: SET_IS_CREATE_TASK_MODAL, data });
 }
 
-export function toggleTaskTable(data) {
-  return ({ type: SET_IS_OPEN_TASK_TABLE, data });
-}
