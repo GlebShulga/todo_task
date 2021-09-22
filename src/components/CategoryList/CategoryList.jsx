@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Category from "../Category/Category";
 import { catListWithDoneFlag } from "./helpers";
 import "./CategoryList.scss";
@@ -28,10 +29,12 @@ const CategoryList = () => {
   const rootCategoryItem = rootlist?.map((category) => {
     return (
       <li key={category.categoryId} className="category-table">
-        <Category
-          category={category}
-          categoryListWithDoneFlag={categoryListWithDoneFlag}
-        />
+        <Link to={`/${category.categoryTitle}`}>
+          <Category
+            category={category}
+            categoryListWithDoneFlag={categoryListWithDoneFlag}
+          />
+        </Link>
       </li>
     );
   });

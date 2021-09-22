@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -90,7 +90,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
 
   const onClickChooseCategory = (category) => {
     dispatch(updateChosenCategory(category));
-    history.push(`/${category.categoryTitle}`);
+    // history.push(`/${category.categoryTitle}`);
   };
 
   const edit = isEditingCategoryMode ? (
@@ -103,10 +103,12 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     categoryExpandedConditions &&
     children.map((child) => (
       <li key={child.categoryId}>
-        <Category
-          category={child}
-          categoryListWithDoneFlag={categoryListWithDoneFlag}
-        />
+        <Link to={`/${child.categoryTitle}`}>
+          <Category
+            category={child}
+            categoryListWithDoneFlag={categoryListWithDoneFlag}
+          />
+        </Link>
       </li>
     ));
 
