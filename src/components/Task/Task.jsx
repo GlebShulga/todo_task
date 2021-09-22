@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import "./Task.scss";
 import { updateChosenTask, setEditingTaskMode } from "../../redux/actions/task";
+import "./Task.scss";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();

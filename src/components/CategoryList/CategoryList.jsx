@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Category from "../Category/Category";
-import "./CategoryList.scss";
 import { catListWithDoneFlag } from "./helpers";
+import "./CategoryList.scss";
 
 const CategoryList = () => {
   const { categoryList, rootCategoryList, isFilterStatusDone } = useSelector(
@@ -27,7 +27,7 @@ const CategoryList = () => {
 
   const rootCategoryItem = rootlist?.map((category) => {
     return (
-      <li className="category-table" key={category.categoryId}>
+      <li key={category.categoryId} className="category-table">
         <Category
           category={category}
           categoryListWithDoneFlag={categoryListWithDoneFlag}
@@ -41,7 +41,9 @@ const CategoryList = () => {
       {isEditingTaskMode && (
         <div className="task-title">To-Do {chosenTaskTitle}</div>
       )}
-      <ul className="category-list scroll">{rootCategoryItem}</ul>
+      <ul className="category-list scroll">
+        {rootCategoryItem}
+      </ul>
     </>
   );
 };

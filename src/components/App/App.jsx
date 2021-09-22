@@ -7,9 +7,11 @@ import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Header from "../Header/Header";
-import "./App.scss";
-import { fetchCategoryList } from "../../redux/actions/category";
+import {
+  fetchCategoryList
+} from "../../redux/actions/category";
 import { fetchTaskList } from "../../redux/actions/task";
+import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();

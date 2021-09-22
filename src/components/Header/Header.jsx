@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import "./Header.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import {
@@ -12,6 +11,7 @@ import {
   setSearchCriteria,
   setEditingTaskMode,
 } from "../../redux/actions/task";
+import "./Header.scss";
 
 const Header = () => {
   const dispatch = useDispatch();

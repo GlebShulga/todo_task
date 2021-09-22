@@ -4,9 +4,8 @@ import {
   Route,
   StaticRouter,
 } from "react-router-dom";
-import { Provider } from "react-redux";
 import { ConnectedRouter } from "connected-react-router";
-import store, { history } from "../redux";
+import { history } from "../redux";
 // import TaskList from "./TaskList/TaskList";
 // import EditTask from "./EditTask/EditTask";
 // import CategoryList from "./CategoryList/CategoryList";
@@ -19,6 +18,15 @@ const RouterSelector = (props) =>
   ) : (
     <StaticRouter {...props} />
   );
+
+  const RouteWithSubRoutes = (route) => {
+    return (
+      <Route
+        path={route.path}
+        render={(props) => <route.component {...props} routes={route.routes} />}
+      />
+    );
+  }
 
 const routes = [
   {
@@ -45,28 +53,19 @@ const routes = [
 
 export default function RouteConfig() {
   return (
-    <Provider store={store}>
-      <RouterSelector history={history}>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <App />
-            </Route>
-            {routes.map((route, i) => (
-              <RouteWithSubRoutes key={i} {...route} />
-            ))}
-          </Switch>
-        </div>
-      </RouterSelector>
-    </Provider>
+    <RouterSelector history={history}>
+      <div>
+        <Switch>
+          <Route exact path="/">
+            <App />
+          </Route>
+          {routes.map((route, i) => (
+            <RouteWithSubRoutes key={i} {...route} />
+          ))}
+        </Switch>
+      </div>
+    </RouterSelector>
   );
 }
 
-function RouteWithSubRoutes(route) {
-  return (
-    <Route
-      path={route.path}
-      render={(props) => <route.component {...props} routes={route.routes} />}
-    />
-  );
-}
+

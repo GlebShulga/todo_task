@@ -10,18 +10,16 @@
   font-size: calc(20px + 1vmin);
   border: none;
   background: white;
-
+  text-decoration: none;
+  color: black;
   &:hover {
     text-decoration: underline;
   }
 }
 
 a {
-  color: black;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+color: black;
+text-decoration: none;
 }
 
 .header-form {

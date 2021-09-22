@@ -1,6 +1,6 @@
 import React from "react";
-import "./ProgressBar.scss";
 import { useSelector } from "react-redux";
+import "./ProgressBar.scss";
 
 const ProgressBar = () => {
   const { taskList } = useSelector((s) => s.task);
@@ -9,7 +9,7 @@ const ProgressBar = () => {
   let isDone = 0;
   let count = 0;
   taskList
-    .filter((item) => item.categoryId === chosenCategory.categoryId)
+    ?.filter((item) => item.categoryId === chosenCategory.categoryId)
     .forEach((item) => {
       if (item.status === "done") {
         isDone += 1;

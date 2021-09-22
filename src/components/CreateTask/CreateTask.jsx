@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./CreateTask.scss";
 import { addTask } from "../../redux/actions/task";
+import "./CreateTask.scss";
 
 const CreateTask = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const CreateTask = () => {
     setLengthError(false);
   };
 
-  const categoryId = chosenCategory.categoryId;
+  const categoryId = chosenCategory?.categoryId;
 
   const onClickAddTask = async () => {
     if (categoryId) {

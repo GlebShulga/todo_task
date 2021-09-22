@@ -17,8 +17,8 @@ import {
   setIsCreateTaskModalOpen,
 } from "../../redux/actions/category";
 import CreateCategory from "../CreateCategory/CreateCategory";
-import "./Category.scss";
 import { setNewCategoryIdForTask } from "../../redux/actions/task";
+import "./Category.scss";
 
 const Category = ({ category, categoryListWithDoneFlag }) => {
   const dispatch = useDispatch();
@@ -37,11 +37,13 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
-    const isCurrentCategoryDone = categoryListWithDoneFlag?.find(
-      (cat) => cat.categoryId === chosenCategory.categoryId
-    )?.isAllTasksDone;
-    if (isFilterStatusDone && !isCurrentCategoryDone) {
-      dispatch(updateChosenCategory({}));
+    if (isFilterStatusDone) {
+      const isCurrentCategoryDone = categoryListWithDoneFlag?.find(
+        (cat) => cat.categoryId === chosenCategory.categoryId
+      )?.isAllTasksDone;
+      if (isFilterStatusDone && !isCurrentCategoryDone) {
+        dispatch(updateChosenCategory({}));
+      }
     }
   }, [isFilterStatusDone]);
 
@@ -69,11 +71,6 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     setIsEditingCategoryMode(!isEditingCategoryMode);
   };
 
-  const onClickChooseCategory = (category) => {
-    dispatch(updateChosenCategory(category));
-    history.push(`/${category.categoryTitle}`);
-  };
-
   const onClickDeleteCategory = (categoryId) => {
     dispatch(delCategory(categoryId));
   };
@@ -91,7 +88,10 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     setIsExpanded(!isExpanded);
   };
 
-  console.log(isExpanded, "isExpanded");
+  const onClickChooseCategory = (category) => {
+    dispatch(updateChosenCategory(category));
+    history.push(`/${category.categoryTitle}`);
+  };
 
   const edit = isEditingCategoryMode ? (
     <FontAwesomeIcon icon={faSave} />
