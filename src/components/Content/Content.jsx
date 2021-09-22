@@ -19,21 +19,11 @@ function Content() {
     <div className="app-lists">
       {!isTaskTable && <CategoryList />}
       <Switch>
-        <Route exact path="/tasktable">
-          <TaskTable />
-        </Route>
-        <Route path="/:category/:task/edit">
-          <EditTask />
-        </Route>
-        <Route path="/:category">
-          <TaskList />
-        </Route>
-        <Route path="/:category/search/:subString">
-          <TaskList />
-        </Route>
-        <Route path="/categories/showDone=true">
-          <CategoryList />
-        </Route>
+        <Route exact path="/tasktable" component={TaskTable} />
+        <Route path="/:category/:task/edit" component={EditTask}/>
+        <Route path="/:category" component={TaskList}/>
+        <Route path="/:category/search/:subString" component={TaskList}/>
+        <Route path="/categories/showDone=true" component={CategoryList}/>
       </Switch>
     </div>
   );
