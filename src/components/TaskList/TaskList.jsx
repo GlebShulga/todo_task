@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { matchPath } from "react-router";
+import { useLocation, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Task from "../Task/Task";
@@ -7,10 +8,17 @@ import { useSelector } from "react-redux";
 import "./TaskList.scss";
 
 const TaskList = () => {
-  const { category: choosenCategoryTitle, subString: searchCriteria } = useParams();
+  const { pathname } = useLocation();
+  const { category: choosenCategoryTitle } = useParams();
   const { taskList } = useSelector((s) => s.task);
   const { categoryList } = useSelector((s) => s.category);
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
+
+  const searchParams = matchPath(pathname, {
+    path: "/:category/search/:subString",
+  });
+
+  const searchCriteria = searchParams?.params.subString;
 
   const chosenCategory = categoryList.find(
     (cat) => cat.categoryTitle === choosenCategoryTitle

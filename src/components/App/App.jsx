@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import CategoryList from "../CategoryList/CategoryList";
-import TaskList from "../TaskList/TaskList";
-import EditTask from "../EditTask/EditTask";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+
+import { history } from "../../redux";
 import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import Header from "../Header/Header";
+import Content from "../Content/Content";
 import {
   fetchCategoryList
 } from "../../redux/actions/category";
@@ -15,7 +16,6 @@ import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
-  const { isEditingTaskMode } = useSelector((s) => s.task);
 
   useEffect(() => {
     dispatch(fetchCategoryList());
@@ -23,21 +23,17 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <Header />
-      <ProgressBar />
-      <div className="app-lists">
-        <div className="app-list">
+    <Router history={history}>
+      <div className="app">
+        <Header />
+        <ProgressBar />
+        <div className="app-lists app-lists_padding">
           <CreateCategory />
-          <CategoryList />
-        </div>
-        <div className="app-list">
           <CreateTask />
-          {!isEditingTaskMode && <TaskList />}
-          {isEditingTaskMode && <EditTask />}
         </div>
+        <Content />
       </div>
-    </div>
+    </Router>
   );
 }
 

@@ -1,13 +1,14 @@
 .edit_task {
   display: flex;
   flex-direction: column;
+  width: 45%;
 }
 
 .edit_task-buttons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 2.5rem;
+  margin: 0 0.5rem 2.5rem 0;
 }
 
 .edit_task-buttons__close {
@@ -43,7 +44,7 @@
 }
 
 .edit_task-description__input {
-  margin-top: 1rem;
+  margin: 1rem 1rem 0 0;
   border: solid thin;
   font-size: large;
   padding: 0.5rem 0.5rem;

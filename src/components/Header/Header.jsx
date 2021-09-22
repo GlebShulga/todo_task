@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 import {
   setIsFilterStatusDone,
   updateChosenCategory,
@@ -16,9 +17,11 @@ import "./Header.scss";
 const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { category: choosenCategoryTitle } = useParams();
-
   const { isFilterStatusDone } = useSelector((s) => s.category);
+  const { pathname } = useLocation();
+
+  const categoryParams = matchPath(pathname, { path: "/:category" });
+  const choosenCategoryTitle = categoryParams?.params.category;
 
   const [search, setSearch] = useState("");
 
@@ -31,10 +34,9 @@ const Header = () => {
       dispatch(setIsFilterStatusDone(true));
       history.push("/categories/showDone=true");
     } else {
-    dispatch(setIsFilterStatusDone(false));
-    history.goBack();
+      dispatch(setIsFilterStatusDone(false));
+      history.goBack();
     }
-
   };
 
   const onClickReturnToStartPage = () => {
@@ -76,7 +78,7 @@ const Header = () => {
           />
           <label htmlFor="statusDone">Show done</label>
         </div>
-        <form className="header-form">
+        <div className="header-form">
           <input
             type="text"
             placeholder="Search"
@@ -88,7 +90,7 @@ const Header = () => {
           <button className="header-form_button" onClick={onClickSearch}>
             <FontAwesomeIcon icon={faTimes} />
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );

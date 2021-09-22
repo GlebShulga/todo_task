@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlus,
@@ -23,7 +24,7 @@ import "./Category.scss";
 const Category = ({ category, categoryListWithDoneFlag }) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { category: choosenCategoryTitle } = useParams();
+  const { pathname } = useLocation();
   const {
     categoryList,
     chosenCategory,
@@ -31,6 +32,9 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     isCreateTaskModalOpen,
   } = useSelector((s) => s.category);
   const { isEditingTaskMode, chosenTask } = useSelector((s) => s.task);
+
+  const categoryParams = matchPath(pathname, { path: "/:category" });
+  const choosenCategoryTitle = categoryParams?.params.category;
 
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
@@ -90,7 +94,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
 
   const onClickChooseCategory = (category) => {
     dispatch(updateChosenCategory(category));
-    // history.push(`/${category.categoryTitle}`);
+    history.push(`/${category.categoryTitle}`);
   };
 
   const edit = isEditingCategoryMode ? (
@@ -103,12 +107,10 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     categoryExpandedConditions &&
     children.map((child) => (
       <li key={child.categoryId}>
-        <Link to={`/${child.categoryTitle}`}>
-          <Category
-            category={child}
-            categoryListWithDoneFlag={categoryListWithDoneFlag}
-          />
-        </Link>
+        <Category
+          category={child}
+          categoryListWithDoneFlag={categoryListWithDoneFlag}
+        />
       </li>
     ));
 

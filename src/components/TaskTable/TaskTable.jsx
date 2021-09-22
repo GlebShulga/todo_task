@@ -44,7 +44,7 @@ class TaskTable extends Component {
 
   render() {
     return (
-      <div>
+      <div className="width">
         <div className="task-table_button_position">
           <button
             className="task-table_button"
