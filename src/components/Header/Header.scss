@@ -8,15 +8,18 @@
 
 .header-title {
   font-size: calc(20px + 1vmin);
+  border: none;
+  background: white;
+  text-decoration: none;
+  color: black;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 a {
-  color: black;
-  text-decoration: none;
-}
-a:hover {
- text-decoration: underline
-
+color: black;
+text-decoration: none;
 }
 
 .header-form {
@@ -57,5 +60,28 @@ a:hover {
     content: "";
     clear: both;
     display: table;
+  }
+}
+
+$primary: #0b7dda;
+
+.header-task-table_button {
+  padding: 0.8rem 1.6rem;
+  font-size: 14px;
+  font-weight: 900;
+  color: #fff;
+  background-color: $primary;
+  border: 2px solid $primary;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+
+  &:hover {
+    color: $primary;
+    background-color: transparent;
+  }
+  &--transparent {
+    color: $primary;
+    background-color: transparent;
   }
 }

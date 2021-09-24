@@ -5,7 +5,7 @@ const categoriesController = require("../controllers/categories.controller");
 
 router.get("/", categoriesController.get);
 
-router.post("/", categoriesController.post);
+router.post("/:categoryTitle", categoriesController.post);
 
 router.patch("/", categoriesController.patch);
 

@@ -1,17 +1,27 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { updateChosenTask, setEditingTaskMode } from "../../redux/actions/task";
 import "./Task.scss";
 
-const Task = ({ task, setEditingTaskMode, setChoosenTask }) => {
+const Task = ({ task }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const { category: choosenCategoryTitle } = useParams();
+  const title = task.title;
+
   const onClickEditTask = () => {
-    setEditingTaskMode(true);
-    setChoosenTask(task);
+    dispatch(setEditingTaskMode(true));
+    dispatch(updateChosenTask(task));
+    history.push(`/${choosenCategoryTitle}/${title}/edit`);
   };
 
   return (
     <div key={task.taskId} className="task">
-      {task.title}
+      {title}
       <button
         className="task-edit_icon"
         type="button"

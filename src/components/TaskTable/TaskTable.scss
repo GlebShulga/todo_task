@@ -1,0 +1,61 @@
+.title {
+  text-align: center;
+}
+
+.fetching {
+  text-align: center;
+  font-size: large;
+}
+
+.tasks-table {
+  text-align: center;
+  border-collapse: collapse;
+  border: 0.2rem solid #ddd;
+  width: 100%;
+}
+
+.tasks-table td,
+.tasks-table th {
+  border: 0.1rem solid #ddd;
+  padding: 0.5rem;
+}
+
+.tasks-table th {
+  padding: 1rem 0;
+  text-align: center;
+  background-color: #4caf50;
+  color: white;
+}
+
+$primary: gray;
+
+.task-table_button {
+  padding: 0.4rem 0.8rem;
+  font-size: 10px;
+  font-weight: 900;
+  color: #fff;
+  background-color: $primary;
+  border: 2px solid $primary;
+  cursor: pointer;
+  width: max-content;
+  transition: 0.25s ease;
+
+  &:hover {
+    color: $primary;
+    background-color: transparent;
+  }
+  &--transparent {
+    color: $primary;
+    background-color: transparent;
+  }
+}
+
+.task-table_button_position {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+}
+
+.width {
+  min-width: 100%;
+}

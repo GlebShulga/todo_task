@@ -1,6 +1,6 @@
 .create_category {
   justify-items: left;
-  padding: 1rem 1rem;
+
 }
 
 .create_category-form {
@@ -27,7 +27,7 @@
   &:hover {
     background-color: lightgreen;
   }
-  }
+}
 
 .create_category-form_button_close {
   padding: 0.5rem 1rem;
@@ -44,4 +44,5 @@
   color: red;
   padding-top: 1rem;
   text-align: center;
+  margin: auto;
 }

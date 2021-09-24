@@ -12,3 +12,14 @@
   flex-direction: column;
   padding: 0rem 0.5rem;
 }
+
+.task-title {
+  font-size: large;
+  padding: 0rem 1rem;
+}
+
+.category-list_editing-mode {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+}

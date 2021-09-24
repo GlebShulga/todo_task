@@ -1,58 +1,114 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useLocation } from "react-router-dom";
+import { matchPath } from "react-router";
+import {
+  setIsFilterStatusDone,
+  updateChosenCategory,
+} from "../../redux/actions/category";
+import {
+  setSearchCriteria,
+  setEditingTaskMode,
+} from "../../redux/actions/task";
 import "./Header.scss";
 
-const Header = ({
-  setIsFilterStatusDone,
-  setSearchCriteria,
-  searchCriteria,
-  setIsSearch,
-}) => {
+const Header = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { isFilterStatusDone } = useSelector((s) => s.category);
+  const { pathname } = useLocation();
+
+  const categoryParams = matchPath(pathname, { path: "/:category" });
+  const choosenCategoryTitle = categoryParams?.params.category;
+
+  const searchParams = matchPath(pathname, {
+    path: "/:category/search/:subString",
+  });
+
+  useEffect(() => {
+    const filterParams = matchPath(pathname, {
+      path: "/categories/showDone=true",
+    })?.isExact;
+    if (filterParams) {
+      dispatch(setIsFilterStatusDone(true));
+    }
+  }, []);
+
+  const [search, setSearch] = useState(searchParams?.params.subString ?? "");
 
   const onChangeSearch = (event) => {
-    setSearchCriteria(event.target.value);
-    setIsSearch(true);
+    setSearch(event.target.value);
   };
 
   const onChangeFilterStatusDone = (e) => {
-    e.target.checked
-      ? setIsFilterStatusDone(true)
-      : setIsFilterStatusDone(false);
+    if (e.target.checked) {
+      dispatch(setIsFilterStatusDone(true));
+      history.push("/categories/showDone=true");
+    } else {
+      dispatch(setIsFilterStatusDone(false));
+      history.push("/categories/showDone=false");
+    }
+  };
+
+  const onClickReturnToStartPage = () => {
+    history.push(`/`);
+    dispatch(updateChosenCategory({}));
+    dispatch(setEditingTaskMode(false));
+    dispatch(setIsFilterStatusDone(false));
+  };
+
+  const onClickSearch = () => {
+    if (search.length > 0) {
+      dispatch(setSearchCriteria(search));
+      history.push(`/${choosenCategoryTitle}/search/${search}`);
+    }
   };
 
   return (
     <div className="header">
-        <div className="header-title" to="/">
-          To-Do List
+      <button className="header-title" onClick={onClickReturnToStartPage}>
+        To-Do List
+      </button>
+
+      <button
+        className="header-task-table_button"
+        onClick={() => {
+          history.push(`/tasktable`);
+        }}
+      >
+        Task table button
+      </button>
+
+      <div className="header-filter_form">
+        <div className="status">
+          <input
+            type="checkbox"
+            id="statusDone"
+            name="statusDone"
+            value={true}
+            onChange={onChangeFilterStatusDone}
+            checked={isFilterStatusDone}
+          />
+          <label htmlFor="statusDone">Show done</label>
         </div>
-        <div className="header-filter_form">
-          <div className="status">
-            <input
-              type="checkbox"
-              id="statusDone"
-              name="statusDone"
-              value={true}
-              onChange={onChangeFilterStatusDone}
-            />
-            <label htmlFor="statusDone">Show done</label>
-          </div>
-          <form action="" className="header-form">
-            <input
-              type="text"
-              placeholder="Search"
-              name="search"
-              className="header-form_input"
-              value={searchCriteria}
-              onChange={onChangeSearch}
-            />
-            <button className="header-form_button" disabled>
-              <FontAwesomeIcon icon={faTimes} />
-            </button>
-          </form>
+        <div className="header-form">
+          <input
+            type="text"
+            placeholder="Search"
+            name="search"
+            className="header-form_input"
+            value={search}
+            onChange={onChangeSearch}
+          />
+          <button className="header-form_button" onClick={onClickSearch}>
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
         </div>
+      </div>
     </div>
   );
 };
 
-export default Header;
+export default React.memo(Header);

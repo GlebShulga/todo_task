@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router-dom";
+import { patchTask, setEditingTaskMode } from "../../redux/actions/task";
 import "./EditTask.scss";
 
-const EditTask = ({
-  task,
-  patchTask,
-  setEditingTaskMode,
-  newCategoryIdForTask,
-}) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [status, setStatus] = useState("new");
+const EditTask = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { category: choosenCategoryTitle, task: currentTaskTitle } = useParams();
+  const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
+
+  const [title, setTitle] = useState(currentTaskTitle);
+  const [description, setDescription] = useState(chosenTask.description);
+  const [status, setStatus] = useState(chosenTask.status);
   const [lengthError, setLengthError] = useState(false);
-  const taskId = task.taskId;
+  const taskId = chosenTask?.taskId;
   const categoryId = newCategoryIdForTask;
 
-  useEffect(() => {
-    setTitle(task.title);
-    setDescription(task.description)
-    setStatus(task.status)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const isChecked = status === "done";
+  const isChecked =
+    status === undefined ? chosenTask.status === "done" : status === "done";
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -36,19 +33,20 @@ const EditTask = ({
     setDescription(e.target.value);
   };
 
-  const onClickEditTask = async () => {
+  const onClickEditTask = () => {
     if (title?.trim().length <= 20 && title?.trim().length >= 3) {
-      await patchTask(taskId, status, title, description, categoryId);
-      setEditingTaskMode(false);
+      dispatch(patchTask(taskId, status, title, description, categoryId));
+      dispatch(setEditingTaskMode(false));
+      history.push(`/${choosenCategoryTitle}`);
     } else {
       setLengthError(true);
     }
   };
 
   const taskDescription =
-    task.description === ""
+    chosenTask.description === "" || chosenTask.description === undefined
       ? "Write description of your task"
-      : task.description;
+      : chosenTask.description;
 
   return (
     <div className="edit_task">
@@ -64,7 +62,8 @@ const EditTask = ({
           type="button"
           className="edit_task-buttons__close"
           onClick={() => {
-            setEditingTaskMode(false);
+            dispatch(setEditingTaskMode(false));
+            history.push(`/${choosenCategoryTitle}`);
           }}
         >
           Cancel
@@ -98,7 +97,7 @@ const EditTask = ({
       <textarea
         className="edit_task-description__input"
         type="text"
-        value={description ?? null}
+        value={chosenTask.description}
         onChange={onChangeDescription}
         placeholder={taskDescription}
       />

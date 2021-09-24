@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { addTask } from "../../redux/actions/task";
 import "./CreateTask.scss";
 
-const CreateTask = ({ choosenCategory, setTaskList }) => {
+const CreateTask = () => {
+  const dispatch = useDispatch();
+  const { chosenCategory } = useSelector((s) => s.category);
   const [title, setTitle] = useState("");
   const [lengthError, setLengthError] = useState(false);
   const [categoryError, setCategoryError] = useState(false);
@@ -12,30 +15,15 @@ const CreateTask = ({ choosenCategory, setTaskList }) => {
     setLengthError(false);
   };
 
-  const postTask = async () => {
-    await axios({
-      method: "post",
-      url: "/api/v1/task",
-      data: {
-        title,
-        categoryId,
-      },
-    })
-      .then((res) => {
-        const data = res.data;
-        setTaskList(data);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const categoryId = choosenCategory.categoryId;
+  const categoryId = chosenCategory?.categoryId;
 
   const onClickAddTask = async () => {
     if (categoryId) {
       if (title?.trim().length <= 20 && title?.trim().length >= 3) {
         setCategoryError(false);
         setLengthError(false);
-        await postTask();
+        dispatch(addTask(title, categoryId));
+        setTitle("");
       } else {
         setLengthError(true);
         setCategoryError(false);

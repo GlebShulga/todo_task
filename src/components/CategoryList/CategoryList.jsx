@@ -1,78 +1,50 @@
-import React from "react";
-import axios from "axios";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
 import Category from "../Category/Category";
+import { catListWithDoneFlag } from "./helpers";
 import "./CategoryList.scss";
 
-const CategoryList = ({
-  choosenCategory,
-  setChoosenCategory,
-  categoryList,
-  categoryTitleList,
-  rootCategories,
-  isEditingTaskMode,
-  choosenTask,
-  setNewCategoryIdForTask,
-  setCategoryList,
-  setRootCategories,
-}) => {
-  const deleteCategory = async (categoryId) => {
-    await axios({
-      method: "delete",
-      url: "/api/v1/category",
-      data: {
-        categoryId,
-      },
-    }).then((res) => {
-      const data = res.data;
-      setCategoryList(data);
-      setRootCategories(data.filter((el) => el.parentCategoryId === null));
-    });
-  };
+const CategoryList = () => {
+  const { categoryList, rootCategoryList, isFilterStatusDone } = useSelector(
+    (s) => s.category
+  );
+  const { isEditingTaskMode, chosenTask, taskList } = useSelector(
+    (s) => s.task
+  );
 
-  const patchCategory = async (categoryId, categoryTitle) => {
-    await axios({
-      method: "patch",
-      url: "/api/v1/category",
-      data: {
-        categoryId,
-        categoryTitle,
-      },
-    }).then((res) => {
-      const data = res.data;
-      setCategoryList(data);
-      setRootCategories(data.filter((el) => el.parentCategoryId === null));
-    });
-  };
+  const categoryListWithDoneFlag = useMemo(
+    () => catListWithDoneFlag(taskList, categoryList),
+    [taskList, categoryList]
+  );
 
-  const choosenTaskTitle = choosenTask.title
-  const rootCategoryItem = rootCategories.map((category) => {
-        return (
-          <li className="category-table" key={category.categoryId}>
-            <Category
-              category={category}
-              patchCategory={patchCategory}
-              deleteCategory={deleteCategory}
-              setChoosenCategory={setChoosenCategory}
-              choosenCategory={choosenCategory}
-              categoryTitleList={categoryTitleList}
-              categoryList={categoryList}
-              isEditingTaskMode={isEditingTaskMode}
-              choosenTask={choosenTask}
-              setNewCategoryIdForTask={setNewCategoryIdForTask}
-              setCategoryList={setCategoryList}
-              setRootCategories={setRootCategories}
-            />
-          </li>
-        );
-      })
+  const rootlist = isFilterStatusDone
+    ? categoryListWithDoneFlag.filter(
+        (el) => el.parentCategoryId === null && el.isAllTasksDone
+      )
+    : rootCategoryList;
+
+  const chosenTaskTitle = chosenTask.title;
+
+  const rootCategoryItem = rootlist?.map((category) => {
+    return (
+      <li key={category.categoryId} className="category-table">
+        <Category
+          category={category}
+          categoryListWithDoneFlag={categoryListWithDoneFlag}
+        />
+      </li>
+    );
+  });
 
   return (
-    <>
+    <div className="category-list_editing-mode">
       {isEditingTaskMode && (
-        <div className="task-title">To-Do {choosenTaskTitle}</div>
+        <div className="task-title">To-Do {chosenTaskTitle}</div>
       )}
-      <ul className="category-list scroll">{rootCategoryItem}</ul>
-    </>
+      <ul className="category-list category-list_width scroll">
+        {rootCategoryItem}
+      </ul>
+    </div>
   );
 };
 

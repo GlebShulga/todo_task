@@ -1,17 +1,94 @@
 [
   {
+    "categoryId": "JO8Am3bmIIOMpnbYhwsVt",
+    "parentCategoryId": "5",
+    "categoryTitle": "category 2_1",
+    "lvl": 1,
+    "_createdAt": 1631937852720
+  },
+  {
+    "categoryId": "zi-jOQAPVMcHdpGIXd9jk",
+    "parentCategoryId": "zgcWQhZIDrbYzhSTGiOMC",
+    "categoryTitle": "test 7_3_1",
+    "lvl": 2,
+    "_createdAt": 1631830447300
+  },
+  {
+    "categoryId": "5ssRmvIUcEACosuj7UfbE",
+    "parentCategoryId": "Dxggo-RHZqSEoDByG1rB6",
+    "categoryTitle": "test 7_1_2",
+    "lvl": 2,
+    "_createdAt": 1631830423078
+  },
+  {
+    "categoryId": "zgcWQhZIDrbYzhSTGiOMC",
+    "parentCategoryId": "d1nN7oUmC1lTNtxGtEnbB",
+    "categoryTitle": "test 7_3",
+    "lvl": 1,
+    "_createdAt": 1631830394235
+  },
+  {
+    "categoryId": "24UUtTrRi-56blyyFBmuc",
+    "parentCategoryId": "d1nN7oUmC1lTNtxGtEnbB",
+    "categoryTitle": "test 7_2",
+    "lvl": 1,
+    "_createdAt": 1631830284096
+  },
+  {
+    "categoryId": "QbgbVXtxK2dLIHuQtlsne",
+    "parentCategoryId": "71QQpam8O1RZKItQjdVmY",
+    "categoryTitle": "test 7 1_1_2",
+    "lvl": 3,
+    "_createdAt": 1631830271571
+  },
+  {
+    "categoryId": "Anc96-W7mm7-gBn8_I7FZ",
+    "parentCategoryId": "Er20Gzc9qIcXW747oB56m",
+    "categoryTitle": "test 7_1_1_1_2",
+    "lvl": 4,
+    "_createdAt": 1631830250380
+  },
+  {
+    "categoryId": "EjscBBaQZwIpkEghrV8YG",
+    "parentCategoryId": "Er20Gzc9qIcXW747oB56m",
+    "categoryTitle": "test 7 1_1_1_1",
+    "lvl": 4,
+    "_createdAt": 1631830221941
+  },
+  {
+    "categoryId": "Er20Gzc9qIcXW747oB56m",
+    "parentCategoryId": "71QQpam8O1RZKItQjdVmY",
+    "categoryTitle": "test 7_1_1_1",
+    "lvl": 3,
+    "_createdAt": 1631829347645
+  },
+  {
+    "categoryId": "71QQpam8O1RZKItQjdVmY",
+    "parentCategoryId": "Dxggo-RHZqSEoDByG1rB6",
+    "categoryTitle": "test 7_1_1",
+    "lvl": 2,
+    "_createdAt": 1631829321885
+  },
+  {
+    "categoryId": "Dxggo-RHZqSEoDByG1rB6",
+    "parentCategoryId": "d1nN7oUmC1lTNtxGtEnbB",
+    "categoryTitle": "test 7_1",
+    "lvl": 1,
+    "_createdAt": 1631829304448
+  },
+  {
     "categoryId": "d1nN7oUmC1lTNtxGtEnbB",
     "parentCategoryId": null,
-    "categoryTitle": "test 5",
+    "categoryTitle": "test 7",
     "_isDeleted": false,
     "_createdAt": 1630665085901,
-    "_deletedAt": 0,
+    "_deletedAt": 1631752062148,
     "lvl": 0
   },
   {
     "categoryId": "Wy1dXPxgnYdPJONBEFg5D",
     "parentCategoryId": "wzvzJGZ_u7JggnKSlamOg",
-    "categoryTitle": "category 4_1_1",
+    "categoryTitle": "category 4_1_2",
     "_isDeleted": false,
     "_createdAt": 1630026292318,
     "_deletedAt": 1630026300230,
@@ -37,7 +114,7 @@
   },
   {
     "categoryId": "6",
-    "categoryTitle": "category 2_1",
+    "categoryTitle": "category 2_3",
     "parentCategoryId": "5",
     "_createdAt": 1629964332826,
     "lvl": 1
@@ -65,7 +142,7 @@
   },
   {
     "categoryId": "4",
-    "categoryTitle": "category 1_1_2",
+    "categoryTitle": "category 1_1_3",
     "parentCategoryId": "2",
     "lvl": 2,
     "_createdAt": 1629964332628
@@ -117,5 +194,12 @@
     "_createdAt": 1629942952617,
     "_deletedAt": 0,
     "lvl": 0
+  },
+  {
+    "categoryId": "HD6CryOdGgYn4QJdKgs5G",
+    "parentCategoryId": "d1nN7oUmC1lTNtxGtEnbB",
+    "categoryTitle": "Nikita's tasks",
+    "lvl": 1,
+    "_createdAt": 1631953942812
   }
 ]

@@ -1,64 +1,55 @@
 import React, { useState, useEffect } from "react";
+import { matchPath } from "react-router";
+import { useLocation, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import Task from "../Task/Task";
+import { useSelector } from "react-redux";
 import "./TaskList.scss";
 
-const TaskList = ({
-  choosenCategory,
-  setEditingTaskMode,
-  setChoosenTask,
-  taskList,
-  isFilterStatusDone,
-  searchCriteria,
-  isSearch,
-}) => {
+const TaskList = () => {
+  const { pathname } = useLocation();
+  const { category: choosenCategoryTitle } = useParams();
+  const { taskList } = useSelector((s) => s.task);
+  const { categoryList } = useSelector((s) => s.category);
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
+  const searchParams = matchPath(pathname, {
+    path: "/:category/search/:subString",
+  });
+
+  const searchCriteria = searchParams?.params.subString;
+
+  const chosenCategory = categoryList.find(
+    (cat) => cat.categoryTitle === choosenCategoryTitle
+  );
+
   useEffect(() => {
-    if (isFilterStatusDone && isSearch) {
+    if (searchCriteria) {
       setCurrentTaskList(
-        taskList.filter(
-          (task) =>
-            task.status === "done" &&
-            task.title.toLowerCase().includes(searchCriteria)
+        taskList.filter((task) =>
+          task.title.toLowerCase().includes(searchCriteria)
         )
       );
-    } else if (isFilterStatusDone) {
-      setCurrentTaskList(
-        taskList.filter((task) => task.status === "done")
-      );
-      } else if (isSearch) {
-              setCurrentTaskList(
-                taskList.filter(
-                  (task) =>
-                    task.title.toLowerCase().includes(searchCriteria)
-                )
-              );
-      } else {
-        setCurrentTaskList(taskList)
-      }
-  }, [isFilterStatusDone, isSearch, searchCriteria, taskList]);
-
+    } else {
+      setCurrentTaskList(taskList);
+    }
+  }, [searchCriteria, taskList]);
 
   return (
     <div className="task-list">
       {currentTaskList
-        .filter((task) => choosenCategory?.categoryId === task.categoryId)
+        .filter((task) => chosenCategory?.categoryId === task.categoryId)
         .map((task) => {
           return (
-            <div className="task-table " key={task.taskId}>
+            <div className="task-table" key={task.taskId}>
               <FontAwesomeIcon
                 icon={faCheckSquare}
                 className={
                   task.status === "done" ? "check-mark" : "check-mark--hidden"
                 }
               />
-              <Task
-                task={task}
-                setEditingTaskMode={setEditingTaskMode}
-                setChoosenTask={setChoosenTask}
-              />
+              <Task task={task} />
             </div>
           );
         })}
