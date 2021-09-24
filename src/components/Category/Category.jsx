@@ -40,7 +40,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
 
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
-  const [isExpanded, setIsExpanded] = useState(category.isExpanded ?? false);
+  const [isExpanded, setIsExpanded] = useState(category?.isExpanded ?? false);
 
   useEffect(() => {
     if (isFilterStatusDone) {

@@ -10,8 +10,6 @@ const EditTask = () => {
   const { category: choosenCategoryTitle, task: currentTaskTitle } = useParams();
   const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
 
-  console.log(chosenTask.status, "chosenTask");
-
   const [title, setTitle] = useState(currentTaskTitle);
   const [description, setDescription] = useState(chosenTask.description);
   const [status, setStatus] = useState(chosenTask.status);

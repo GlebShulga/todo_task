@@ -48,7 +48,7 @@ const Header = () => {
       history.push("/categories/showDone=true");
     } else {
       dispatch(setIsFilterStatusDone(false));
-      history.goBack();
+      history.push("/categories/showDone=false");
     }
   };
 
