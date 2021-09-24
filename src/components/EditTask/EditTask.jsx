@@ -7,17 +7,20 @@ import "./EditTask.scss";
 const EditTask = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { category: choosenCategoryTitle } = useParams();
+  const { category: choosenCategoryTitle, task: currentTaskTitle } = useParams();
   const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
 
-  const [title, setTitle] = useState(chosenTask.title);
+  console.log(chosenTask.status, "chosenTask");
+
+  const [title, setTitle] = useState(currentTaskTitle);
   const [description, setDescription] = useState(chosenTask.description);
   const [status, setStatus] = useState(chosenTask.status);
   const [lengthError, setLengthError] = useState(false);
-  const taskId = chosenTask.taskId;
+  const taskId = chosenTask?.taskId;
   const categoryId = newCategoryIdForTask;
 
-  const isChecked = status === "done";
+  const isChecked =
+    status === undefined ? chosenTask.status === "done" : status === "done";
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -96,7 +99,7 @@ const EditTask = () => {
       <textarea
         className="edit_task-description__input"
         type="text"
-        value={description ?? null}
+        value={chosenTask.description}
         onChange={onChangeDescription}
         placeholder={taskDescription}
       />

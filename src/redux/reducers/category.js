@@ -17,7 +17,6 @@ const initialState = {
   chosenCategory: {},
   isFilterStatusDone: false,
   isCreateTaskModalOpen: false,
-  location: null,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -36,6 +35,7 @@ export default (state = initialState, action) => {
       return { ...state, categoryTitleList: action.titleList };
     }
     case UPDATE_CHOSEN_CATEGORY: {
+
       return { ...state, chosenCategory: action.chosenCategory };
     }
     case SET_IS_FILTER_STATUS_DONE: {
@@ -43,12 +43,6 @@ export default (state = initialState, action) => {
     }
     case SET_IS_CREATE_TASK_MODAL: {
       return { ...state, isCreateTaskModalOpen: action.data };
-    }
-    case "@@router/LOCATION_CHANGE": {
-      return {
-        ...state,
-        location: action.payload.location.pathname,
-      };
     }
     default:
       return state;

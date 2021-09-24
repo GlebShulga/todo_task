@@ -9,7 +9,7 @@ const ProgressBar = () => {
   let isDone = 0;
   let count = 0;
   taskList
-    ?.filter((item) => item.categoryId === chosenCategory.categoryId)
+    ?.filter((item) => item.categoryId === chosenCategory?.categoryId)
     .forEach((item) => {
       if (item.status === "done") {
         isDone += 1;

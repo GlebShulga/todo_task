@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,20 @@ const Header = () => {
   const categoryParams = matchPath(pathname, { path: "/:category" });
   const choosenCategoryTitle = categoryParams?.params.category;
 
-  const [search, setSearch] = useState("");
+  const searchParams = matchPath(pathname, {
+    path: "/:category/search/:subString",
+  });
+
+  useEffect(() => {
+    const filterParams = matchPath(pathname, {
+      path: "/categories/showDone=true",
+    })?.isExact;
+    if (filterParams) {
+      dispatch(setIsFilterStatusDone(true));
+    }
+  }, []);
+
+  const [search, setSearch] = useState(searchParams?.params.subString ?? "");
 
   const onChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -47,8 +60,10 @@ const Header = () => {
   };
 
   const onClickSearch = () => {
-    dispatch(setSearchCriteria(search));
-    history.push(`/${choosenCategoryTitle}/search/${search}`);
+    if (search.length > 0) {
+      dispatch(setSearchCriteria(search));
+      history.push(`/${choosenCategoryTitle}/search/${search}`);
+    }
   };
 
   return (

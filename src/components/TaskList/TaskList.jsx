@@ -42,7 +42,7 @@ const TaskList = () => {
         .filter((task) => chosenCategory?.categoryId === task.categoryId)
         .map((task) => {
           return (
-            <div className="task-table " key={task.taskId}>
+            <div className="task-table" key={task.taskId}>
               <FontAwesomeIcon
                 icon={faCheckSquare}
                 className={

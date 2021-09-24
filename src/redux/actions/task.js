@@ -10,10 +10,17 @@ import {
 } from "../types/task";
 
 export function fetchTaskList() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     axios("/api/v1/task")
       .then(({ data }) => {
+        const store = getState();
+        const url = store.router.location.pathname.substring(1);
+        const taskUrl = url?.match("(?<=/)(.*?)(?=/edit)");
         dispatch({ type: GET_TASK_LIST, taskList: data });
+        if (url.includes("edit")) {
+          const chosenTask = data.find((task) => task.title === taskUrl[0]);
+          dispatch({ type: UPDATE_CHOSEN_TASK, chosenTask });
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -58,17 +65,17 @@ export function patchTask(taskId, status, title, description, categoryId) {
 }
 
 export function updateChosenTask(chosenTask) {
-  return { type: UPDATE_CHOSEN_TASK, chosenTask }
+  return { type: UPDATE_CHOSEN_TASK, chosenTask };
 }
 
 export function setEditingTaskMode(data) {
-  return { type: SET_EDITING_TASK_MODE, data }
+  return { type: SET_EDITING_TASK_MODE, data };
 }
 
 export function setSearchCriteria(searchCriteria) {
-  return { type: SET_SEARCH_CRITERIA, searchCriteria }
+  return { type: SET_SEARCH_CRITERIA, searchCriteria };
 }
 
 export function setNewCategoryIdForTask(categoryId) {
-  return { type: SET_NEW_CATEGORY_FOR_TASK, categoryId }
+  return { type: SET_NEW_CATEGORY_FOR_TASK, categoryId };
 }

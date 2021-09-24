@@ -1,3 +1,4 @@
+/* eslint-disable no-loop-func */
 import axios from "axios";
 import {
   ADD_CATEGORY,
@@ -12,13 +13,35 @@ import {
 } from "../types/category";
 
 export function fetchCategoryList() {
-  return (dispatch) => {
+  return (dispatch, getState) => {
+    const store = getState();
+    const url = store.router.location.pathname?.substring(1);
+    const complexUrl = url?.match("[^/](.*?)(?=/)");
+    const categoryUrl = complexUrl !== null ? complexUrl[0] : url;
     axios("/api/v1/category")
       .then(({ data }) => {
-        const rootList = data.filter((el) => el.parentCategoryId === null);
+        let current = data.find((cat) => cat.categoryTitle === categoryUrl);
+        let updatedCategoryList = data;
+        while (current?.parentCategoryId) {
+          updatedCategoryList = updatedCategoryList.map((cat) =>
+            cat.categoryId === current.parentCategoryId
+              ? { ...cat, isExpanded: true }
+              : cat
+          );
+          current = updatedCategoryList.find(
+            (cat) => cat.categoryId === current.parentCategoryId
+          );
+        }
+
+        const rootList = updatedCategoryList.filter(
+          (el) => el.parentCategoryId === null
+        );
         const titleList = data.map((category) => category.categoryTitle);
         dispatch({ type: GET_ROOT_CATEGORY_LIST, rootList });
-        dispatch({ type: GET_CATEGORIES_LIST, categoryList: data });
+        dispatch({
+          type: GET_CATEGORIES_LIST,
+          categoryList: updatedCategoryList,
+        });
         dispatch({ type: GET_CATEGORIES_TITLE_LIST, titleList });
       })
       .catch((err) => console.log(err));
@@ -84,16 +107,14 @@ export function delCategory(categoryId) {
 
 export function updateChosenCategory(chosenCategory) {
   return (dispatch) => {
-    dispatch({ type: UPDATE_CHOSEN_CATEGORY, chosenCategory })
-   }
+    dispatch({ type: UPDATE_CHOSEN_CATEGORY, chosenCategory });
+  };
 }
 
 export function setIsFilterStatusDone(data) {
-  return ({ type: SET_IS_FILTER_STATUS_DONE, data });
-
+  return { type: SET_IS_FILTER_STATUS_DONE, data };
 }
 
 export function setIsCreateTaskModalOpen(data) {
-  return ({ type: SET_IS_CREATE_TASK_MODAL, data });
+  return { type: SET_IS_CREATE_TASK_MODAL, data };
 }
-

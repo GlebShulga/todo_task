@@ -32,13 +32,15 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     isCreateTaskModalOpen,
   } = useSelector((s) => s.category);
   const { isEditingTaskMode, chosenTask } = useSelector((s) => s.task);
+    const categoryId = category.categoryId;
+    const categoryTitle = category.categoryTitle;
 
   const categoryParams = matchPath(pathname, { path: "/:category" });
-  const choosenCategoryTitle = categoryParams?.params.category;
+  const urlCategoryTitle = categoryParams?.params.category;
 
   const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(category.isExpanded ?? false);
 
   useEffect(() => {
     if (isFilterStatusDone) {
@@ -61,8 +63,6 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
       );
 
   const categoryExpandedConditions = children?.length > 0 && isExpanded;
-  const categoryId = category.categoryId;
-  const categoryTitle = category.categoryTitle;
 
   const onChangeTitle = (e) => {
     setNewTitle(e.target.value);
@@ -103,6 +103,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     <FontAwesomeIcon icon={faEdit} />
   );
 
+
   const childrenCategoryItem =
     categoryExpandedConditions &&
     children.map((child) => (
@@ -124,7 +125,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
         <FontAwesomeIcon
           icon={faCheckSquare}
           className={
-            categoryTitle === choosenCategoryTitle
+            categoryTitle === urlCategoryTitle
               ? "check-mark"
               : "check-mark--hidden"
           }
@@ -132,7 +133,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
         {!isEditingCategoryMode ? (
           <button
             className={
-              categoryTitle === choosenCategoryTitle
+              categoryTitle === urlCategoryTitle
                 ? "category-title category-title--green"
                 : "category-title"
             }
