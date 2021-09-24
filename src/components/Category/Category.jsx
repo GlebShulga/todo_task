@@ -32,8 +32,8 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     isCreateTaskModalOpen,
   } = useSelector((s) => s.category);
   const { isEditingTaskMode, chosenTask } = useSelector((s) => s.task);
-    const categoryId = category.categoryId;
-    const categoryTitle = category.categoryTitle;
+  const categoryId = category.categoryId;
+  const categoryTitle = category.categoryTitle;
 
   const categoryParams = matchPath(pathname, { path: "/:category" });
   const urlCategoryTitle = categoryParams?.params.category;
@@ -102,7 +102,6 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   ) : (
     <FontAwesomeIcon icon={faEdit} />
   );
-
 
   const childrenCategoryItem =
     categoryExpandedConditions &&
