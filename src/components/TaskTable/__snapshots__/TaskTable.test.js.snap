@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TaskTable Component TaskTable snapshot 1`] = `
+<div
+  className="width"
+>
+  <div
+    className="task-table_button_position"
+  >
+    <button
+      className="task-table_button"
+      onClick={[Function]}
+    >
+      X
+    </button>
+  </div>
+  <h1
+    className="title"
+  >
+    Tasks Table
+  </h1>
+  <table
+    className="tasks-table"
+  >
+    <tbody>
+      <tr>
+        <th>
+          Title
+        </th>
+        <th>
+          Description
+        </th>
+        <th>
+          Status
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Just do it
+        </td>
+        <td>
+          bla
+        </td>
+        <td>
+          new
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Do it one more time
+        </td>
+        <td>
+          
+        </td>
+        <td>
+          new
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`TaskTable Component TaskTable snapshot 2`] = `
+"Snapshot Diff:
+Compared values have no visual difference."
+`;

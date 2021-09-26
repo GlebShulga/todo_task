@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateTask Component CreateTask snapshot 1`] = `
+<div
+  className="create_task"
+>
+  <div
+    className="create_task-form"
+  >
+    <input
+      className="create_task-form_input"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Add new task"
+      type="text"
+      value=""
+    />
+    <button
+      className="form_button_add"
+      onClick={[Function]}
+      type="button"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`CreateTask Component CreateTask snapshot 2`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -18,6 +18,13 @@
+        type=\\"button\\"
+      >
+        Add
+      </button>
+    </div>
++   <div
++     className=\\"error\\"
++   >
++     <div>
++       Please, choose category
++     </div>
++   </div>
+  </div>"
+`;

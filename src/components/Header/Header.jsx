@@ -67,8 +67,12 @@ const Header = () => {
   };
 
   return (
-    <div className="header">
-      <button className="header-title" onClick={onClickReturnToStartPage}>
+    <div className="header" data-test="headerComponent">
+      <button
+        className="header-title"
+        onClick={onClickReturnToStartPage}
+        data-test="title"
+      >
         To-Do List
       </button>
 

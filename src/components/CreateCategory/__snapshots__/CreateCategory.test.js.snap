@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateCategory Component CreateCategory snapshot 1`] = `
+<div
+  className="create_category"
+>
+  <div
+    className="create_category-form"
+  >
+    <input
+      className="create_category-form_input"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Add new category"
+      type="text"
+      value=""
+    />
+    <button
+      className="form_button_add"
+      onClick={[Function]}
+      type="button"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;
+
+exports[`CreateCategory Component CreateCategory snapshot 2`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -18,6 +18,19 @@
+        type=\\"button\\"
+      >
+        Add
+      </button>
+    </div>
++   <div
++     className=\\"error\\"
++   >
++     <div>
++        The task length must not be shorter than 3 characters
++     </div>
++     <div>
++       and
++     </div>
++     <div>
++       must not exceed 20 characters.
++     </div>
++   </div>
+  </div>"
+`;

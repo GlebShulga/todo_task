@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressBar Component ProgressBar snapshot 1`] = `
+<progress
+  className="progress-bar"
+  max="100"
+  value={100}
+/>
+`;

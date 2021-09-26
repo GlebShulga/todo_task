@@ -1,18 +1,20 @@
 import React from "react";
-import renderer, {act} from "react-test-renderer";
-import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+import renderer, { act } from "react-test-renderer";
+import { shallow } from "enzyme";
 import { toMatchDiffSnapshot } from "snapshot-diff";
-import App from "./App.jsx";
+import CreateCategory from "./CreateCategory";
+
+expect.extend({ toMatchDiffSnapshot });
 
 const middlewares = [thunk];
 let mockStore;
 const mockStoreConf = configureStore(middlewares);
 
-
-describe("App Component", () => {
+describe("CreateCategory Component", () => {
   beforeEach(() => {
     mockStore = mockStoreConf(
       {
@@ -461,15 +463,30 @@ describe("App Component", () => {
     );
   });
 
-  it("App snapshot", () => {
-    const component = renderer.create(
+  it("renders CreateCategory without crashing", () => {
+    shallow(
       <Router>
         <Provider store={mockStore}>
-          <App />
+          <CreateCategory />
         </Provider>
       </Router>
     );
-    let tree = component.toJSON();
+  });
+
+  it("CreateCategory snapshot", () => {
+    const component = renderer.create(
+      <Router>
+        <Provider store={mockStore}>
+          <CreateCategory />
+        </Provider>
+      </Router>
+    );
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
+    act(() => {
+      component.root.findAllByType("button")[0].props.onClick();
+    });
+    const treeUpdate = component.toJSON();
+    expect(tree).toMatchDiffSnapshot(treeUpdate);
   });
 });

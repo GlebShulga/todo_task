@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditTask Component EditTask snapshot 1`] = `
+<div
+  className="edit_task"
+>
+  <div
+    className="edit_task-buttons"
+  >
+    <button
+      className="form_button_add"
+      onClick={[Function]}
+      type="button"
+    >
+      Save changes
+    </button>
+    <button
+      className="edit_task-buttons__close"
+      onClick={[Function]}
+      type="button"
+    >
+      Cancel
+    </button>
+  </div>
+  <div
+    className="edit_task-title"
+  >
+    <input
+      className="edit_task-title__input"
+      onChange={[Function]}
+      type="text"
+      value={null}
+    />
+  </div>
+  <div
+    className="status"
+  >
+    <input
+      checked={false}
+      id="status"
+      name="status"
+      onChange={[Function]}
+      type="checkbox"
+      value={true}
+    />
+    <label
+      htmlFor="status"
+    >
+      Done
+    </label>
+  </div>
+  <textarea
+    className="edit_task-description__input"
+    onChange={[Function]}
+    placeholder="Write description of your task"
+    type="text"
+  />
+</div>
+`;
+
+exports[`EditTask Component EditTask snapshot 2`] = `
+"Snapshot Diff:
+- First value
++ Second value
+
+@@ -26,10 +26,15 @@
+        className=\\"edit_task-title__input\\"
+        onChange={[Function onChangeTitle]}
+        type=\\"text\\"
+        value={null}
+      />
++     <div
++       className=\\"edit_task-error\\"
++     >
++       The task length must not be shorter than 3 characters and must not exceed 20 characters.
++     </div>
+    </div>
+    <div
+      className=\\"status\\"
+    >
+      <input"
+`;

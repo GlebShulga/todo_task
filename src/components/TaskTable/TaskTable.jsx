@@ -15,7 +15,7 @@ class TaskTable extends Component {
     this.props.fetchTaskList();
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({ tasks: nextProps.tasks.taskList });
   }
 
