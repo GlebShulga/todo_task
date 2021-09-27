@@ -1,58 +1,46 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import configureStore from "redux-mock-store";
-import { Provider } from "react-redux";
-import { BrowserRouter as Router } from "react-router-dom";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
+import store from "../../redux";
+import { ADD_TASK } from "../../redux/types/task";
+import { UPDATE_CHOSEN_CATEGORY } from "../../redux/types/category";
 import ProgressBar from "./ProgressBar";
+import AppTest from "../../../tests/AppTest";
 
-let mockStore;
-const mockStoreConf = configureStore([]);
-
-
-describe("ProgressBar Component", () => {
-  beforeEach(() => {
-    mockStore = mockStoreConf({
-      category: { isFilterStatusDone: false },
-      task: {
-        taskList: [
-          {
-            categoryId: "3",
-            taskId: "1",
-            title: "Just do it",
-            description: "bla",
-            status: "new",
-            _createdAt: 1630474050422,
-          },
-          {
-            categoryId: "3",
-            taskId: "2",
-            title: "Do it one more time",
-            status: "new",
-            description: "",
-            _createdAt: 1630474050402,
-          },
-        ],
-      },
-    });
-  });
-  it("should render ProgressBar Component", () => {
-    shallow(
-      <Provider store={mockStore}>
+describe("<ProgressBar />", () => {
+  it("should render component with default progress value 100", () => {
+    const { getByTestId } = render(
+      <AppTest>
         <ProgressBar />
-      </Provider>
+      </AppTest>
     );
+
+    const progressBar = getByTestId("ProgressBar");
+    expect(progressBar.value).toBe(100);
   });
 
-  it("ProgressBar snapshot", () => {
-    const component = renderer.create(
-      <Router>
-        <Provider store={mockStore}>
-          <ProgressBar />
-        </Provider>
-      </Router>
+  it("should render component with progress value", () => {
+    store.dispatch({
+      type: ADD_TASK,
+      taskList: [
+        { categoryId: 1, status: "done" },
+        { categoryId: 1, status: "done" },
+        { categoryId: 1, status: "new" },
+        { categoryId: 1, status: "new" },
+      ],
+    });
+
+    store.dispatch({
+      type: UPDATE_CHOSEN_CATEGORY,
+      chosenCategory: { categoryId: 1 },
+    });
+
+    const { getByTestId } = render(
+      <AppTest>
+        <ProgressBar />
+      </AppTest>
     );
-    let tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+
+    const progressBar = getByTestId("ProgressBar");
+    expect(progressBar.value).toBe(50);
   });
 });

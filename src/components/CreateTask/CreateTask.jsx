@@ -48,11 +48,13 @@ const CreateTask = () => {
           onChange={onChange}
           placeholder="Add new task"
           onKeyPress={handleKeypress}
+          data-testid="AddTaskInputField"
         />
         <button
           type="button"
           className="form_button_add"
           onClick={onClickAddTask}
+          data-testid="AddTaskButton"
         >
           Add
         </button>

@@ -117,6 +117,7 @@ exports[`App Component App snapshot 1`] = `
       >
         <input
           className="create_task-form_input"
+          data-testid="AddTaskInputField"
           onChange={[Function]}
           onKeyPress={[Function]}
           placeholder="Add new task"
@@ -125,6 +126,7 @@ exports[`App Component App snapshot 1`] = `
         />
         <button
           className="form_button_add"
+          data-testid="AddTaskButton"
           onClick={[Function]}
           type="button"
         >
