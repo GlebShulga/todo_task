@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Category Component Category snapshot 1`] = `
+exports[`<Category /> Category snapshot 1`] = `
 Array [
   <div
     className="category"
