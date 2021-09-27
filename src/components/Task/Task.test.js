@@ -10,6 +10,17 @@ import { mockData } from "../../../tests/mockStore";
 const middlewares = [thunk];
 let mockStore;
 const mockStoreConf = configureStore(middlewares);
+const mockHistoryPush = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useParams: () => ({
+    category: "test-category",
+  }),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
 
 describe("Task Component", () => {
   let props;
@@ -37,4 +48,21 @@ describe("Task Component", () => {
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+    it("should redirect to edit task on edit button click", () => {
+      const { root } = renderer.create(
+        <Router>
+          <Provider store={mockStore}>
+            <Task {...props} />
+          </Provider>
+        </Router>
+      );
+
+      root.findByType("button").props.onClick();
+
+      expect(mockHistoryPush).toHaveBeenCalledTimes(1);
+      expect(mockHistoryPush).toHaveBeenCalledWith(
+        "/test-category/Just do it/edit"
+      );
+    });
 });
