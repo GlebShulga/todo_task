@@ -9,6 +9,7 @@ import ProgressBar from "./ProgressBar";
 let mockStore;
 const mockStoreConf = configureStore([]);
 
+
 describe("ProgressBar Component", () => {
   beforeEach(() => {
     mockStore = mockStoreConf({

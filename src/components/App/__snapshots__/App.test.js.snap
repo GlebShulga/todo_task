@@ -79,6 +79,7 @@ exports[`App Component App snapshot 1`] = `
   </div>
   <progress
     className="progress-bar"
+    data-testid="ProgressBar"
     max="100"
     value={100}
   />

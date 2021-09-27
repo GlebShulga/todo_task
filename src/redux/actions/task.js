@@ -11,7 +11,7 @@ import {
 
 export function fetchTaskList() {
   return (dispatch, getState) => {
-    axios("/api/v1/task")
+   return axios.get("/api/v1/task")
       .then(({ data }) => {
         const store = getState();
         const url = store.router.location.pathname.substring(1);
@@ -28,7 +28,7 @@ export function fetchTaskList() {
 
 export function addTask(title, categoryId) {
   return (dispatch) => {
-    axios({
+   return axios({
       method: "post",
       url: "/api/v1/task",
       data: {

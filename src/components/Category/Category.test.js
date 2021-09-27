@@ -3,8 +3,17 @@ import renderer from "react-test-renderer";
 import { BrowserRouter as Router } from "react-router-dom";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
+
 import thunk from "redux-thunk";
 import Category from "./Category.jsx";
+
+
+jest.mock("../../redux/actions/category", () => ({
+  ...jest.requireActual("../../redux/actions/category"),
+  renameCategory: jest.fn(),
+}));
+
+
 
 const middlewares = [thunk];
 let mockStore;
@@ -520,8 +529,8 @@ describe("Category Component", () => {
         </Provider>
       </Router>
     );
-    let tree = component.toJSON();
+    const tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-});
 
+});

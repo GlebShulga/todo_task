@@ -106,7 +106,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   const childrenCategoryItem =
     categoryExpandedConditions &&
     children.map((child) => (
-      <li key={child.categoryId}>
+      <li key={child.categoryId} data-testid={`category-${child.categoryId}`}>
         <Category
           category={child}
           categoryListWithDoneFlag={categoryListWithDoneFlag}

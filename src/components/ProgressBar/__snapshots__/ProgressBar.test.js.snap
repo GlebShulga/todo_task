@@ -3,6 +3,7 @@
 exports[`ProgressBar Component ProgressBar snapshot 1`] = `
 <progress
   className="progress-bar"
+  data-testid="ProgressBar"
   max="100"
   value={100}
 />

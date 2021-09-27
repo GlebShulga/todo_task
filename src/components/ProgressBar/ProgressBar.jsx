@@ -20,7 +20,12 @@ const ProgressBar = () => {
   const result = count > 0 ? Math.round((isDone / count) * 100) : 100;
 
   return (
-    <progress value={result} max="100" className="progress-bar"></progress>
+    <progress
+      value={result}
+      max="100"
+      className="progress-bar"
+      data-testid="ProgressBar"
+    ></progress>
   );
 };
 

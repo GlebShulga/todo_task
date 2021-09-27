@@ -35,7 +35,6 @@ export default (state = initialState, action) => {
       return { ...state, categoryTitleList: action.titleList };
     }
     case UPDATE_CHOSEN_CATEGORY: {
-
       return { ...state, chosenCategory: action.chosenCategory };
     }
     case SET_IS_FILTER_STATUS_DONE: {
