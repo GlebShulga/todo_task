@@ -38,7 +38,8 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   const categoryParams = matchPath(pathname, { path: "/:category" });
   const urlCategoryTitle = categoryParams?.params.category;
 
-  const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
+  const [isEditingCategoryMode, setIsEditingCategoryMode] =
+    React.useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
   const [isExpanded, setIsExpanded] = useState(category?.isExpanded ?? false);
 
@@ -176,7 +177,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
                 }
                 data-testid="CreateTaskModalButton"
               >
-                <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} data-testid="faPlus" />
               </button>
             </>
           )}
@@ -189,6 +190,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
               }
               type="button"
               onClick={() => onClickChangeCategory(categoryId)}
+              data-testid="ChangeCategoryForTaskButton"
             >
               <FontAwesomeIcon icon={faReply} />
             </button>

@@ -8,8 +8,9 @@ import {
   updateChosenTask,
   setSearchCriteria,
   setNewCategoryIdForTask,
+  patchTask,
 } from "./task";
-import { GET_TASK_LIST  } from "../types/task";
+import { GET_TASK_LIST, PATCH_TASK } from "../types/task";
 
 jest.mock("axios");
 
@@ -44,6 +45,65 @@ describe("task action creators", () => {
     const store = mockStore({
       router: {
         location: { pathname: "/", search: "", hash: "", query: {} },
+        action: "POP",
+      },
+      task: {
+        taskList: [],
+        chosenTask: {},
+      },
+    });
+    store.dispatch(fetchTaskList()).then(() => {
+      expect(store.getActions()).toEqual([
+        {
+          type: GET_TASK_LIST,
+          taskList: [
+            {
+              categoryId: "3",
+              taskId: "1",
+              title: "Just do it",
+              description: "bla",
+              status: "new",
+            },
+            {
+              categoryId: "3",
+              taskId: "2",
+              title: "Do it one more time",
+              status: "new",
+              description: "",
+            },
+          ],
+        },
+      ]);
+    });
+  });
+
+  it("fetchTaskList fetch and dispatch successfully if url includes edit", () => {
+    axios.get.mockImplementationOnce(() => {
+      return Promise.resolve({
+        data: [
+          {
+            categoryId: "3",
+            taskId: "1",
+            title: "Just do it",
+            description: "bla",
+            status: "new",
+          },
+          {
+            categoryId: "3",
+            taskId: "2",
+            title: "Do it one more time",
+            status: "new",
+            description: "",
+          },
+        ],
+      });
+    });
+    const cb = fetchTaskList();
+    expect(typeof cb).toBe("function");
+
+    const store = mockStore({
+      router: {
+        location: { pathname: "/edit", search: "", hash: "", query: {} },
         action: "POP",
       },
       task: {
@@ -120,5 +180,33 @@ describe("task action creators", () => {
       expect(reducer(previousState, setNewCategoryIdForTask("3"))).toEqual({
         newCategoryIdForTask: "3",
       });
+    });
+
+    it("Should PATCH_TASK action is dispated", async () => {
+      const dispatch = jest.fn();
+      const taskList = [
+        {
+          categoryId: "3",
+          taskId: "1",
+          title: "Just do it",
+          description: "bla",
+          status: "new",
+        },
+        {
+          categoryId: "3",
+          taskId: "2",
+          title: "Do it one more time",
+          status: "new",
+          description: "",
+        },
+      ];
+      const responseData = {
+        status: 200,
+        data: taskList,
+      };
+
+      axios.mockResolvedValueOnce(responseData);
+      await patchTask("1", "new", "Just do it", "bla", "3")(dispatch);
+      expect(dispatch).toHaveBeenCalledWith({ type: PATCH_TASK, taskList });
     });
 });

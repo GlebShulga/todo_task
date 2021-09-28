@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import renderer from "react-test-renderer";
 import { render, fireEvent } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -10,13 +9,12 @@ import Category from "./Category.jsx";
 import {
   updateChosenCategory,
   delCategory,
-  renameCategory,
 } from "../../redux/actions/category";
 import {
   UPDATE_CHOSEN_CATEGORY,
   DEL_CATEGORY,
-  RENAME_CATEGORY,
 } from "../../redux/types/category";
+
 import { mockData } from "../../../tests/mockStore";
 
 jest.mock("axios");
@@ -29,6 +27,11 @@ jest.mock("../../redux/actions/category", () => ({
   delCategory: jest.fn(),
   setIsCreateTaskModalOpen: jest.fn(),
   renameCategory: jest.fn(),
+}));
+
+jest.mock("../../redux/actions/task", () => ({
+  ...jest.requireActual("../../redux/actions/task"),
+  setNewCategoryIdForTask: jest.fn(),
 }));
 
 jest.mock("react-router-dom", () => ({
@@ -122,6 +125,7 @@ describe("<Category />", () => {
     );
     expect(getByTestId("faCheckSquare")).toBeInTheDocument();
     expect(getByTestId("faTrashAlt")).toBeInTheDocument();
+    expect(getByTestId("faPlus")).toBeInTheDocument();
   });
 
   it("should choose category", () => {
@@ -187,54 +191,4 @@ describe("<Category />", () => {
       },
     ]);
   });
-
-  // it("should rename category", () => {
-  //   let mockFn;
-  //   renameCategory.mockImplementationOnce((callback) => {
-  //     mockFn = jest.fn((dispatch) => {
-  //       dispatch({
-  //         type: RENAME_CATEGORY,
-  //         categoryList: mockData.category.categoryList,
-  //       });
-  //     });
-  //     return mockFn;
-  //   });
-
-  //   let InitialStateForisEditingCategoryMode = true;
-
-  //   React.useState = jest
-  //     .fn()
-  //     .mockReturnValue([InitialStateForisEditingCategoryMode, {}]);
-
-  //   const { getByTestId } = render(
-  //     <Router>
-  //       <Provider store={mockStore}>
-  //         <Category {...props} />
-  //       </Provider>
-  //     </Router>
-  //   );
-
-  //   fireEvent.change(getByTestId("NewTitleInput"), {
-  //     target: { value: "Demo category" },
-  //   });
-
-  //   fireEvent.click(getByTestId("RenameCategoryButton"));
-
-  //   expect(mockStore.getActions()).toEqual([
-  //     {
-  //       type: RENAME_CATEGORY,
-  //       categoryList: mockData.category.categoryList,
-  //     },
-  //   ]);
-
-  //   expect(axios).toHaveBeenCalledWith({
-  //     data: {
-  //       categoryTitle: "Demo category",
-  //       categoryId: 1,
-  //     },
-  //     method: "post",
-  //     url: "/api/v1/category",
-  //   });
-
-  // });
 });

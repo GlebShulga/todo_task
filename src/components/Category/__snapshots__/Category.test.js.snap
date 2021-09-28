@@ -96,6 +96,7 @@ Array [
           className="svg-inline--fa fa-plus fa-w-14 "
           data-icon="plus"
           data-prefix="fas"
+          data-testid="faPlus"
           focusable="false"
           role="img"
           style={Object {}}
