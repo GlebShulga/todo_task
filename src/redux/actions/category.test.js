@@ -1,6 +1,4 @@
 import axios from "axios";
-import configureStore from "redux-mock-store";
-import thunk from "redux-thunk";
 import reducer from "../reducers/category";
 import {
   setIsFilterStatusDone,
@@ -92,14 +90,14 @@ describe("category action creators", () => {
       await addCategory("test 7_1_2", "Dxggo-RHZqSEoDByG1rB6", 2)(dispatch);
     });
 
-    it("Should ADD_CATEGORY  action is dispacthed when post response comes to this url /api/v1/category/:categoryTitle", () => {
+    it("Should ADD_CATEGORY action is dispacthed when post response comes to url - /api/v1/category/:categoryTitle", () => {
       expect(dispatch).toHaveBeenNthCalledWith(1, {
         type: ADD_CATEGORY,
         categoryList,
       });
     });
 
-    it("Should GET_ROOT_CATEGORY_LIST  action is dispacthed when post response comes to this url /api/v1/category/:categoryTitle", () => {
+    it("Should GET_ROOT_CATEGORY_LIST action is dispacthed when post response comes to url - /api/v1/category/:categoryTitle", () => {
       const expectedList = [
         {
           categoryId: "HD6CryOdGgYn4QJdKgs5G",
