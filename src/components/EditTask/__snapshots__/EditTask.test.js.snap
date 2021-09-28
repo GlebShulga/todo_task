@@ -16,6 +16,7 @@ exports[`EditTask Component EditTask snapshot 1`] = `
     </button>
     <button
       className="edit_task-buttons__close"
+      data-testid="CancelChangesButton"
       onClick={[Function]}
       type="button"
     >
@@ -29,7 +30,7 @@ exports[`EditTask Component EditTask snapshot 1`] = `
       className="edit_task-title__input"
       onChange={[Function]}
       type="text"
-      value={null}
+      value=""
     />
   </div>
   <div
@@ -63,11 +64,11 @@ exports[`EditTask Component EditTask snapshot 2`] = `
 - First value
 + Second value
 
-@@ -26,10 +26,15 @@
+@@ -27,10 +27,15 @@
         className=\\"edit_task-title__input\\"
         onChange={[Function onChangeTitle]}
         type=\\"text\\"
-        value={null}
+        value=\\"\\"
       />
 +     <div
 +       className=\\"edit_task-error\\"

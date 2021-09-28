@@ -24,6 +24,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="svg-inline--fa fa-check-square fa-w-14 check-mark--hidden"
           data-icon="check-square"
           data-prefix="fas"
+          data-testid="faCheckSquare"
           focusable="false"
           role="img"
           style={Object {}}
@@ -38,11 +39,13 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
         </svg>
         <button
           className="category-title"
+          data-testid="ChooseCategoryButton"
           onClick={[Function]}
         >
           test 7
         </button>
         <button
+          data-testid="RenameCategoryButton"
           onClick={[Function]}
         >
           <svg
@@ -67,6 +70,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="icon"
         >
           <button
+            data-testid="DelCategoryButton"
             onClick={[Function]}
             type="button"
           >
@@ -75,6 +79,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
               className="svg-inline--fa fa-trash-alt fa-w-14 "
               data-icon="trash-alt"
               data-prefix="fas"
+              data-testid="faTrashAlt"
               focusable="false"
               role="img"
               style={Object {}}
@@ -90,6 +95,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           </button>
           <button
             className="plus-icon"
+            data-testid="CreateTaskModalButton"
             onClick={[Function]}
             type="button"
           >
@@ -134,6 +140,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="svg-inline--fa fa-check-square fa-w-14 check-mark--hidden"
           data-icon="check-square"
           data-prefix="fas"
+          data-testid="faCheckSquare"
           focusable="false"
           role="img"
           style={Object {}}
@@ -148,11 +155,13 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
         </svg>
         <button
           className="category-title"
+          data-testid="ChooseCategoryButton"
           onClick={[Function]}
         >
           category 4
         </button>
         <button
+          data-testid="RenameCategoryButton"
           onClick={[Function]}
         >
           <svg
@@ -177,6 +186,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="icon"
         >
           <button
+            data-testid="DelCategoryButton"
             onClick={[Function]}
             type="button"
           >
@@ -185,6 +195,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
               className="svg-inline--fa fa-trash-alt fa-w-14 "
               data-icon="trash-alt"
               data-prefix="fas"
+              data-testid="faTrashAlt"
               focusable="false"
               role="img"
               style={Object {}}
@@ -200,6 +211,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           </button>
           <button
             className="plus-icon"
+            data-testid="CreateTaskModalButton"
             onClick={[Function]}
             type="button"
           >
@@ -244,6 +256,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="svg-inline--fa fa-check-square fa-w-14 check-mark--hidden"
           data-icon="check-square"
           data-prefix="fas"
+          data-testid="faCheckSquare"
           focusable="false"
           role="img"
           style={Object {}}
@@ -258,11 +271,13 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
         </svg>
         <button
           className="category-title"
+          data-testid="ChooseCategoryButton"
           onClick={[Function]}
         >
           category 2
         </button>
         <button
+          data-testid="RenameCategoryButton"
           onClick={[Function]}
         >
           <svg
@@ -287,6 +302,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="icon"
         >
           <button
+            data-testid="DelCategoryButton"
             onClick={[Function]}
             type="button"
           >
@@ -295,6 +311,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
               className="svg-inline--fa fa-trash-alt fa-w-14 "
               data-icon="trash-alt"
               data-prefix="fas"
+              data-testid="faTrashAlt"
               focusable="false"
               role="img"
               style={Object {}}
@@ -310,6 +327,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           </button>
           <button
             className="plus-icon"
+            data-testid="CreateTaskModalButton"
             onClick={[Function]}
             type="button"
           >
@@ -354,6 +372,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="svg-inline--fa fa-check-square fa-w-14 check-mark--hidden"
           data-icon="check-square"
           data-prefix="fas"
+          data-testid="faCheckSquare"
           focusable="false"
           role="img"
           style={Object {}}
@@ -368,11 +387,13 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
         </svg>
         <button
           className="category-title"
+          data-testid="ChooseCategoryButton"
           onClick={[Function]}
         >
           category 1
         </button>
         <button
+          data-testid="RenameCategoryButton"
           onClick={[Function]}
         >
           <svg
@@ -397,6 +418,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="icon"
         >
           <button
+            data-testid="DelCategoryButton"
             onClick={[Function]}
             type="button"
           >
@@ -405,6 +427,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
               className="svg-inline--fa fa-trash-alt fa-w-14 "
               data-icon="trash-alt"
               data-prefix="fas"
+              data-testid="faTrashAlt"
               focusable="false"
               role="img"
               style={Object {}}
@@ -420,6 +443,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           </button>
           <button
             className="plus-icon"
+            data-testid="CreateTaskModalButton"
             onClick={[Function]}
             type="button"
           >
@@ -464,6 +488,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="svg-inline--fa fa-check-square fa-w-14 check-mark--hidden"
           data-icon="check-square"
           data-prefix="fas"
+          data-testid="faCheckSquare"
           focusable="false"
           role="img"
           style={Object {}}
@@ -478,11 +503,13 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
         </svg>
         <button
           className="category-title"
+          data-testid="ChooseCategoryButton"
           onClick={[Function]}
         >
           category 3
         </button>
         <button
+          data-testid="RenameCategoryButton"
           onClick={[Function]}
         >
           <svg
@@ -507,6 +534,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           className="icon"
         >
           <button
+            data-testid="DelCategoryButton"
             onClick={[Function]}
             type="button"
           >
@@ -515,6 +543,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
               className="svg-inline--fa fa-trash-alt fa-w-14 "
               data-icon="trash-alt"
               data-prefix="fas"
+              data-testid="faTrashAlt"
               focusable="false"
               role="img"
               style={Object {}}
@@ -530,6 +559,7 @@ exports[`CategoryList Component CategoryList snapshot 1`] = `
           </button>
           <button
             className="plus-icon"
+            data-testid="CreateTaskModalButton"
             onClick={[Function]}
             type="button"
           >

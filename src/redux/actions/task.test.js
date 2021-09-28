@@ -8,9 +8,8 @@ import {
   updateChosenTask,
   setSearchCriteria,
   setNewCategoryIdForTask,
-  addTask,
 } from "./task";
-import { GET_TASK_LIST, UPDATE_CHOSEN_TASK, ADD_TASK } from "../types/task";
+import { GET_TASK_LIST  } from "../types/task";
 
 jest.mock("axios");
 
@@ -76,40 +75,6 @@ describe("task action creators", () => {
       ]);
     });
   });
-
-  // it("post task successfully", () => {
-  //   axios.post.mockImplementationOnce(() => {
-  //     return Promise.resolve({
-  //       data: [
-  //         {
-  //           categoryId: "3",
-  //           title: "Just do it",
-  //         },
-  //       ],
-  //     });
-  //   });
-  //   const cb = addTask();
-  //   expect(typeof cb).toBe("function");
-
-  //   const store = mockStore({
-  //     task: {
-  //       taskList: [],
-  //     },
-  //   });
-  //   store.dispatch(addTask()).then(() => {
-  //     expect(store.getActions()).toEqual([
-  //       {
-  //         type: ADD_TASK,
-  //         taskList: [
-  //           {
-  //             categoryId: "3",
-  //             title: "Just do it",
-  //           },
-  //         ],
-  //       },
-  //     ]);
-  //   });
-  // });
 
   it("should change isEditingTaskMode flag", () => {
     const previousState = [];

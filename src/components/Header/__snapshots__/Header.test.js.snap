@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header Component Header snapshot 1`] = `
+exports[`<Header/> Header snapshot 1`] = `
 <div
   className="header"
   data-test="headerComponent"
 >
   <button
     className="header-title"
-    data-test="title"
     onClick={[Function]}
   >
     To-Do List
   </button>
   <button
     className="header-task-table_button"
+    data-testid="LinkToTaskTablePageButton"
     onClick={[Function]}
   >
     Task table button
@@ -51,6 +51,7 @@ exports[`Header Component Header snapshot 1`] = `
       />
       <button
         className="header-form_button"
+        data-testid="SearchButton"
         onClick={[Function]}
       >
         <svg

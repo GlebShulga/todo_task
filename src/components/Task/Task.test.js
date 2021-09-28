@@ -22,7 +22,7 @@ jest.mock("react-router-dom", () => ({
   }),
 }));
 
-describe("Task Component", () => {
+describe("<Task />", () => {
   let props;
   beforeEach(() => {
     mockStore = mockStoreConf(mockData);
@@ -37,7 +37,7 @@ describe("Task Component", () => {
     };
   });
 
-  it("Category snapshot", () => {
+  it("Task snapshot", () => {
     const component = renderer.create(
       <Router>
         <Provider store={mockStore}>

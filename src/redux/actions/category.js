@@ -61,7 +61,7 @@ export function addCategory(categoryTitle, parentCategoryId, lvl) {
       },
     })
       .then(({ data: categoryList }) => {
-        const rootList = categoryList.filter(
+        const rootList = categoryList?.filter(
           (el) => el.parentCategoryId === null
         );
         dispatch({ type: ADD_CATEGORY, categoryList });

@@ -56,6 +56,7 @@ const CreateCategory = () => {
           onChange={onChange}
           placeholder="Add new category"
           onKeyPress={handleKeypress}
+          data-testid="AddCategoryInputField"
         />
         {isCreateTaskModalOpen && (
           <button
@@ -72,6 +73,7 @@ const CreateCategory = () => {
           type="button"
           className="form_button_add"
           onClick={onClickAddCategory}
+          data-testid="AddCategoryButton"
         >
           Add
         </button>

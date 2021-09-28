@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Task Component Category snapshot 1`] = `
+exports[`<Task /> Task snapshot 1`] = `
 <div
   className="task"
 >

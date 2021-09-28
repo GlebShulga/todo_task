@@ -65,6 +65,7 @@ const EditTask = () => {
             dispatch(setEditingTaskMode(false));
             history.push(`/${choosenCategoryTitle}`);
           }}
+          data-testid="CancelChangesButton"
         >
           Cancel
         </button>
@@ -73,7 +74,7 @@ const EditTask = () => {
         <input
           className="edit_task-title__input"
           type="text"
-          value={title ?? null}
+          value={title ?? ''}
           onChange={onChangeTitle}
         />
         {lengthError && (

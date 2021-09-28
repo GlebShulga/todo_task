@@ -1,49 +1,53 @@
 import React from "react";
-import configureStore from "redux-mock-store";
-import { BrowserRouter as Router } from "react-router-dom";
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
-import renderer, { act } from "react-test-renderer";
-import { shallow } from "enzyme";
-import { toMatchDiffSnapshot } from "snapshot-diff";
+import { render, fireEvent } from "@testing-library/react";
+import axios from "axios";
+import store from "../../redux";
+import { GET_CATEGORIES_TITLE_LIST } from "../../redux/types/category";
 import CreateCategory from "./CreateCategory";
-import { mockData } from "../../../tests/mockStore";
+import AppTest from "../../../tests/AppTest";
 
-expect.extend({ toMatchDiffSnapshot });
+jest.mock("axios");
 
-const middlewares = [thunk];
-let mockStore;
-const mockStoreConf = configureStore(middlewares);
+describe("<CreateCategory />", () => {
+  it("should validate category", () => {
+    const { getByTestId, getByText } = render(
+      <AppTest>
+        <CreateCategory />
+      </AppTest>
+    );
 
-describe("CreateCategory Component", () => {
-  beforeEach(() => {
-    mockStore = mockStoreConf(mockData)
+    fireEvent.click(getByTestId("AddCategoryButton"));
+    const error = "The task length must not be shorter than 3 characters";
+    expect(getByText(error)).toBeTruthy();
   });
 
-  it("renders CreateCategory without crashing", () => {
-    shallow(
-      <Router>
-        <Provider store={mockStore}>
-          <CreateCategory />
-        </Provider>
-      </Router>
-    );
-  });
+  it("should add new category on click event", () => {
+    axios.mockResolvedValue({});
 
-  it("CreateCategory snapshot", () => {
-    const component = renderer.create(
-      <Router>
-        <Provider store={mockStore}>
-          <CreateCategory />
-        </Provider>
-      </Router>
-    );
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
-    act(() => {
-      component.root.findAllByType("button")[0].props.onClick();
+    store.dispatch({
+      type: GET_CATEGORIES_TITLE_LIST,
+      titleList: ["category_1", "category_2"],
     });
-    const treeUpdate = component.toJSON();
-    expect(tree).toMatchDiffSnapshot(treeUpdate);
+
+    const { getByTestId } = render(
+      <AppTest>
+        <CreateCategory />
+      </AppTest>
+    );
+
+    fireEvent.change(getByTestId("AddCategoryInputField"), {
+      target: { value: "Demo category" },
+    });
+    fireEvent.click(getByTestId("AddCategoryButton"));
+
+    expect(axios).toHaveBeenCalledWith({
+      data: {
+        categoryTitle: "Demo category",
+        parentCategoryId: null,
+        lvl: 0,
+      },
+      method: "post",
+      url: "/api/v1/category/:categoryTitle",
+    });
   });
 });

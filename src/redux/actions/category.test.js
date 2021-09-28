@@ -155,6 +155,7 @@ describe("category action creators", () => {
   //     ]);
   //   });
   // });
+
   it("should change IsFilterStatusDone flag", () => {
     const previousState = [];
     expect(reducer(previousState, setIsFilterStatusDone(true))).toEqual({
