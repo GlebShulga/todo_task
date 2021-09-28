@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import { BrowserRouter as Router } from "react-router-dom";
-import { render, fireEvent } from "@testing-library/react";
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
