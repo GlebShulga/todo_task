@@ -7,6 +7,7 @@ exports[`<Header/> Header snapshot 1`] = `
 >
   <button
     className="header-title"
+    data-testid="HeaderTitle"
     onClick={[Function]}
   >
     To-Do List
@@ -26,6 +27,7 @@ exports[`<Header/> Header snapshot 1`] = `
     >
       <input
         checked={false}
+        data-testid="StatusDoneCheckBox"
         id="statusDone"
         name="statusDone"
         onChange={[Function]}
@@ -43,6 +45,7 @@ exports[`<Header/> Header snapshot 1`] = `
     >
       <input
         className="header-form_input"
+        data-testid="HeaderFormInput"
         name="search"
         onChange={[Function]}
         placeholder="Search"

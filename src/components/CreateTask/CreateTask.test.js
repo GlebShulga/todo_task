@@ -1,5 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
+import renderer from "react-test-renderer";
 import axios from "axios";
 import store from "../../redux";
 import { UPDATE_CHOSEN_CATEGORY } from "../../redux/types/category";
@@ -69,4 +70,13 @@ describe("<CreateTask />", () => {
       url: "/api/v1/task",
     });
   });
+    it("ProgressBar snapshot", () => {
+      const component = renderer.create(
+        <AppTest>
+          <CreateTask />
+        </AppTest>
+      );
+      let tree = component.toJSON();
+      expect(tree).toMatchSnapshot();
+    });
 });

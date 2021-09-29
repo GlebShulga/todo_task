@@ -70,7 +70,11 @@ const Header = () => {
 
   return (
     <div className="header" data-test="headerComponent">
-      <button className="header-title" onClick={onClickReturnToStartPage}>
+      <button
+        className="header-title"
+        data-testid="HeaderTitle"
+        onClick={onClickReturnToStartPage}
+      >
         To-Do List
       </button>
 
@@ -93,6 +97,7 @@ const Header = () => {
             value={true}
             onChange={onChangeFilterStatusDone}
             checked={isFilterStatusDone}
+            data-testid="StatusDoneCheckBox"
           />
           <label htmlFor="statusDone">Show done</label>
         </div>
@@ -104,6 +109,7 @@ const Header = () => {
             className="header-form_input"
             value={search}
             onChange={onChangeSearch}
+            data-testid="HeaderFormInput"
           />
           <button
             className="header-form_button"

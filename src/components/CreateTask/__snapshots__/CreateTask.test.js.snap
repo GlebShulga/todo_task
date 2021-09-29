@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateTask /> ProgressBar snapshot 1`] = `
+<div
+  className="create_task"
+>
+  <div
+    className="create_task-form"
+  >
+    <input
+      className="create_task-form_input"
+      data-testid="AddTaskInputField"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Add new task"
+      type="text"
+      value=""
+    />
+    <button
+      className="form_button_add"
+      data-testid="AddTaskButton"
+      onClick={[Function]}
+      type="button"
+    >
+      Add
+    </button>
+  </div>
+</div>
+`;

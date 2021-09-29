@@ -1,5 +1,5 @@
-const catListWithDoneFlag = (taskList, categoryList) => {
-  const categoriesWithTask = categoryList.reduce((acc, rec) => {
+export const catListWithDoneFlag = (taskList, categoryList) => {
+  const categoriesWithTask = categoryList?.reduce((acc, rec) => {
     let isDone = 0;
     let count = 0;
     taskList
@@ -17,6 +17,3 @@ const catListWithDoneFlag = (taskList, categoryList) => {
   return categoriesWithTask.filter((el) => el.isAllTasksDone);
 };
 
-module.exports = {
-  catListWithDoneFlag,
-};

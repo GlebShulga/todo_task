@@ -1,12 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 
-const categoriesRouter = require('./routes/categories.routes')
-const tasksRouter = require('./routes/tasks.routes')
+const categoriesRouter = require("./routes/categories.routes");
+const tasksRouter = require("./routes/tasks.routes");
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001
 const app = express();
 
-const middleware = [express.json({ limit: "50mb", extended: true })];
+const middleware = [cors(), express.json({ limit: "50mb", extended: true })];
 
 middleware.forEach((it) => app.use(it));
 

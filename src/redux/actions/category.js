@@ -21,7 +21,8 @@ export function fetchCategoryList() {
     return axios
       .get("/api/v1/category")
       .then(({ data }) => {
-        let current = data.find((cat) => cat.categoryTitle === categoryUrl);
+        let current = data?.find((cat) => cat.categoryTitle === categoryUrl)
+
         let updatedCategoryList = data;
         while (current?.parentCategoryId) {
           updatedCategoryList = updatedCategoryList.map((cat) =>
@@ -33,11 +34,10 @@ export function fetchCategoryList() {
             (cat) => cat.categoryId === current.parentCategoryId
           );
         }
+        const rootList = updatedCategoryList?.filter((el) => el.parentCategoryId === null)
 
-        const rootList = updatedCategoryList.filter(
-          (el) => el.parentCategoryId === null
-        );
-        const titleList = data.map((category) => category.categoryTitle);
+        const titleList = data.map((category) => category.categoryTitle)
+
         dispatch({ type: GET_ROOT_CATEGORY_LIST, rootList });
         dispatch({
           type: GET_CATEGORIES_LIST,
