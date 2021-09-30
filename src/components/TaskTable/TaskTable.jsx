@@ -15,8 +15,11 @@ class TaskTable extends Component {
     this.props.fetchTaskList();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.setState({ tasks: nextProps.tasks.taskList });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.tasks !== prevState.tasks) {
+      return ({ tasks: nextProps.tasks.taskList });
+    }
+    return null;
   }
 
   renderTableHeader() {
