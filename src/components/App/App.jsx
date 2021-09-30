@@ -11,7 +11,6 @@ import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchCategoryList());
     dispatch(fetchTaskList());
