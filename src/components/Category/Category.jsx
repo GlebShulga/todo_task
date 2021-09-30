@@ -38,7 +38,8 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
   const categoryParams = matchPath(pathname, { path: "/:category" });
   const urlCategoryTitle = categoryParams?.params.category;
 
-  const [isEditingCategoryMode, setIsEditingCategoryMode] = useState(false);
+  const [isEditingCategoryMode, setIsEditingCategoryMode] =
+    React.useState(false);
   const [newTitle, setNewTitle] = useState(category.categoryTitle);
   const [isExpanded, setIsExpanded] = useState(category?.isExpanded ?? false);
 
@@ -84,7 +85,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
     dispatch(setIsCreateTaskModalOpen(!isCreateTaskModalOpen));
   };
 
-  const onClickEditCategory = (categoryId) => {
+  const onClickChangeCategory = (categoryId) => {
     dispatch(setNewCategoryIdForTask(categoryId));
   };
 
@@ -128,6 +129,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
               ? "check-mark"
               : "check-mark--hidden"
           }
+          data-testid="faCheckSquare"
         />
         {!isEditingCategoryMode ? (
           <button
@@ -137,6 +139,7 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
                 : "category-title"
             }
             onClick={() => onClickChooseCategory(category)}
+            data-testid="ChooseCategoryButton"
           >
             {category.categoryTitle}
           </button>
@@ -146,9 +149,13 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
             type="text"
             value={newTitle}
             onChange={onChangeTitle}
+            data-testid="NewTitleInput"
           />
         )}
-        <button onClick={() => onClickEditCategoryTitle(categoryId, newTitle)}>
+        <button
+          onClick={() => onClickEditCategoryTitle(categoryId, newTitle)}
+          data-testid="RenameCategoryButton"
+        >
           {edit}
         </button>
 
@@ -158,8 +165,9 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
               <button
                 type="button"
                 onClick={() => onClickDeleteCategory(categoryId)}
+                data-testid="DelCategoryButton"
               >
-                <FontAwesomeIcon icon={faTrashAlt} />
+                <FontAwesomeIcon icon={faTrashAlt} data-testid="faTrashAlt" />
               </button>
               <button
                 type="button"
@@ -167,8 +175,9 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
                 onClick={() =>
                   onClickCreateTaskModalOpen(category, isCreateTaskModalOpen)
                 }
+                data-testid="CreateTaskModalButton"
               >
-                <FontAwesomeIcon icon={faPlus} />
+                <FontAwesomeIcon icon={faPlus} data-testid="faPlus" />
               </button>
             </>
           )}
@@ -180,7 +189,8 @@ const Category = ({ category, categoryListWithDoneFlag }) => {
                   : "reply-icon"
               }
               type="button"
-              onClick={() => onClickEditCategory(categoryId)}
+              onClick={() => onClickChangeCategory(categoryId)}
+              data-testid="ChangeCategoryForTaskButton"
             >
               <FontAwesomeIcon icon={faReply} />
             </button>

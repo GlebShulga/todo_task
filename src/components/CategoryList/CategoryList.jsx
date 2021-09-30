@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import Category from "../Category/Category";
-import { catListWithDoneFlag } from "./helpers";
+import {catListWithDoneFlag}  from "./helpers";
 import "./CategoryList.scss";
 
 const CategoryList = () => {
@@ -11,7 +11,6 @@ const CategoryList = () => {
   const { isEditingTaskMode, chosenTask, taskList } = useSelector(
     (s) => s.task
   );
-
   const categoryListWithDoneFlag = useMemo(
     () => catListWithDoneFlag(taskList, categoryList),
     [taskList, categoryList]

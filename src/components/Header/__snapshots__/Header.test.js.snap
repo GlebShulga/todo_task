@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header/> Header snapshot 1`] = `
+<div
+  className="header"
+  data-test="headerComponent"
+>
+  <button
+    className="header-title"
+    data-testid="HeaderTitle"
+    onClick={[Function]}
+  >
+    To-Do List
+  </button>
+  <button
+    className="header-task-table_button"
+    data-testid="LinkToTaskTablePageButton"
+    onClick={[Function]}
+  >
+    Task table button
+  </button>
+  <div
+    className="header-filter_form"
+  >
+    <div
+      className="status"
+    >
+      <input
+        checked={false}
+        data-testid="StatusDoneCheckBox"
+        id="statusDone"
+        name="statusDone"
+        onChange={[Function]}
+        type="checkbox"
+        value={true}
+      />
+      <label
+        htmlFor="statusDone"
+      >
+        Show done
+      </label>
+    </div>
+    <div
+      className="header-form"
+    >
+      <input
+        className="header-form_input"
+        data-testid="HeaderFormInput"
+        name="search"
+        onChange={[Function]}
+        placeholder="Search"
+        type="text"
+        value=""
+      />
+      <button
+        className="header-form_button"
+        data-testid="SearchButton"
+        onClick={[Function]}
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-times fa-w-11 "
+          data-icon="times"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 352 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+`;

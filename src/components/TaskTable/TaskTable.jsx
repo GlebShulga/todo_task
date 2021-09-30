@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { fetchTaskList } from "../../redux/actions/task";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router";
 import "./TaskTable.scss";
 
 class TaskTable extends Component {
@@ -15,8 +15,11 @@ class TaskTable extends Component {
     this.props.fetchTaskList();
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ tasks: nextProps.tasks.taskList });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.tasks !== prevState.tasks) {
+      return ({ tasks: nextProps.tasks.taskList });
+    }
+    return null;
   }
 
   renderTableHeader() {

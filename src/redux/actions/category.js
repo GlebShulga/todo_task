@@ -18,9 +18,11 @@ export function fetchCategoryList() {
     const url = store.router.location.pathname?.substring(1);
     const complexUrl = url?.match("[^/](.*?)(?=/)");
     const categoryUrl = complexUrl !== null ? complexUrl[0] : url;
-    axios("/api/v1/category")
+    return axios
+      .get("/api/v1/category")
       .then(({ data }) => {
-        let current = data.find((cat) => cat.categoryTitle === categoryUrl);
+        let current = data?.find((cat) => cat.categoryTitle === categoryUrl)
+
         let updatedCategoryList = data;
         while (current?.parentCategoryId) {
           updatedCategoryList = updatedCategoryList.map((cat) =>
@@ -32,11 +34,10 @@ export function fetchCategoryList() {
             (cat) => cat.categoryId === current.parentCategoryId
           );
         }
+        const rootList = updatedCategoryList?.filter((el) => el.parentCategoryId === null)
 
-        const rootList = updatedCategoryList.filter(
-          (el) => el.parentCategoryId === null
-        );
-        const titleList = data.map((category) => category.categoryTitle);
+        const titleList = data.map((category) => category.categoryTitle)
+
         dispatch({ type: GET_ROOT_CATEGORY_LIST, rootList });
         dispatch({
           type: GET_CATEGORIES_LIST,
@@ -60,7 +61,7 @@ export function addCategory(categoryTitle, parentCategoryId, lvl) {
       },
     })
       .then(({ data: categoryList }) => {
-        const rootList = categoryList.filter(
+        const rootList = categoryList?.filter(
           (el) => el.parentCategoryId === null
         );
         dispatch({ type: ADD_CATEGORY, categoryList });
@@ -106,9 +107,7 @@ export function delCategory(categoryId) {
 }
 
 export function updateChosenCategory(chosenCategory) {
-  return (dispatch) => {
-    dispatch({ type: UPDATE_CHOSEN_CATEGORY, chosenCategory });
-  };
+  return { type: UPDATE_CHOSEN_CATEGORY, chosenCategory };
 }
 
 export function setIsFilterStatusDone(data) {

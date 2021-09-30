@@ -1,15 +1,31 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-// import { Provider } from 'react-redux';
-// import { store } from './redux/store';
-import App from './App';
+import React from "react";
+import renderer from "react-test-renderer";
+import { BrowserRouter as Router } from "react-router-dom";
+import configureStore from "redux-mock-store";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import App from "./App.jsx";
+import { mockData } from "../../../tests/mockStore";
 
-test('renders learn react link', () => {
-  const { getByText } = render(
-    // <Provider store={store}>
-      <App />
-    // </Provider>
-  );
+const middlewares = [thunk];
+let mockStore;
+const mockStoreConf = configureStore(middlewares);
 
-  expect(getByText(/learn/i)).toBeInTheDocument();
+
+describe("App Component", () => {
+  beforeEach(() => {
+    mockStore = mockStoreConf(mockData);
+  });
+
+  it("App snapshot", () => {
+    const component = renderer.create(
+      <Router>
+        <Provider store={mockStore}>
+          <App />
+        </Provider>
+      </Router>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 });

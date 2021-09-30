@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-
 import CreateCategory from "../CreateCategory/CreateCategory";
 import CreateTask from "../CreateTask/CreateTask";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -12,7 +11,6 @@ import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(fetchCategoryList());
     dispatch(fetchTaskList());

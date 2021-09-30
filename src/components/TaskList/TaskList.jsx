@@ -12,6 +12,7 @@ const TaskList = () => {
   const { category: choosenCategoryTitle } = useParams();
   const { taskList } = useSelector((s) => s.task);
   const { categoryList } = useSelector((s) => s.category);
+
   const [currentTaskList, setCurrentTaskList] = useState(taskList);
 
   const searchParams = matchPath(pathname, {
