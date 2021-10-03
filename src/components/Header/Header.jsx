@@ -86,7 +86,7 @@ const Header = () => {
         }}
         data-testid="LinkToTaskTablePageButton"
       >
-        Task table button
+        Common task list
       </button>}
 
       <div className="header-filter_form">
