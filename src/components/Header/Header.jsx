@@ -22,6 +22,7 @@ const Header = () => {
 
   const categoryParams = matchPath(pathname, { path: "/:category" });
   const choosenCategoryTitle = categoryParams?.params.category;
+  const taskTableParams = matchPath(pathname, { path: "/tasktable" });
 
   const searchParams = matchPath(pathname, {
     path: "/:category/search/:subString",
@@ -78,7 +79,7 @@ const Header = () => {
         To-Do List
       </button>
 
-      <button
+      {!taskTableParams?.isExact &&<button
         className="header-task-table_button"
         onClick={() => {
           history.push(`/tasktable`);
@@ -86,7 +87,7 @@ const Header = () => {
         data-testid="LinkToTaskTablePageButton"
       >
         Task table button
-      </button>
+      </button>}
 
       <div className="header-filter_form">
         <div className="status">
