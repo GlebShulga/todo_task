@@ -17,8 +17,11 @@ const EditTask = () => {
   const taskId = chosenTask?.taskId;
   const categoryId = newCategoryIdForTask;
 
+  const STATUS_DONE = 'done'
+  const STATUS_NEW = 'new'
+
   const isChecked =
-    status === undefined ? chosenTask.status === "done" : status === "done";
+    status === undefined ? chosenTask.status === STATUS_DONE : status === STATUS_DONE;
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -26,11 +29,12 @@ const EditTask = () => {
   };
 
   const onChangeStatus = (e) => {
-    e.target.checked ? setStatus("done") : setStatus("new");
+    e.target.checked ? setStatus(STATUS_DONE) : setStatus(STATUS_NEW);
   };
 
   const onChangeDescription = (e) => {
-    setDescription(e.target.value);
+    const value = e?.target?.value ?? "";
+    setDescription(value);
   };
 
   const onClickEditTask = () => {
