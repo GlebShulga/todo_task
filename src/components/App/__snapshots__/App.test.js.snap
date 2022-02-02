@@ -20,7 +20,7 @@ exports[`App Component App snapshot 1`] = `
       data-testid="LinkToTaskTablePageButton"
       onClick={[Function]}
     >
-      Task table button
+      Common task list
     </button>
     <div
       className="header-filter_form"
