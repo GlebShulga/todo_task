@@ -1,3 +1,9 @@
+$lightgrey: #d3d3d3;
+$white: #fff;
+$grey: #808080;
+$lightslategray: #778899;
+$red: #ff0000;
+
 .edit_task {
   display: flex;
   flex-direction: column;
@@ -14,11 +20,11 @@
 .edit_task-buttons__close {
   padding: 0.5rem 1rem;
   margin: 0 0.5rem;
-  background-color: grey;
-  color: white;
+  background-color: $grey;
+  color: $white;
   font-weight: 700;
   &:hover {
-    background-color: lightslategray;
+    background-color: $lightslategray;
   }
 }
 
@@ -30,13 +36,13 @@
 
 .edit_task-title__input {
   padding: 0.5rem 1rem;
-  border: solid thin lightgrey;
+  border: solid thin $lightgrey;
   background-color: rgb(235, 235, 235);
   outline: none;
 
   &:focus {
-    background-color: white;
-    border: solid thin lightgrey;
+    background-color: $white;
+    border: solid thin $lightgrey;
   }
 }
 .status {
@@ -49,7 +55,7 @@
   font-size: large;
   padding: 0.5rem 0.5rem;
   &:focus {
-    background-color: white;
+    background-color: $white;
   }
   &::placeholder {
     font-size: 1rem;
@@ -60,6 +66,6 @@
 }
 
 .edit_task-error {
-  color: red;
+  color: $red;
   padding-top: 0.3rem;
 }

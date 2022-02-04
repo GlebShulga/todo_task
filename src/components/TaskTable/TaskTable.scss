@@ -1,3 +1,8 @@
+$primary: #808080;
+$verylightshadeofgray: #ddd;
+$white: #fff;
+$green: #4caf50;
+
 .title {
   text-align: center;
 }
@@ -10,30 +15,28 @@
 .tasks-table {
   text-align: center;
   border-collapse: collapse;
-  border: 0.2rem solid #ddd;
+  border: 0.2rem solid $verylightshadeofgray;
   width: 100%;
 }
 
 .tasks-table td,
 .tasks-table th {
-  border: 0.1rem solid #ddd;
+  border: 0.1rem solid $verylightshadeofgray;
   padding: 0.5rem;
 }
 
 .tasks-table th {
   padding: 1rem 0;
   text-align: center;
-  background-color: #4caf50;
-  color: white;
+  background-color: $green;
+  color: $white;
 }
-
-$primary: gray;
 
 .task-table_button {
   padding: 0.4rem 0.8rem;
   font-size: 10px;
   font-weight: 900;
-  color: #fff;
+  color: $white;
   background-color: $primary;
   border: 2px solid $primary;
   cursor: pointer;
