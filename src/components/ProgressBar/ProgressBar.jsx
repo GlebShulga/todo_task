@@ -25,12 +25,15 @@ const ProgressBar = () => {
     }
   }, [taskList, chosenCategory]);
 
-  const result = count > 0 ? Math.round((isDone / count) * 100) : 100;
+  const ONE_HUNDRED = 100
+
+  const result =
+    count > 0 ? Math.round((isDone / count) * ONE_HUNDRED) : ONE_HUNDRED;
 
   return (
     <progress
       value={result}
-      max="100"
+      max={ONE_HUNDRED}
       className="progress-bar"
       data-testid="ProgressBar"
     ></progress>

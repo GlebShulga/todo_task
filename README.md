@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux] (https://redux.js.org/) and [Redux Toolkit] (https://redux-toolkit.js.org/) template.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux] (https://redux.js.org/).
 
 ## Available Scripts
 
@@ -38,7 +38,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - Search tasks by name
 - Filter categories by status
 - Local file is used to simulate the DB
-
 
 ## The stack
 

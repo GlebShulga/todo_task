@@ -79,15 +79,17 @@ const Header = () => {
         To-Do List
       </button>
 
-      {!taskTableParams?.isExact &&<button
-        className="header-task-table_button"
-        onClick={() => {
-          history.push(`/tasktable`);
-        }}
-        data-testid="LinkToTaskTablePageButton"
-      >
-        Common task list
-      </button>}
+      {!taskTableParams?.isExact && (
+        <button
+          className="header-task-table_button"
+          onClick={() => {
+            history.push(`/tasktable`);
+          }}
+          data-testid="LinkToTaskTablePageButton"
+        >
+          Common task list
+        </button>
+      )}
 
       <div className="header-filter_form">
         <div className="status">

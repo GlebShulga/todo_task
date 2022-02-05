@@ -7,7 +7,8 @@ import "./EditTask.scss";
 const EditTask = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { category: choosenCategoryTitle, task: currentTaskTitle } = useParams();
+  const { category: choosenCategoryTitle, task: currentTaskTitle } =
+    useParams();
   const { newCategoryIdForTask, chosenTask } = useSelector((s) => s.task);
 
   const [title, setTitle] = useState(currentTaskTitle);
@@ -17,11 +18,13 @@ const EditTask = () => {
   const taskId = chosenTask?.taskId;
   const categoryId = newCategoryIdForTask;
 
-  const STATUS_DONE = 'done'
-  const STATUS_NEW = 'new'
+  const STATUS_DONE = "done";
+  const STATUS_NEW = "new";
 
   const isChecked =
-    status === undefined ? chosenTask.status === STATUS_DONE : status === STATUS_DONE;
+    status === undefined
+      ? chosenTask.status === STATUS_DONE
+      : status === STATUS_DONE;
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -78,7 +81,7 @@ const EditTask = () => {
         <input
           className="edit_task-title__input"
           type="text"
-          value={title ?? ''}
+          value={title ?? ""}
           onChange={onChangeTitle}
         />
         {lengthError && (
