@@ -22,10 +22,13 @@ const CreateCategory = () => {
 
   const lvl = chosenCategory?.lvl === undefined ? 0 : chosenCategory?.lvl + 1;
 
+  const MAX_SYMBOLS_NUMBER = 20
+  const MIN_SYMBOLS_NUMBER = 3
+
   const onClickAddCategory = () => {
     if (
-      categoryTitle?.trim().length <= 20 &&
-      categoryTitle?.trim().length >= 3
+      categoryTitle?.trim().length <= MAX_SYMBOLS_NUMBER &&
+      categoryTitle?.trim().length >= MIN_SYMBOLS_NUMBER
     ) {
       if (categoryTitleList.indexOf(categoryTitle) === -1) {
         dispatch(addCategory(categoryTitle, parentCategoryId, lvl));
@@ -80,9 +83,10 @@ const CreateCategory = () => {
       </div>
       {lengthError && (
         <div className="error">
-          <div> The task length must not be shorter than 3 characters</div>
+          <div> The category's name length </div>
+          <div>must not be shorter than {MIN_SYMBOLS_NUMBER} characters</div>
           <div>and</div>
-          <div>must not exceed 20 characters.</div>
+          <div>must not exceed {MAX_SYMBOLS_NUMBER} characters.</div>
         </div>
       )}
       {categoryAlreadyExist && (
