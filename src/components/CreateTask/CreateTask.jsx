@@ -16,10 +16,15 @@ const CreateTask = () => {
   };
 
   const categoryId = chosenCategory?.categoryId;
+  const MAX_SYMBOLS_NUMBER = 20;
+  const MIN_SYMBOLS_NUMBER = 3;
 
   const onClickAddTask = async () => {
     if (categoryId) {
-      if (title?.trim().length <= 20 && title?.trim().length >= 3) {
+      if (
+        title?.trim().length <= MAX_SYMBOLS_NUMBER &&
+        title?.trim().length >= MIN_SYMBOLS_NUMBER
+      ) {
         setCategoryError(false);
         setLengthError(false);
         dispatch(addTask(title, categoryId));
@@ -61,9 +66,12 @@ const CreateTask = () => {
       </div>
       {lengthError && (
         <div className="error">
-          <div> The task length must not be shorter than 3 characters</div>
+          <div>
+            The task length must not be shorter than {MIN_SYMBOLS_NUMBER}
+            characters
+          </div>
           <div>and</div>
-          <div>must not exceed 20 characters.</div>
+          <div>must not exceed {MAX_SYMBOLS_NUMBER} characters.</div>
         </div>
       )}
       {categoryError && (
