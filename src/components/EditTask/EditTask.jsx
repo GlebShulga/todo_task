@@ -20,6 +20,8 @@ const EditTask = () => {
 
   const STATUS_DONE = "done";
   const STATUS_NEW = "new";
+    const MAX_SYMBOLS_NUMBER = 20;
+  const MIN_SYMBOLS_NUMBER = 3;
 
   const isChecked =
     status === undefined
@@ -41,7 +43,10 @@ const EditTask = () => {
   };
 
   const onClickEditTask = () => {
-    if (title?.trim().length <= 20 && title?.trim().length >= 3) {
+    if (
+      title?.trim().length <= { MAX_SYMBOLS_NUMBER } &&
+      title?.trim().length >= { MIN_SYMBOLS_NUMBER }
+    ) {
       dispatch(patchTask(taskId, status, title, description, categoryId));
       dispatch(setEditingTaskMode(false));
       history.push(`/${choosenCategoryTitle}`);
@@ -86,8 +91,8 @@ const EditTask = () => {
         />
         {lengthError && (
           <div className="edit_task-error">
-            The task length must not be shorter than 3 characters and must not
-            exceed 20 characters.
+            The task length must not be shorter than {MIN_SYMBOLS_NUMBER}
+            characters and must not exceed {MAX_SYMBOLS_NUMBER} characters.
           </div>
         )}
       </div>
