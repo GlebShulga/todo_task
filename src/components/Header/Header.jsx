@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
@@ -20,26 +20,32 @@ const Header = () => {
   const { isFilterStatusDone } = useSelector((s) => s.category);
   const { pathname } = useLocation();
 
-  const categoryParams = matchPath(pathname, { path: "/:category" });
+  const TASK_TABLE = "/tasktable";
+  const SEARCH = 'search'
+  const SUBSTRING = ":subString";
+  const CATEGORY = "/:category";
+  const CATEGORIES = "/categories";
+  const SHOW_DONE_TRUE = "showDone=true";
+  const SHOW_DONE_FALSE = "showDone=false";
+
+  const categoryParams = matchPath(pathname, { path: CATEGORY });
   const choosenCategoryTitle = categoryParams?.params.category;
-  const taskTableParams = matchPath(pathname, { path: "/tasktable" });
+  const taskTableParams = matchPath(pathname, { path: TASK_TABLE });
 
   const searchParams = matchPath(pathname, {
-    path: "/:category/search/:subString",
+    path: `${CATEGORY}/${SEARCH}/${SUBSTRING}`,
   });
 
   useEffect(() => {
     const filterParams = matchPath(pathname, {
-      path: "/categories/showDone=true",
+      path: `${CATEGORIES}/${SHOW_DONE_TRUE}`,
     })?.isExact;
     if (filterParams) {
       dispatch(setIsFilterStatusDone(true));
     }
   }, []);
 
-  const [search, setSearch] = React.useState(
-    searchParams?.params.subString ?? ""
-  );
+  const [search, setSearch] = useState(searchParams?.params.subString ?? "");
 
   const onChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -48,10 +54,10 @@ const Header = () => {
   const onChangeFilterStatusDone = (e) => {
     if (e.target.checked) {
       dispatch(setIsFilterStatusDone(true));
-      history.push("/categories/showDone=true");
+      history.push(`${CATEGORIES}/${SHOW_DONE_TRUE}`);
     } else {
       dispatch(setIsFilterStatusDone(false));
-      history.push("/categories/showDone=false");
+      history.push(`${CATEGORIES}/${SHOW_DONE_FALSE}`);
     }
   };
 
@@ -65,7 +71,7 @@ const Header = () => {
   const onClickSearch = () => {
     if (search.length > 0) {
       dispatch(setSearchCriteria(search));
-      history.push(`/${choosenCategoryTitle}/search/${search}`);
+      history.push(`/${choosenCategoryTitle}/${SEARCH}/${search}`);
     }
   };
 
@@ -83,7 +89,7 @@ const Header = () => {
         <button
           className="header-task-table_button"
           onClick={() => {
-            history.push(`/tasktable`);
+            history.push(TASK_TABLE);
           }}
           data-testid="LinkToTaskTablePageButton"
         >
